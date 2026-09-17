@@ -1,6 +1,7 @@
 import type {
   Camera,
   CameraCreate,
+  CameraUpdate,
   CapabilityCheck,
   ConnectionReport,
   LiveUrls,
@@ -43,7 +44,9 @@ export const api = {
   camera: (id: string) => request<Camera>(`/cameras/${id}`),
   createCamera: (data: CameraCreate) =>
     request<Camera>('/cameras', { method: 'POST', body: json(data) }),
-  deleteCamera: (id: string) => request<void>(`/cameras/${id}`, { method: 'DELETE' }),
+  updateCamera: (id: string, data: CameraUpdate) =>
+    request<Camera>(`/cameras/${id}`, { method: 'PATCH', body: json(data) }),
+  deleteCamera:(id: string) => request<void>(`/cameras/${id}`, { method: 'DELETE' }),
   testConnection: (id: string) =>
     request<ConnectionReport>(`/cameras/${id}/connection-test`, { method: 'POST' }),
   profiles: (id: string) => request<VideoProfile[]>(`/cameras/${id}/profiles`),

@@ -7,7 +7,7 @@ import { api } from '@/api/client'
 import type { Camera, Protocol, SupportLevel } from '@/api/types'
 import { PROTOCOLS, ProtocolLight, StatusBadge } from '@/components/status'
 import { Badge, Button, Card, EmptyState } from '@/components/ui'
-import { AddCameraDialog } from '@/features/cameras/AddCameraDialog'
+import { CameraFormDialog } from '@/features/cameras/CameraFormDialog'
 
 /** Nivel de conectividad por protocolo según la última prueba de conexión. */
 export function useConnectivity(cameraId: string) {
@@ -127,7 +127,7 @@ export function CamerasPage() {
         )
       )}
 
-      <AddCameraDialog open={adding} onClose={() => setAdding(false)} />
+      <CameraFormDialog open={adding} onClose={() => setAdding(false)} />
     </div>
   )
 }

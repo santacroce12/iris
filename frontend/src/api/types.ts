@@ -43,6 +43,9 @@ export interface CameraCreate {
   network_mode: NetworkMode
 }
 
+/** PATCH: solo viajan los campos presentes; contraseñas ausentes = conservar las guardadas. */
+export type CameraUpdate = Partial<CameraCreate>
+
 export interface ProtocolCheck {
   ok: boolean
   latency_ms: number

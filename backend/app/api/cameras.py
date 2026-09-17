@@ -20,11 +20,24 @@ from app.core.config import get_settings
 from app.core.db import get_session
 from app.core.security import encrypt
 from app.db.models import Camera, CapabilityCheck, OperationLog
-from app.domain.enums import StreamType
+from app.domain.enums import CameraStatus, StreamType
 from app.drivers.rtsp.mediamtx import MediaMtx
 from app.services import cameras as service
 
 router = APIRouter(prefix="/api/cameras", tags=["cámaras"])
+
+# Campos que cambian cómo se llega a la cámara (a diferencia de, por ejemplo, el nombre).
+CONNECTION_FIELDS = {
+    "host",
+    "http_port",
+    "use_https",
+    "verify_tls",
+    "rtsp_port",
+    "onvif_port",
+    "channel",
+    "username",
+    "network_mode",
+}
 Session = Annotated[AsyncSession, Depends(get_session)]
 
 
@@ -59,13 +72,36 @@ async def read_camera(camera: CameraDep) -> Camera:
 @router.patch("/{camera_id}", response_model=CameraOut)
 async def update_camera(payload: CameraUpdate, camera: CameraDep, session: Session) -> Camera:
     data = payload.model_dump(exclude_unset=True)
+    connection_changed = False
+
+    # Contraseñas vacías o ausentes = conservar las guardadas (el navegador nunca las conoce).
     if password := data.pop("password", None):
         camera.secret_enc = encrypt(password)
-    if "onvif_password" in data:
-        onvif_password = data.pop("onvif_password")
-        camera.onvif_secret_enc = encrypt(onvif_password) if onvif_password else None
+        connection_changed = True
+    if onvif_password := data.pop("onvif_password", None):
+        camera.onvif_secret_enc = encrypt(onvif_password)
+        connection_changed = True
+    if "onvif_username" in data:
+        onvif_username = (data.pop("onvif_username") or "").strip() or None
+        if onvif_username != camera.onvif_username:
+            connection_changed = True
+        camera.onvif_username = onvif_username
+        if onvif_username is None:
+            camera.onvif_secret_enc = None  # sin usuario ONVIF propio se usa el principal
+
     for key, value in data.items():
+        if value is None:
+            continue  # el resto de los campos son obligatorios: null no significa "borrar"
+        if key in CONNECTION_FIELDS and getattr(camera, key) != value:
+            connection_changed = True
         setattr(camera, key, value)
+
+    if connection_changed:
+        # Lo verificado ya no describe a esta configuración: hay que volver a probar.
+        camera.status = CameraStatus.UNKNOWN
+        mediamtx = MediaMtx(get_settings())
+        for stream_type in StreamType:
+            await mediamtx.remove(service.mediamtx_path(camera, stream_type))
     await session.commit()
     return camera
 

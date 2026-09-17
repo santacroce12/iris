@@ -4,6 +4,7 @@ import {
   Camera as CameraIcon,
   ImageOff,
   Loader2,
+  Pencil,
   Play,
   PlugZap,
   RefreshCw,
@@ -16,6 +17,7 @@ import { api } from '@/api/client'
 import type { Camera, ConnectionReport, StreamType } from '@/api/types'
 import { PROTOCOLS, ProtocolLight, StatusBadge, levelMeta, protocolMeta } from '@/components/status'
 import { Badge, Button, Card, EmptyState, cn } from '@/components/ui'
+import { CameraFormDialog } from '@/features/cameras/CameraFormDialog'
 import { useConnectivity } from '@/features/cameras/CamerasPage'
 import { LivePlayer } from '@/features/live/LivePlayer'
 
@@ -25,6 +27,7 @@ type Tab = (typeof tabs)[number]
 export function CameraDetailPage() {
   const { cameraId = '' } = useParams()
   const [tab, setTab] = useState<Tab>('Vivo')
+  const [editing, setEditing] = useState(false)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
@@ -89,6 +92,15 @@ export function CameraDetailPage() {
             Probar conexión
           </Button>
           <Button
+            icon={<Pencil className="size-4" />}
+            onClick={() => {
+              test.reset() // el resultado anterior puede no valer para los datos nuevos
+              setEditing(true)
+            }}
+          >
+            <span className="sr-only sm:not-sr-only">Editar</span>
+          </Button>
+          <Button
             variant="danger"
             icon={<Trash2 className="size-4" />}
             loading={remove.isPending}
@@ -100,6 +112,8 @@ export function CameraDetailPage() {
       </header>
 
       {test.data && <ConnectionResult report={test.data} />}
+
+      <CameraFormDialog open={editing} onClose={() => setEditing(false)} camera={camera} />
 
       <div className="flex gap-1 border-b border-line">
         {tabs.map((t) => (
