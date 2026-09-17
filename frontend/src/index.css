@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+
+/* Consola de monitoreo: fondo casi negro, superficies en capas y un acento cian. */
+@theme {
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Cascadia Code', 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  --color-bg: #0a0c10;
+  --color-surface: #11151c;
+  --color-surface-2: #171c25;
+  --color-line: #232a36;
+  --color-muted: #8a94a6;
+  --color-fg: #e6eaf2;
+  --color-accent: #22d3ee;
+
+  /* Un color fijo por protocolo, usado en toda la UI y en la matriz. */
+  --color-isapi: #f59e0b;
+  --color-onvif: #38bdf8;
+  --color-rtsp: #a78bfa;
+
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-bg text-fg font-sans antialiased;
+  font-size: 14px;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+}

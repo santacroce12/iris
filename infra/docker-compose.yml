@@ -1,0 +1,33 @@
+name: tesis-camaras
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: camaras
+      POSTGRES_PASSWORD: camaras
+      POSTGRES_DB: camaras
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U camaras"]
+      interval: 5s
+      retries: 10
+
+  mediamtx:
+    image: bluenviron/mediamtx:1
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+    ports:
+      - "8554:8554"      # RTSP (re-publicación)
+      - "8888:8888"      # HLS
+      - "8889:8889"      # WebRTC (WHEP)
+      - "8189:8189/udp"  # ICE UDP
+      - "8189:8189/tcp"  # ICE TCP (fallback útil con Docker Desktop / VPN)
+      - "9997:9997"      # API de control
+
+volumes:
+  pgdata:

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EventTriggerList version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<EventTrigger>
+<id>IO-1</id>
+<eventType>IO</eventType>
+<eventDescription>IO Event trigger Information</eventDescription>
+<inputIOPortID>1</inputIOPortID>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+<EventTriggerNotification>
+<id>center</id>
+<notificationMethod>center</notificationMethod>
+<notificationRecurrence>beginning</notificationRecurrence>
+</EventTriggerNotification>
+</EventTriggerNotificationList>
+</EventTrigger>
+<EventTrigger>
+<id>IO-2</id>
+<eventType>IO</eventType>
+<eventDescription>IO Event trigger Information</eventDescription>
+<inputIOPortID>2</inputIOPortID>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+<EventTriggerNotification>
+<id>center</id>
+<notificationMethod>center</notificationMethod>
+<notificationRecurrence>beginning</notificationRecurrence>
+</EventTriggerNotification>
+</EventTriggerNotificationList>
+</EventTrigger>
+<EventTrigger>
+<id>diskfull</id>
+<eventType>diskfull</eventType>
+<eventDescription>exception Information</eventDescription>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+<EventTriggerNotification>
+<id>center</id>
+<notificationMethod>center</notificationMethod>
+<notificationRecurrence>beginning</notificationRecurrence>
+</EventTriggerNotification>
+</EventTriggerNotificationList>
+</EventTrigger>
+<EventTrigger>
+<id>diskerror</id>
+<eventType>diskerror</eventType>
+<eventDescription>exception Information</eventDescription>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+<EventTriggerNotification>
+<id>center</id>
+<notificationMethod>center</notificationMethod>
+<notificationRecurrence>beginning</notificationRecurrence>
+</EventTriggerNotification>
+</EventTriggerNotificationList>
+</EventTrigger>
+<EventTrigger>
+<id>nicbroken</id>
+<eventType>nicbroken</eventType>
+<eventDescription>exception Information</eventDescription>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+</EventTriggerNotificationList>
+</EventTrigger>
+<EventTrigger>
+<id>ipconflict</id>
+<eventType>ipconflict</eventType>
+<eventDescription>exception Information</eventDescription>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+</EventTriggerNotificationList>
+</EventTrigger>
+<EventTrigger>
+<id>illaccess</id>
+<eventType>illaccess</eventType>
+<eventDescription>exception Information</eventDescription>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+<EventTriggerNotification>
+<id>center</id>
+<notificationMethod>center</notificationMethod>
+<notificationRecurrence>beginning</notificationRecurrence>
+</EventTriggerNotification>
+</EventTriggerNotificationList>
+</EventTrigger>
+<EventTrigger>
+<id>storageDetection-1</id>
+<eventType>storageDetection</eventType>
+<eventDescription>storageDetection Event trigger Information</eventDescription>
+<videoInputChannelID>1</videoInputChannelID>
+<dynVideoInputChannelID>1</dynVideoInputChannelID>
+<EventTriggerNotificationList>
+</EventTriggerNotificationList>
+</EventTrigger>
+</EventTriggerList>

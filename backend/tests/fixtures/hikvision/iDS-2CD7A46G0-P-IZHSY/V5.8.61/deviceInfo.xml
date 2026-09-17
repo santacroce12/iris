@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceInfo version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<deviceName>IP CAMERA</deviceName>
+<deviceID>75454000-0829-11b4-8270-08541174995d</deviceID>
+<deviceDescription>IPCamera</deviceDescription>
+<deviceLocation>hangzhou</deviceLocation>
+<systemContact>Hikvision.China</systemContact>
+<model>iDS-2CD7A46G0/P-IZHSY</model>
+<serialNumber>iDS-2CD7A46G0/P-IZHSY20230624AAWRAC8060510</serialNumber>
+<macAddress>08:54:11:74:99:5d</macAddress>
+<firmwareVersion>V5.8.61</firmwareVersion>
+<firmwareReleasedDate>build 250901</firmwareReleasedDate>
+<encoderVersion>V7.3</encoderVersion>
+<encoderReleasedDate>build 250702</encoderReleasedDate>
+<bootVersion>V1.3.4</bootVersion>
+<bootReleasedDate>100316</bootReleasedDate>
+<hardwareVersion>0x0</hardwareVersion>
+<deviceType>IPCamera</deviceType>
+<telecontrolID>88</telecontrolID>
+<supportBeep>true</supportBeep>
+<supportVideoLoss>false</supportVideoLoss>
+<firmwareVersionInfo>B-R-H8-0</firmwareVersionInfo>
+<manufacturer>hikvision</manufacturer>
+<subSerialNumber>AC8060510</subSerialNumber>
+<OEMCode>1</OEMCode>
+<firmware>opdevsdk mediaDrv:v2.0.0</firmware>
+<platformName>H8</platformName>
+<wiegandOutNum>1</wiegandOutNum>
+<OSCoreVersionInfo>
+<minisysVersion>2.6.1</minisysVersion>
+<networkServiceVersion>1.0.0</networkServiceVersion>
+</OSCoreVersionInfo>
+</DeviceInfo>

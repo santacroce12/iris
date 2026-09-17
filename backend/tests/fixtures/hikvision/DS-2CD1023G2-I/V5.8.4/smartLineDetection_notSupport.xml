@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResponseStatus version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<requestURL></requestURL>
+<statusCode>4</statusCode>
+<statusString>Invalid Operation</statusString>
+<subStatusCode>notSupport</subStatusCode>
+<description>notSupport. The HTTP request is abnormal. Please first confirm whether the device version is supported and whether the request content conforms to the protocol standard, or contact technical support to provide help. Thank you;</description>
+</ResponseStatus>

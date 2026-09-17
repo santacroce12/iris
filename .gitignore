@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+dist/
+
+# Datos locales
+.env
+backend/media/
+*.log
+
+# Editor / SO
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+# Claude Code (config local de cada maquina)
+.claude/settings.local.json

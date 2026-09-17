@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceInfo version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<deviceName>IP CAMERA</deviceName>
+<deviceID>ddb00000-513d-11b4-82cd-085411bbefbb</deviceID>
+<deviceDescription>IPCamera</deviceDescription>
+<deviceLocation>hangzhou</deviceLocation>
+<systemContact>Hikvision.China</systemContact>
+<model>DS-2CD1023G2-I</model>
+<serialNumber>DS-2CD1023G2-I20230717AAWRAD8786859</serialNumber>
+<macAddress>08:54:11:bb:ef:bb</macAddress>
+<firmwareVersion>V5.8.4</firmwareVersion>
+<firmwareReleasedDate>build 240613</firmwareReleasedDate>
+<encoderVersion>V7.3</encoderVersion>
+<encoderReleasedDate>build 240510</encoderReleasedDate>
+<bootVersion>V1.3.4</bootVersion>
+<bootReleasedDate>100316</bootReleasedDate>
+<hardwareVersion>0x0</hardwareVersion>
+<deviceType>IPCamera</deviceType>
+<telecontrolID>88</telecontrolID>
+<supportBeep>false</supportBeep>
+<supportVideoLoss>false</supportVideoLoss>
+<firmwareVersionInfo>B-R-E9-0</firmwareVersionInfo>
+<manufacturer>hikvision</manufacturer>
+<subSerialNumber>AD8786859</subSerialNumber>
+<OEMCode>1</OEMCode>
+</DeviceInfo>

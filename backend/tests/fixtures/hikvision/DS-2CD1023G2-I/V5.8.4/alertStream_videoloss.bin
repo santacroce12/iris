@@ -1,0 +1,36 @@
+--boundary
+Content-Type: application/xml; charset="UTF-8"
+Content-Length: 549
+
+<EventNotificationAlert version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<ipAddress>192.168.1.64</ipAddress>
+<ipv6Address>::</ipv6Address>
+<portNo>80</portNo>
+<protocol>HTTP</protocol>
+<macAddress>08:54:11:bb:ef:bb</macAddress>
+<channelID>1</channelID>
+<dateTime>2026-06-04T10:55:36-03:00</dateTime>
+<activePostCount>1</activePostCount>
+<eventType>videoloss</eventType>
+<eventState>inactive</eventState>
+<eventDescription>videoloss alarm</eventDescription>
+<channelName>Camera 01</channelName>
+</EventNotificationAlert>
+--boundary
+Content-Type: application/xml; charset="UTF-8"
+Content-Length: 549
+
+<EventNotificationAlert version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<ipAddress>192.168.1.64</ipAddress>
+<ipv6Address>::</ipv6Address>
+<portNo>80</portNo>
+<protocol>HTTP</protocol>
+<macAddress>08:54:11:bb:ef:bb</macAddress>
+<channelID>1</channelID>
+<dateTime>2026-06-04T10:55:46-03:00</dateTime>
+<activePostCount>1</activePostCount>
+<eventType>videoloss</eventType>
+<eventState>inactive</eventState>
+<eventDescription>videoloss alarm</eventDescription>
+<channelName>Camera 01</channelName>
+</EventNotificationAlert>

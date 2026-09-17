@@ -1,0 +1,33 @@
+# Las rutas de cámaras las crea el backend por API (/v3/config/paths/replace/...).
+logLevel: info
+
+# Plataforma local sin login: se permite todo desde cualquier IP.
+# El backend es el único que conoce las credenciales RTSP de las cámaras.
+authInternalUsers:
+  - user: any
+    ips: []
+    permissions:
+      - action: api
+      - action: read
+      - action: publish
+      - action: playback
+
+api: yes
+apiAddress: :9997
+
+hls: yes
+hlsAddress: :8888
+hlsAllowOrigins: ["*"]
+hlsVariant: lowLatency
+
+webrtc: yes
+webrtcAddress: :8889
+webrtcAllowOrigins: ["*"]
+webrtcLocalUDPAddress: :8189
+webrtcLocalTCPAddress: :8189
+# Dentro de Docker la IP del contenedor no es alcanzable desde el navegador.
+webrtcIPsFromInterfaces: no
+webrtcAdditionalHosts: ["127.0.0.1"]
+
+paths:
+  all_others:

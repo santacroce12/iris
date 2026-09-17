@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EventTriggersCap version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<NicbrokenTriggerCap>
+</NicbrokenTriggerCap>
+<IpconflictTriggerCap>
+</IpconflictTriggerCap>
+<IllaccesTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportEmail>true</isSupportEmail>
+</IllaccesTriggerCap>
+<MotionDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+</MotionDetectionTriggerCap>
+<TamperDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportEmail>true</isSupportEmail>
+</TamperDetectionTriggerCap>
+</EventTriggersCap>
