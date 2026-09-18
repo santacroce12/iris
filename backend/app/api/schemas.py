@@ -56,6 +56,7 @@ class CameraOut(CameraBase):
     vca_mode: str | None
     status: CameraStatus
     last_seen_at: datetime | None
+    listen_events: bool
     created_at: datetime
 
 
@@ -122,3 +123,44 @@ class OperationLogOut(BaseModel):
     error_code: str | None
     detail: dict[str, Any] | None
     created_at: datetime
+
+
+class EventMediaOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    kind: str
+    mime: str
+    bytes: int
+
+
+class EventOut(BaseModel):
+    """Un evento es un episodio: duró de occurred_at a ended_at con `hits` avisos."""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    camera_id: uuid.UUID
+    protocol: str
+    raw_type: str
+    type: str
+    state: str | None
+    channel: int | None
+    occurred_at: datetime
+    ended_at: datetime | None
+    received_at: datetime
+    hits: int
+    rule_ref: str | None
+    target_type: str | None
+    payload: dict[str, Any] | None
+    media: list[EventMediaOut] = Field(default_factory=list)
+
+
+class ListenerState(BaseModel):
+    camera_id: uuid.UUID
+    status: str
+    connected_since: datetime | None
+    alerts_received: int
+    episodes_saved: int
+    open_episodes: int
+    last_error: str | None

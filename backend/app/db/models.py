@@ -64,6 +64,8 @@ class Camera(Base):
     vca_mode: Mapped[str | None] = mapped_column(String(60))
 
     network_mode: Mapped[str] = mapped_column(String(10), default=NetworkMode.LAN)
+    # Si está en true, el motor mantiene abierto el alertStream de esta cámara.
+    listen_events: Mapped[bool] = mapped_column(Boolean, default=False)
     status: Mapped[str] = mapped_column(String(20), default=CameraStatus.UNKNOWN)
     last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
@@ -138,6 +140,9 @@ class Event(Base):
     )
     rule_ref: Mapped[str | None] = mapped_column(String(60))
     target_type: Mapped[str | None] = mapped_column(String(30))
+    # Un evento es un episodio: duró de occurred_at a ended_at y la cámara avisó hits veces.
+    ended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    hits: Mapped[int] = mapped_column(Integer, default=1)
     bbox: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
     payload: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
 
