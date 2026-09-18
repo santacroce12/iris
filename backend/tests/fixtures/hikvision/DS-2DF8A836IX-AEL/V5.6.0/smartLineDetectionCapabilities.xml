@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LineDetection version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled opt="true,false">false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<LineItemList size="4" >
+<LineItem>
+<id>1</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</LineItem>
+<LineItem>
+<id>2</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">0</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</LineItem>
+<LineItem>
+<id>3</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">0</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</LineItem>
+<LineItem>
+<id>4</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">0</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</LineItem>
+</LineItemList>
+<isSupportMultiScene>true</isSupportMultiScene>
+<recogRuleType>vectorMode</recogRuleType>
+<isSupportTargetMultiSelect>true</isSupportTargetMultiSelect>
+<isSupportAllDayUpload>true</isSupportAllDayUpload>
+</LineDetection>

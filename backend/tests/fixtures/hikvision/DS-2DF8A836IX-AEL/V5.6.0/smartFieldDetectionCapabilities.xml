@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldDetection version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled opt="true,false">false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<isSupportTargetMultiSelect>true</isSupportTargetMultiSelect>
+<FieldDetectionRegionList size="4" >
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<minRegionCoordinatesNum>4</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>4</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<timeThreshold min="0" max="10">0</timeThreshold>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</FieldDetectionRegion>
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>2</id>
+<minRegionCoordinatesNum>4</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>4</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">0</sensitivityLevel>
+<timeThreshold min="0" max="10">0</timeThreshold>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</FieldDetectionRegion>
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>3</id>
+<minRegionCoordinatesNum>4</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>4</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">0</sensitivityLevel>
+<timeThreshold min="0" max="10">0</timeThreshold>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</FieldDetectionRegion>
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>4</id>
+<minRegionCoordinatesNum>4</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>4</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">0</sensitivityLevel>
+<timeThreshold min="0" max="10">0</timeThreshold>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="human,vehicle,others"> </detectionTarget>
+</FieldDetectionRegion>
+</FieldDetectionRegionList>
+<isSupportMultiScene>true</isSupportMultiScene>
+<isSupportAllDayUpload>true</isSupportAllDayUpload>
+</FieldDetection>

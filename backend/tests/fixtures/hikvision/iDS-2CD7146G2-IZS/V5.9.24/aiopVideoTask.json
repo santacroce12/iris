@@ -1,0 +1,61 @@
+{
+  "Tasks": [
+    {
+      "taskID": "545933c16c6bfe2g",
+      "channel": [
+        1
+      ],
+      "engine": 1001,
+      "frameRate": 1250,
+      "status": 1,
+      "TimeRange": [
+        {
+          "week": 1,
+          "beginTime": "00:00",
+          "endTime": "24:00"
+        },
+        {
+          "week": 2,
+          "beginTime": "00:00",
+          "endTime": "24:00"
+        },
+        {
+          "week": 3,
+          "beginTime": "00:00",
+          "endTime": "24:00"
+        },
+        {
+          "week": 4,
+          "beginTime": "00:00",
+          "endTime": "24:00"
+        },
+        {
+          "week": 5,
+          "beginTime": "00:00",
+          "endTime": "24:00"
+        },
+        {
+          "week": 6,
+          "beginTime": "00:00",
+          "endTime": "24:00"
+        },
+        {
+          "week": 7,
+          "beginTime": "00:00",
+          "endTime": "24:00"
+        }
+      ],
+      "alarmTargetOverlay": true,
+      "alarmRuleOverlay": true,
+      "EventTrigger": [
+        {
+          "notificationMethod": "center"
+        },
+        {
+          "notificationMethod": "FTP"
+        }
+      ],
+      "debugEnabled": false
+    }
+  ]
+}

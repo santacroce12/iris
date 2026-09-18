@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IntelliCap version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<isFaceSupport>false</isFaceSupport>
+<isBehaviorSupport>false</isBehaviorSupport>
+<isLineDetectionSupport>false</isLineDetectionSupport>
+<isFieldDetectionSupport>false</isFieldDetectionSupport>
+<isRegionEntranceSupport>false</isRegionEntranceSupport>
+<isRegionExitingSupport>false</isRegionExitingSupport>
+<isLoiteringSupport>false</isLoiteringSupport>
+<isGroupSupport>false</isGroupSupport>
+<isRapidMoveSupport>false</isRapidMoveSupport>
+<isParkingSupport>false</isParkingSupport>
+<isUnattendedBaggageSupport>false</isUnattendedBaggageSupport>
+<isAttendedBaggageSupport>false</isAttendedBaggageSupport>
+<isTeacherSupport>false</isTeacherSupport>
+<isStudentSupport>false</isStudentSupport>
+<isCombinedSupport>false</isCombinedSupport>
+<isFaceCaptureStatisticsSupport>false</isFaceCaptureStatisticsSupport>
+<isSupportAlgLibParamKey>false</isSupportAlgLibParamKey>
+<isSupportPersonQueueDetection>false</isSupportPersonQueueDetection>
+<isStudentsStoodUpSupport>false</isStudentsStoodUpSupport>
+<isFramesPeopleCountingSupport>false</isFramesPeopleCountingSupport>
+<isTeacherBehaviorDetectSupport>false</isTeacherBehaviorDetectSupport>
+<isSupportMixedTargetDetection>false</isSupportMixedTargetDetection>
+<isFaceAttendanceSupport>false</isFaceAttendanceSupport>
+<isSupportModeling>false</isSupportModeling>
+<isSupportIntersectionAnalysis>false</isSupportIntersectionAnalysis>
+<isSupportFaceContrastMode>false</isSupportFaceContrastMode>
+<isSupportPictureCaptureComparision>false</isSupportPictureCaptureComparision>
+<isSupportAlarmInfoGet>false</isSupportAlarmInfoGet>
+<isFaceSnapPicParamSupport>false</isFaceSnapPicParamSupport>
+<isSupportCityManagement>false</isSupportCityManagement>
+</IntelliCap>

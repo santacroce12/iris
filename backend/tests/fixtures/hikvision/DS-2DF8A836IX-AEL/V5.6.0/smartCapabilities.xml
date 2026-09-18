@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SmartCap version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<isSupportROI>true</isSupportROI>
+<isSupportFaceDetect>false</isSupportFaceDetect>
+<isSupportIntelliTrace>true</isSupportIntelliTrace>
+<isSupportFieldDetection>true</isSupportFieldDetection>
+<isSupportDefocusDetection>false</isSupportDefocusDetection>
+<isSupportAudioDetection>true</isSupportAudioDetection>
+<isSupportSceneChangeDetection>false</isSupportSceneChangeDetection>
+<isSupportLineDetection>true</isSupportLineDetection>
+<isSupportRegionEntrance>true</isSupportRegionEntrance>
+<isSupportRegionExiting>true</isSupportRegionExiting>
+<isSupportLoitering>false</isSupportLoitering>
+<isSupportGroup>false</isSupportGroup>
+<isSupportRapidMove>false</isSupportRapidMove>
+<isSupportParking>false</isSupportParking>
+<isSupportUnattendedBaggage>true</isSupportUnattendedBaggage>
+<isSupportAttendedBaggage>true</isSupportAttendedBaggage>
+<isSupportPeopleDetection>false</isSupportPeopleDetection>
+<isSupportSmartCalibration>false</isSupportSmartCalibration>
+<isSupportStorageDetection>false</isSupportStorageDetection>
+</SmartCap>

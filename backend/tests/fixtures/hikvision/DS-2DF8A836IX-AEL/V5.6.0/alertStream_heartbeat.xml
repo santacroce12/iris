@@ -1,0 +1,21 @@
+--boundary
+Content-Type: application/xml; charset="UTF-8"
+Content-Length: 847
+
+<EventNotificationAlert version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<ipAddress>192.168.239.189</ipAddress>
+<portNo>80</portNo>
+<protocol>HTTP</protocol>
+<macAddress>98:8b:0a:75:33:b0</macAddress>
+<channelID>1</channelID>
+<dateTime>2026-09-18T20:59:35+08:00</dateTime>
+<activePostCount>0</activePostCount>
+<eventType>videoloss</eventType>
+<eventState>inactive</eventState>
+<eventDescription>videoloss alarm</eventDescription>
+<channelName></channelName>
+<Extensions version="1.0" xmlns="urn:psialliance-org">
+<serialNumber xmlns="urn:selfextension:psiaext-ver10-xsd">DS-2DF8A836IX-AEL20190422CCWR232522407X</serialNumber>
+<eventPush xmlns="urn:selfextension:psiaext-ver10-xsd">IO&amp;&amp;DS-2DF8A836IX-AEL20190422CCWR232522407X,2026-09-18T20:59:35+08:00,1.0</eventPush>
+</Extensions>
+</EventNotificationAlert>

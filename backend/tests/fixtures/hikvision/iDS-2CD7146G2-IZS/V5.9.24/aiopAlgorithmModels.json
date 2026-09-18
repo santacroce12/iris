@@ -1,0 +1,886 @@
+{
+  "AlgorithmModels": [
+    {
+      "MPID": "a9002e490f0bcf51b1e7e0f5e7d33a55",
+      "MPName": "PPE_Detection",
+      "status": 0,
+      "engine": [],
+      "algSortingParams": {
+        "CNNVersion": "V1.13.0",
+        "ability": {
+          "picture": [
+            {
+              "DeviceMem": 320,
+              "HostMem": 0,
+              "parallelNum": 2
+            },
+            {
+              "DeviceMem": 320,
+              "HostMem": 0,
+              "parallelNum": 1
+            },
+            {
+              "DeviceMem": 200,
+              "HostMem": 0,
+              "parallelNum": 0
+            }
+          ],
+          "video": [
+            {
+              "DeviceMem": 320,
+              "HostMem": 0,
+              "parallelNum": 2
+            },
+            {
+              "DeviceMem": 320,
+              "HostMem": 0,
+              "parallelNum": 1
+            },
+            {
+              "DeviceMem": 200,
+              "HostMem": 0,
+              "parallelNum": 0
+            }
+          ]
+        },
+        "deviceSDKVersion": "V1.0.1",
+        "icfVersion": "v3.2.3",
+        "inputType": [
+          1,
+          2
+        ],
+        "nodeInfos": [
+          {
+            "algVersion": "v3.9.1",
+            "modelDescription": {
+              "dataSetId": 1,
+              "description": [
+                {
+                  "aiopType": "v2.0",
+                  "calibType": 1,
+                  "highResolution": 0,
+                  "type": 1,
+                  "modelId": "00012022041101027toujiandet00000",
+                  "modelPrecision": 0,
+                  "distillMode": 0,
+                  "labelsInfo": [
+                    {
+                      "labelId": "L0V3401x431573M1Ff3Ke153Sg2H9409",
+                      "sortId": 0,
+                      "labelName": "Headshoulder"
+                    },
+                    {
+                      "labelId": "62Q6107v9355953gb22QC7627862g567",
+                      "sortId": 1,
+                      "labelName": "Upper_Body"
+                    }
+                  ],
+                  "labels": [
+                    "1 Headshoulder",
+                    "2 Upper_Body"
+                  ]
+                },
+                {
+                  "aiopType": "v2.0",
+                  "calibType": 0,
+                  "highResolution": 0,
+                  "type": 2,
+                  "modelId": "00022023040601027anquanmaomacls0",
+                  "modelPrecision": 0,
+                  "distillMode": 0,
+                  "relation": {
+                    "label": 1,
+                    "modelId": "00012022041101027toujiandet00000"
+                  },
+                  "labelsInfo": [
+                    {
+                      "sortId": 0,
+                      "labelName": "Headshoulder",
+                      "labelId": "L0V3401x431573M1Ff3Ke153Sg2H9409",
+                      "childLabels": [
+                        {
+                          "labelId": "7O977ma3324J5C258791mH729628j753",
+                          "sortId": 0,
+                          "labelName": "Wearing_Hard_Hat",
+                          "childLabels": [
+                            {
+                              "labelId": "2688l2480031IX1N8m4GH76R58l422D4",
+                              "sortId": 0,
+                              "labelName": "Not_Wear"
+                            },
+                            {
+                              "labelId": "73N593026s2350714853i562766c6W54",
+                              "sortId": 1,
+                              "labelName": "Wear"
+                            },
+                            {
+                              "labelId": "FkjuIPaTsvi8Hmoy65giubYz1KJH8ULQ",
+                              "sortId": 2,
+                              "labelName": "Others"
+                            }
+                          ]
+                        },
+                        {
+                          "labelId": "PJ2HNVyqZNvCCKCnXxPIzaIzxWPouaKE",
+                          "sortId": 1,
+                          "labelName": "Color",
+                          "childLabels": [
+                            {
+                              "labelId": "W4a364SlF33320H7X3735b40uUb525i4",
+                              "sortId": 0,
+                              "labelName": "Red"
+                            },
+                            {
+                              "labelId": "AQzruqxvNRk7xTADCSKBvdI7WymgAvZR",
+                              "sortId": 1,
+                              "labelName": "Yellow"
+                            },
+                            {
+                              "labelId": "ju56933UPHws2X82lz782PY40WG2U5S9",
+                              "sortId": 2,
+                              "labelName": "White"
+                            },
+                            {
+                              "labelId": "9euh5x56383S45Z7sqw4A4p61sX17S74",
+                              "sortId": 3,
+                              "labelName": "Blue"
+                            },
+                            {
+                              "labelId": "0633175F848075208rm3664A2V7817b5",
+                              "sortId": 4,
+                              "labelName": "Orange"
+                            },
+                            {
+                              "labelId": "737107j1572C900804o620852636n172",
+                              "sortId": 5,
+                              "labelName": "Others"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "labels": [
+                    "0 Wearing_Hard_Hat 2 0 Not_Wear 1 Wear",
+                    "1 Color 6 0 Red 1 Yellow 2 White 3 Blue 4 Orange 5 Others"
+                  ]
+                },
+                {
+                  "aiopType": "v2.0",
+                  "calibType": 0,
+                  "highResolution": 0,
+                  "type": 2,
+                  "modelId": "00022025031401027fanguangyicls00",
+                  "modelPrecision": 0,
+                  "distillMode": 0,
+                  "relation": {
+                    "label": 2,
+                    "modelId": "00012022041101027toujiandet00000"
+                  },
+                  "labelsInfo": [
+                    {
+                      "childLabels": [
+                        {
+                          "labelId": "86647096674628477442375251640664",
+                          "sortId": 0,
+                          "labelName": "Wearing_Reflective_Clothing",
+                          "childLabels": [
+                            {
+                              "labelId": "h01Hc813TxN3tV7LYl3ix9WkVwzGS00d",
+                              "sortId": "0",
+                              "labelName": "Wear"
+                            },
+                            {
+                              "labelId": "2D795kT8sB1UJ0B2Y30QDo0vPgvwO049",
+                              "sortId": "1",
+                              "labelName": "Not_Wear"
+                            },
+                            {
+                              "labelId": "6Di4mU9zyj80XujG5uUv24717Lxyf9SX",
+                              "sortId": "2",
+                              "labelName": "Others"
+                            }
+                          ]
+                        }
+                      ],
+                      "sortId": 1,
+                      "labelName": "Upper_Body",
+                      "labelId": "62Q6107v9355953gb22QC7627862g567"
+                    }
+                  ],
+                  "labels": [
+                    "0 Wearing_Reflective_Clothing 2 0 Wear 1 Not_Wear"
+                  ]
+                }
+              ],
+              "key": "1",
+              "modelUrl": "http://XXXXXXX",
+              "protoVersion": "v1.0.0",
+              "trainModelId": "3",
+              "transformType": "41",
+              "version": "V2.2.0build241106",
+              "versionId": "1"
+            },
+            "nodeID": 3,
+            "nodeName": "HYBRID"
+          }
+        ],
+        "version": "v4.1.0"
+      },
+      "algRelationPicUrl": "http://192.168.239.101:80/ISAPI/Intelligent/DownloadFile?FilePath=/model/ai/a9002e490f0bcf51b1e7e0f5e7d33a55/aiflow/configs/FLOW/AIFlow.jpg",
+      "algRelationPicParams": {
+        "graphName": "混合",
+        "globalConfig": {
+          "appType": 41,
+          "inputType": 0
+        },
+        "nodeInfo": [
+          {
+            "nodeName": "开始",
+            "connects": [
+              {
+                "srcNodeID": 1,
+                "srcPortID": 0,
+                "desPortID": 0,
+                "desNodeID": 3
+              }
+            ],
+            "nodeIndex": 1,
+            "nodeType": 201,
+            "nodeID": 1,
+            "flowConfig": {
+              "performInfo": {
+                "globalFrameRate": 12
+              }
+            }
+          },
+          {
+            "nodeName": "结束",
+            "nodeIndex": 3,
+            "nodeType": 202,
+            "nodeID": 2,
+            "flowConfig": {
+              "inputs": [
+                {
+                  "nodeID": 3
+                }
+              ]
+            }
+          },
+          {
+            "nodeName": "混合",
+            "connects": [
+              {
+                "srcNodeID": 3,
+                "srcPortID": 0,
+                "desPortID": 0,
+                "desNodeID": 2
+              }
+            ],
+            "nodeIndex": 2,
+            "runtimeConfig": [
+              {
+                "supportedRules": [
+                  1073758209,
+                  1073758211,
+                  1073774593,
+                  1073758212,
+                  1073758215,
+                  1073758213,
+                  1073758214
+                ],
+                "dataType": 1,
+                "relatedEngineNodeIdx": [
+                  303,
+                  320
+                ],
+                "configType": 1,
+                "supportedConfigs": [
+                  0
+                ]
+              },
+              {
+                "supportedRules": [
+                  1073758209,
+                  1073758213,
+                  1073758214,
+                  1073758215,
+                  1073774593
+                ],
+                "dataType": 2,
+                "relatedEngineNodeIdx": [
+                  320
+                ],
+                "configType": 1,
+                "supportedConfigs": [
+                  0
+                ]
+              }
+            ],
+            "nodeType": 3,
+            "nodeID": 3,
+            "flowConfig": {
+              "modelRecordId": 45229,
+              "scoreInfo": {
+                "valid": false
+              },
+              "algorithmServiceId": "",
+              "modelInfo": [
+                {
+                  "modelID": "00012022041101027toujiandet00000",
+                  "modelType": 1
+                },
+                {
+                  "modelID": "00022023040601027anquanmaomacls0",
+                  "modelType": 2
+                },
+                {
+                  "modelID": "00022025031401027fanguangyicls00",
+                  "modelType": 2
+                }
+              ],
+              "originalType": 1,
+              "performInfo": {
+                "maxAlerts": 16,
+                "maxObjects": 32
+              },
+              "algorithmPackageId": "e9e4fad2bcdd4c8da546ae4467249782"
+            }
+          }
+        ],
+        "graphID": "4c41974cb8d84553be973e890e0ab963",
+        "version": "v4.1.0"
+      },
+      "isDefaultFile": true,
+      "platformName": "H11",
+      "platform": 41
+    },
+    {
+      "MPID": "598765747afeb9498d2b82a9dcf81e79",
+      "MPName": "Smoke_PhoneCall_Detection",
+      "status": 0,
+      "engine": [],
+      "algSortingParams": {
+        "algorithmApplicationVersion": "V1",
+        "deviceSDKVersion": "r166917",
+        "icfVersion": "v3.2.7",
+        "nodeInfos": [
+          {
+            "modelDescription": {
+              "versionId": "42363",
+              "dataSetId": 100022100,
+              "description": [
+                {
+                  "modelPrecision": 0,
+                  "calibType": 1,
+                  "cutMode": 0,
+                  "highResolution": 0,
+                  "labelsInfo": [],
+                  "modelId": "00012025022001027hms3det",
+                  "type": 1,
+                  "distillMode": 0,
+                  "aiopType": "v1.0",
+                  "labels": [
+                    "1 Headshoulder",
+                    "2 Smoke",
+                    "3 Phone",
+                    "4 Face",
+                    "5 Hand"
+                  ]
+                },
+                {
+                  "modelPrecision": 0,
+                  "calibType": 1,
+                  "cutMode": 0,
+                  "highResolution": 0,
+                  "modelId": "00012025022001027chouyandet",
+                  "labelsInfo": [],
+                  "labelsRelationInfo": [
+                    {
+                      "label": 1,
+                      "labelName": "Headshoulder",
+                      "childLabels": [
+                        {
+                          "label": 2,
+                          "labelName": "Smoke"
+                        },
+                        {
+                          "label": 3,
+                          "labelName": "Phone"
+                        },
+                        {
+                          "label": 4,
+                          "labelName": "Face"
+                        },
+                        {
+                          "label": 5,
+                          "labelName": "Hand"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": 33,
+                  "distillMode": 0,
+                  "aiopType": "v1.0",
+                  "labels": []
+                }
+              ],
+              "protoVersion": "v1.0.0",
+              "trainModelId": "50",
+              "modelUrl": "http://XXXXXXXX",
+              "transformType": "41",
+              "version": "V1",
+              "key": "8dbb27a8cd55190c"
+            },
+            "nodeName": "OBJECT_DETECTION",
+            "algVersion": "v4.1.0",
+            "nodeID": 3
+          }
+        ],
+        "algorithmApplicationId": "11305",
+        "inputType": [
+          1,
+          2
+        ],
+        "ability": {
+          "video": [
+            {
+              "parallelNum": 0,
+              "HostMem": 0,
+              "DeviceMem": 200
+            },
+            {
+              "parallelNum": 1,
+              "HostMem": 0,
+              "DeviceMem": 300
+            },
+            {
+              "parallelNum": 2,
+              "HostMem": 0,
+              "DeviceMem": 300
+            }
+          ],
+          "picture": [
+            {
+              "parallelNum": 0,
+              "HostMem": 0,
+              "DeviceMem": 200
+            },
+            {
+              "parallelNum": 1,
+              "HostMem": 0,
+              "DeviceMem": 300
+            },
+            {
+              "parallelNum": 2,
+              "HostMem": 0,
+              "DeviceMem": 300
+            }
+          ]
+        },
+        "version": "v4.2.0",
+        "CNNVersion": "v1.13.0",
+        "algorithmApplicationRecordId": "42363"
+      },
+      "algRelationPicUrl": "http://192.168.239.101:80/ISAPI/Intelligent/DownloadFile?FilePath=/model/ai/598765747afeb9498d2b82a9dcf81e79/aiflow/configs/FLOW/AIFlow.jpg",
+      "algRelationPicParams": {
+        "graphName": "",
+        "globalConfig": {
+          "appType": 41,
+          "inputType": 0
+        },
+        "nodeInfo": [
+          {
+            "nodeName": "开始",
+            "connects": [
+              {
+                "srcNodeID": 1,
+                "srcPortID": 0,
+                "desPortID": 0,
+                "desNodeID": 3
+              }
+            ],
+            "nodeType": 201,
+            "nodeID": 1,
+            "flowConfig": {
+              "performInfo": {
+                "globalFrameRate": 12
+              }
+            }
+          },
+          {
+            "nodeName": "物体检测",
+            "connects": [
+              {
+                "srcNodeID": 3,
+                "srcPortID": 0,
+                "desPortID": 0,
+                "desNodeID": 2
+              }
+            ],
+            "nodeIndex": 1,
+            "runtimeConfig": [
+              {
+                "supportedRules": [
+                  1073758209,
+                  1073758211,
+                  1073774593,
+                  1073758212,
+                  1073758215,
+                  1073758213,
+                  1073758214
+                ],
+                "dataType": 1,
+                "relatedEngineNodeIdx": [
+                  320
+                ],
+                "configType": 1,
+                "supportedConfigs": [
+                  0
+                ]
+              },
+              {
+                "supportedRules": [
+                  1073758209,
+                  1073758213,
+                  1073758214,
+                  1073758215,
+                  1073774593
+                ],
+                "dataType": 2,
+                "relatedEngineNodeIdx": [
+                  320
+                ],
+                "configType": 1,
+                "supportedConfigs": [
+                  0
+                ]
+              }
+            ],
+            "nodeType": 33,
+            "nodeID": 3,
+            "flowConfig": {
+              "modelRecordId": 42363,
+              "scoreInfo": {
+                "valid": false
+              },
+              "algorithmServiceId": "",
+              "modelInfo": [
+                {
+                  "modelID": "00012025022001027hms3det",
+                  "modelType": 1
+                },
+                {
+                  "modelID": "00012025022001027chouyandet",
+                  "modelType": 33,
+                  "targetTypes": [
+                    2
+                  ]
+                }
+              ],
+              "originalType": 1,
+              "performInfo": {
+                "maxAlerts": 16,
+                "maxObjects": 32
+              },
+              "algorithmPackageId": "013e494015c949eca00934bb9b147767"
+            }
+          },
+          {
+            "nodeName": "结束",
+            "nodeType": 202,
+            "nodeID": 2,
+            "flowConfig": {
+              "inputs": [
+                {
+                  "nodeID": 3
+                }
+              ]
+            }
+          }
+        ],
+        "graphID": "a1d7a361db544720a5694c334c709a2e",
+        "version": ""
+      },
+      "isDefaultFile": true,
+      "platformName": "H11",
+      "platform": 41
+    },
+    {
+      "MPID": "g8aa69e55ae1d86ba8f828f171d23ce15aa3ff7b5e58b986ffd7cf5egd36c39",
+      "MPName": "deteccion_armas",
+      "status": 1,
+      "engine": [
+        1001
+      ],
+      "algSortingParams": {
+        "algorithmApplicationVersion": "V2",
+        "deviceSDKVersion": "r166917",
+        "icfVersion": "v3.2.10.1",
+        "nodeInfos": [
+          {
+            "modelDescription": {
+              "versionId": "49262",
+              "dataSetId": 100027073,
+              "description": [
+                {
+                  "aiopType": "v2.0",
+                  "calibType": 1,
+                  "highResolution": 0,
+                  "type": 1,
+                  "modelId": "00012025061701027rentidet000",
+                  "modelPrecision": 0,
+                  "distillMode": 0,
+                  "labelsInfo": [
+                    {
+                      "labelId": "J0C0724N777264C36750653352L9w866",
+                      "sortId": 0,
+                      "labelName": "Human_body"
+                    },
+                    {
+                      "labelId": "041hW62OLQ1207ac89v5f7770aT1M89R",
+                      "sortId": 1,
+                      "labelName": "Knife"
+                    },
+                    {
+                      "labelId": "b68J22Of888s18I464i93Vu9485I3ad7",
+                      "sortId": 2,
+                      "labelName": "Gun"
+                    },
+                    {
+                      "labelId": "3d99z7DuwE058m53ac84WR70T28UH1FN",
+                      "sortId": 3,
+                      "labelName": "Axe"
+                    },
+                    {
+                      "labelId": "90U3230u280429879SR05011Z9119668",
+                      "sortId": 4,
+                      "labelName": "RaiseHands_or_HoldHead"
+                    }
+                  ],
+                  "labels": [
+                    "1 Human_body",
+                    "2 Knife",
+                    "3 Gun",
+                    "4 Axe",
+                    "5 RaiseHands_or_HoldHead"
+                  ]
+                },
+                {
+                  "aiopType": "v2.0",
+                  "calibType": 1,
+                  "highResolution": 0,
+                  "type": 33,
+                  "modelId": "00012025061701027weixianpindet00",
+                  "modelPrecision": 0,
+                  "labelsRelationInfo": [
+                    {
+                      "childLabels": [
+                        {
+                          "label": 2,
+                          "labelName": "Knife"
+                        },
+                        {
+                          "label": 3,
+                          "labelName": "Gun"
+                        },
+                        {
+                          "label": 4,
+                          "labelName": "Axe"
+                        },
+                        {
+                          "label": 5,
+                          "labelName": "RaiseHands_or_HoldHead"
+                        }
+                      ],
+                      "label": 1,
+                      "labelName": "Human_body"
+                    }
+                  ],
+                  "distillMode": 0,
+                  "labels": [],
+                  "labelsInfo": []
+                }
+              ],
+              "protoVersion": "v1.0.0",
+              "trainModelId": "16946",
+              "modelUrl": "http://saas-trainningdata-t2.oss-cn-hangzhou.aliyuncs.com/alg/1742973926889409acdaa?Expires=1755160549&OSSAccessKeyId=LTAI0nvqaUuErF4G&Signature=wnLDatrfHFypXRQHHAS7M%2BWrDTs%3D",
+              "transformType": "41",
+              "version": "V2",
+              "key": "8dbb27a8cd55190c"
+            },
+            "nodeName": "Object_Detection",
+            "algVersion": "v4.3.1",
+            "nodeID": 3
+          }
+        ],
+        "algorithmApplicationId": "16946",
+        "inputType": [
+          1,
+          2
+        ],
+        "ability": {
+          "video": [
+            {
+              "parallelNum": 0,
+              "HostMem": 0,
+              "DeviceMem": 200
+            },
+            {
+              "parallelNum": 1,
+              "HostMem": 0,
+              "DeviceMem": 600
+            },
+            {
+              "parallelNum": 2,
+              "HostMem": 0,
+              "DeviceMem": 1200
+            }
+          ],
+          "picture": [
+            {
+              "parallelNum": 0,
+              "HostMem": 0,
+              "DeviceMem": 200
+            },
+            {
+              "parallelNum": 1,
+              "HostMem": 0,
+              "DeviceMem": 600
+            },
+            {
+              "parallelNum": 2,
+              "HostMem": 0,
+              "DeviceMem": 1200
+            }
+          ]
+        },
+        "version": "v4.2.2",
+        "CNNVersion": "v1.13.0",
+        "algorithmApplicationRecordId": "49262"
+      },
+      "algRelationPicUrl": "http://192.168.239.101:80/ISAPI/Intelligent/DownloadFile?FilePath=/heop/aiop_model/g8aa69e55ae1d86ba8f828f171d23ce15aa3ff7b5e58b986ffd7cf5egd36c39/aiflow/configs/AIFlow.jpg",
+      "algRelationPicParams": {
+        "version": "",
+        "globalConfig": {
+          "appType": 41,
+          "inputType": 0
+        },
+        "graphName": "",
+        "graphID": "d0b4678668b14d3eac17e834e166ce49",
+        "nodeInfo": [
+          {
+            "nodeName": "开始",
+            "connects": [
+              {
+                "srcNodeID": 1,
+                "srcPortID": 0,
+                "desPortID": 0,
+                "desNodeID": 3
+              }
+            ],
+            "nodeType": 201,
+            "nodeID": 1,
+            "flowConfig": {
+              "performInfo": {
+                "globalFrameRate": 12
+              }
+            }
+          },
+          {
+            "nodeName": "物体检测",
+            "connects": [
+              {
+                "srcNodeID": 3,
+                "srcPortID": 0,
+                "desPortID": 0,
+                "desNodeID": 2
+              }
+            ],
+            "nodeIndex": 1,
+            "runtimeConfig": [
+              {
+                "supportedRules": [
+                  1073758209,
+                  1073758211,
+                  1073774593,
+                  1073758212,
+                  1073758215,
+                  1073758213,
+                  1073758214
+                ],
+                "dataType": 1,
+                "relatedEngineNodeIdx": [
+                  320
+                ],
+                "supportedConfigs": [
+                  0
+                ]
+              },
+              {
+                "supportedRules": [
+                  1073758209,
+                  1073758213,
+                  1073758214,
+                  1073758215,
+                  1073774593
+                ],
+                "dataType": 2,
+                "relatedEngineNodeIdx": [
+                  320
+                ],
+                "supportedConfigs": [
+                  0
+                ]
+              }
+            ],
+            "nodeType": 33,
+            "nodeID": 3,
+            "flowConfig": {
+              "modelRecordId": 49262,
+              "scoreInfo": {
+                "valid": false
+              },
+              "algorithmServiceId": "",
+              "modelInfo": [
+                {
+                  "modelID": "00012025061701027rentidet000",
+                  "modelType": 1
+                },
+                {
+                  "modelID": "00012025061701027weixianpindet00",
+                  "modelType": 33,
+                  "targetTypes": [
+                    4
+                  ]
+                }
+              ],
+              "originalType": 1,
+              "performInfo": {
+                "maxAlerts": 16,
+                "maxObjects": 64
+              },
+              "algorithmPackageId": "813326107c2e44abbec38d53b4347de0"
+            }
+          },
+          {
+            "nodeName": "结束",
+            "nodeType": 202,
+            "nodeID": 2,
+            "flowConfig": {
+              "inputs": [
+                {
+                  "nodeID": 3
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "isDefaultFile": false,
+      "platformName": "H11",
+      "platform": 41
+    }
+  ],
+  "coordinationModels": []
+}

@@ -1,0 +1,114 @@
+{
+  "AIRuleConfig": {
+    "VCA_config": {
+      "ConfigInfoList": [
+        {
+          "NodeID": 3,
+          "ConfigInfo": {
+            "EventRule": {
+              "RuleInfo": [
+                {
+                  "RuleID": 1,
+                  "Valid": 1,
+                  "TriggerType": 1073758209,
+                  "TriggerCondition": {
+                    "TriggerConditionValid": 1,
+                    "TargetType": 5,
+                    "TargetStatus": [],
+                    "FilterParamValid": 0,
+                    "FilterParam": [
+                      {
+                        "FilterStatus": []
+                      }
+                    ],
+                    "NumberCondition": {
+                      "NumberConditionValid": 0,
+                      "MinTargetNum": 1,
+                      "MaxTargetNum": 5,
+                      "NumberJudgeCondition": 2
+                    },
+                    "RelationAnalysis": {
+                      "RelationAnalysisType": 2,
+                      "RelationAnalysisVaild": 0,
+                      "SubTargetInfo": []
+                    },
+                    "StillFilterParam": {
+                      "StillFilterParamValid": 0,
+                      "Sensitive": 50,
+                      "FilterMode": 0
+                    }
+                  },
+                  "RuleParam": {
+                    "Sensitive": 90,
+                    "Duration": 5,
+                    "DurationSensitive": 58,
+                    "TriggerInterval": 60,
+                    "targetFilterConfidence": 300,
+                    "CountInterval": 5,
+                    "AlertConfThreshold": 800,
+                    "MaxTriggerCondition": {
+                      "MaxTriggerValid": 0,
+                      "MaxTriggerTimes": 1
+                    },
+                    "SizeFilter": {
+                      "SizeFilterValid": 0,
+                      "MinWidth": 0,
+                      "MinHeight": 0,
+                      "MaxWidth": 1,
+                      "MaxHeight": 1
+                    }
+                  },
+                  "RuleRegion": {
+                    "Region": [
+                      {
+                        "CrossDirection": 0,
+                        "RegionId": 1,
+                        "RulePolygon": {
+                          "PolygonPoint": [
+                            {
+                              "x": 0.01,
+                              "y": 0.01
+                            },
+                            {
+                              "x": 0.01,
+                              "y": 0.99
+                            },
+                            {
+                              "x": 0.99,
+                              "y": 0.99
+                            },
+                            {
+                              "x": 0.99,
+                              "y": 0.01
+                            }
+                          ],
+                          "PolygonType": 2
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "UniteRuleInfo": []
+            }
+          }
+        }
+      ]
+    },
+    "algSorting": [
+      {
+        "nodeID": 3,
+        "AlertIntervalList": [],
+        "OSDList": [],
+        "RuleNameInfo": [
+          {
+            "ruleID": 1,
+            "ruleName": "Regla1"
+          }
+        ],
+        "LineCrossingTargetStatisticsMode": [],
+        "sensorCfgList": []
+      }
+    ]
+  }
+}

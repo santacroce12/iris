@@ -1,0 +1,63 @@
+{
+  "tasksNum": 1,
+  "taskIDLen": {
+    "@min": 1,
+    "@max": 64
+  },
+  "engine": {
+    "@opt": [
+      1001,
+      1002,
+      1003,
+      1004
+    ]
+  },
+  "channel": {
+    "@opt": [
+      1
+    ]
+  },
+  "frameRate": {
+    "@opt": [
+      1250
+    ]
+  },
+  "isSupportTimeRange": true,
+  "alarmTargetOverlay": {
+    "@opt": [
+      "true",
+      "false"
+    ]
+  },
+  "alarmRuleOverlay": {
+    "@opt": [
+      true,
+      false
+    ]
+  },
+  "alarmRuleOverlayCap": {
+    "@opt": [
+      "ruleID",
+      "ruleName"
+    ]
+  },
+  "EventTrigger": {
+    "notificationMethod": {
+      "@opt": [
+        "center",
+        "FTP",
+        "alarmout",
+        "IO",
+        "email"
+      ],
+      "@def": "center"
+    }
+  },
+  "debugEnabled": {
+    "@opt": [
+      true,
+      false
+    ],
+    "@def": false
+  }
+}

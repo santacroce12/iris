@@ -1,0 +1,175 @@
+{
+  "LoadingInfoList": [
+    {
+      "engine": 1001,
+      "status": 1,
+      "relChannelList": [
+        1
+      ],
+      "MPID": "g8aa69e55ae1d86ba8f828f171d23ce15aa3ff7b5e58b986ffd7cf5egd36c39",
+      "algSortingParams": {
+        "algorithmApplicationVersion": "V2",
+        "deviceSDKVersion": "r166917",
+        "icfVersion": "v3.2.10.1",
+        "nodeInfos": [
+          {
+            "modelDescription": {
+              "versionId": "49262",
+              "dataSetId": 100027073,
+              "description": [
+                {
+                  "aiopType": "v2.0",
+                  "calibType": 1,
+                  "highResolution": 0,
+                  "type": 1,
+                  "modelId": "00012025061701027rentidet000",
+                  "modelPrecision": 0,
+                  "distillMode": 0,
+                  "labelsInfo": [
+                    {
+                      "labelId": "J0C0724N777264C36750653352L9w866",
+                      "sortId": 0,
+                      "labelName": "Human_body"
+                    },
+                    {
+                      "labelId": "041hW62OLQ1207ac89v5f7770aT1M89R",
+                      "sortId": 1,
+                      "labelName": "Knife"
+                    },
+                    {
+                      "labelId": "b68J22Of888s18I464i93Vu9485I3ad7",
+                      "sortId": 2,
+                      "labelName": "Gun"
+                    },
+                    {
+                      "labelId": "3d99z7DuwE058m53ac84WR70T28UH1FN",
+                      "sortId": 3,
+                      "labelName": "Axe"
+                    },
+                    {
+                      "labelId": "90U3230u280429879SR05011Z9119668",
+                      "sortId": 4,
+                      "labelName": "RaiseHands_or_HoldHead"
+                    }
+                  ],
+                  "labels": [
+                    "1 Human_body",
+                    "2 Knife",
+                    "3 Gun",
+                    "4 Axe",
+                    "5 RaiseHands_or_HoldHead"
+                  ]
+                },
+                {
+                  "aiopType": "v2.0",
+                  "calibType": 1,
+                  "highResolution": 0,
+                  "type": 33,
+                  "modelId": "00012025061701027weixianpindet00",
+                  "modelPrecision": 0,
+                  "labelsRelationInfo": [
+                    {
+                      "childLabels": [
+                        {
+                          "label": 2,
+                          "labelName": "Knife"
+                        },
+                        {
+                          "label": 3,
+                          "labelName": "Gun"
+                        },
+                        {
+                          "label": 4,
+                          "labelName": "Axe"
+                        },
+                        {
+                          "label": 5,
+                          "labelName": "RaiseHands_or_HoldHead"
+                        }
+                      ],
+                      "label": 1,
+                      "labelName": "Human_body"
+                    }
+                  ],
+                  "distillMode": 0,
+                  "labels": [],
+                  "labelsInfo": []
+                }
+              ],
+              "protoVersion": "v1.0.0",
+              "trainModelId": "16946",
+              "modelUrl": "http://saas-trainningdata-t2.oss-cn-hangzhou.aliyuncs.com/alg/1742973926889409acdaa?Expires=1755160549&OSSAccessKeyId=LTAI0nvqaUuErF4G&Signature=wnLDatrfHFypXRQHHAS7M%2BWrDTs%3D",
+              "transformType": "41",
+              "version": "V2",
+              "key": "8dbb27a8cd55190c"
+            },
+            "nodeName": "Object_Detection",
+            "algVersion": "v4.3.1",
+            "nodeID": 3
+          }
+        ],
+        "algorithmApplicationId": "16946",
+        "inputType": [
+          1,
+          2
+        ],
+        "ability": {
+          "video": [
+            {
+              "parallelNum": 0,
+              "HostMem": 0,
+              "DeviceMem": 200
+            },
+            {
+              "parallelNum": 1,
+              "HostMem": 0,
+              "DeviceMem": 600
+            },
+            {
+              "parallelNum": 2,
+              "HostMem": 0,
+              "DeviceMem": 1200
+            }
+          ],
+          "picture": [
+            {
+              "parallelNum": 0,
+              "HostMem": 0,
+              "DeviceMem": 200
+            },
+            {
+              "parallelNum": 1,
+              "HostMem": 0,
+              "DeviceMem": 600
+            },
+            {
+              "parallelNum": 2,
+              "HostMem": 0,
+              "DeviceMem": 1200
+            }
+          ]
+        },
+        "version": "v4.2.2",
+        "CNNVersion": "v1.13.0",
+        "algorithmApplicationRecordId": "49262"
+      },
+      "MPName": "deteccion_armas",
+      "platform": "H11"
+    },
+    {
+      "engine": 1002,
+      "status": 0,
+      "platform": "H11"
+    },
+    {
+      "engine": 1003,
+      "status": 0,
+      "platform": "H11"
+    },
+    {
+      "engine": 1004,
+      "status": 0,
+      "platform": "H11"
+    }
+  ]
+}

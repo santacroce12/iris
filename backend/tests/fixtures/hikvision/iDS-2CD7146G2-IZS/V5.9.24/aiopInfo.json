@@ -1,0 +1,26 @@
+{
+  "algorithmVersion": "AI_V4.0.0",
+  "firmware": "FW101",
+  "engine": [
+    1001,
+    1002,
+    1003,
+    1004
+  ],
+  "platform": 41,
+  "platformName": "H11",
+  "subPlatformInfo": [
+    {
+      "algorithmVersion": "AI_V4.0.0",
+      "firmware": "FW101",
+      "engine": [
+        1001,
+        1002,
+        1003,
+        1004
+      ],
+      "platform": 41,
+      "platformName": "H11"
+    }
+  ]
+}
