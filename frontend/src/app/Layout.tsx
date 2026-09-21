@@ -2,6 +2,8 @@ import { Activity, Cctv, Grid3x3, ScanEye } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router'
 
 import { cn } from '@/components/ui'
+import { EventStreamProvider } from '@/features/events/EventStream'
+import { LiveToasts } from '@/features/events/LiveToasts'
 
 const nav = [
   { to: '/', label: 'Cámaras', icon: Cctv, end: true },
@@ -11,6 +13,7 @@ const nav = [
 
 export function Layout() {
   return (
+    <EventStreamProvider>
     <div className="flex h-full flex-col md:flex-row">
       <aside className="flex shrink-0 items-center gap-1 border-b border-line bg-surface/60 px-3 py-2 md:w-60 md:flex-col md:items-stretch md:border-r md:border-b-0 md:px-4 md:py-6">
         <div className="mr-3 flex items-center gap-2.5 md:mr-0 md:mb-8 md:px-2">
@@ -53,6 +56,8 @@ export function Layout() {
           <Outlet />
         </div>
       </main>
+      <LiveToasts />
     </div>
+    </EventStreamProvider>
   )
 }

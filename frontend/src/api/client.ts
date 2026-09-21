@@ -1,7 +1,10 @@
 import type {
   Camera,
   CameraCreate,
+  CameraEvent,
   CameraUpdate,
+  EventFilters,
+  ListenerState,
   CapabilityCheck,
   ConnectionReport,
   LiveUrls,
@@ -57,4 +60,18 @@ export const api = {
   capabilities: (id: string) => request<CapabilityCheck[]>(`/cameras/${id}/capabilities`),
   operations: (id: string) => request<OperationLog[]>(`/cameras/${id}/operations`),
   snapshotUrl: (id: string) => `/api/cameras/${id}/snapshot?t=${Date.now()}`,
+
+  events: (filters: EventFilters = {}) => {
+    const query = new URLSearchParams(
+      Object.entries(filters).filter(([, v]) => v !== undefined && v !== '') as [string, string][],
+    )
+    return request<CameraEvent[]>(`/events?${query}`)
+  },
+  eventPictureUrl: (eventId: string, mediaId: string) =>
+    `/api/events/${eventId}/media/${mediaId}`,
+  listeners: () => request<ListenerState[]>('/listeners'),
+  startListener: (cameraId: string) =>
+    request<ListenerState>(`/cameras/${cameraId}/listener`, { method: 'POST' }),
+  stopListener: (cameraId: string) =>
+    request<void>(`/cameras/${cameraId}/listener`, { method: 'DELETE' }),
 }

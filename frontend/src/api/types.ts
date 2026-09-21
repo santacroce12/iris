@@ -25,6 +25,7 @@ export interface Camera {
   vca_mode: string | null
   status: CameraStatus
   last_seen_at: string | null
+  listen_events: boolean
   created_at: string
 }
 
@@ -80,6 +81,67 @@ export interface LiveUrls {
   webrtc: string
   whep: string
   hls: string
+}
+
+export interface EventMedia {
+  id: string
+  kind: string
+  mime: string
+  bytes: number
+}
+
+/** Un evento es un episodio: duró de occurred_at a ended_at y la cámara avisó `hits` veces. */
+export interface CameraEvent {
+  id: string
+  camera_id: string
+  protocol: Protocol
+  raw_type: string
+  type: string
+  state: string | null
+  channel: number | null
+  occurred_at: string
+  ended_at: string | null
+  received_at: string
+  hits: number
+  rule_ref: string | null
+  target_type: string | null
+  payload: Record<string, unknown> | null
+  media: EventMedia[]
+}
+
+/** Lo que llega por SSE cuando un episodio se abre o se actualiza. */
+export interface LiveEvent {
+  id: string
+  camera_id: string
+  type: string
+  raw_type: string
+  state: string | null
+  channel: number | null
+  occurred_at: string
+  ended_at: string | null
+  hits: number
+  rule_ref: string | null
+  target_type: string | null
+  pictures: number
+}
+
+export interface ListenerState {
+  camera_id: string
+  status: string
+  connected_since: string | null
+  alerts_received: number
+  episodes_saved: number
+  open_episodes: number
+  last_error: string | null
+}
+
+export interface EventFilters {
+  camera_id?: string
+  type?: string
+  target_type?: string
+  since?: string
+  until?: string
+  limit?: number
 }
 
 export interface CapabilityCheck {

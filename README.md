@@ -60,12 +60,18 @@ usan respuestas **reales** de cámaras Hikvision guardadas en `backend/tests/fix
 5. **Por VPN**: elegir "VPN" al agregar la cámara (timeouts más largos). El descubrimiento automático
    (WS-Discovery) solo funciona en la red local.
 
-## OneDrive
+## Si todo anda lento
 
-El proyecto vive en una carpeta sincronizada. Instalar dependencias dentro de OneDrive es **muy**
-lento (`pnpm install` tardó varios minutos). Conviene excluir de la sincronización
-`frontend/node_modules`, `backend/.venv` y `backend/media`, o mover el repo fuera de OneDrive.
+La carpeta se llama `OneDrive` pero OneDrive no está instalado: no es la causa. Lo que sí pesa:
+
+- **Windows Defender** revisa cada archivo de `node_modules` y `.venv`. Conviene excluir la carpeta
+  del proyecto, `%LOCALAPPDATA%\pnpm` y `%LOCALAPPDATA%\uv`.
+- **Internet lento** (2–3 Mbit/s medidos): la primera instalación de dependencias tarda minutos;
+  las siguientes salen de la caché.
+- **Procesos colgados de otras herramientas** (servidores MCP de Codex) pueden agotar la memoria.
 
 ## Documentación
 
 - [docs/PLAN.md](docs/PLAN.md): plan aprobado, fases y backlog de analíticas.
+- [docs/relevamiento-camaras.md](docs/relevamiento-camaras.md): qué API de analítica expone cada cámara real.
+- [docs/PENDIENTES.md](docs/PENDIENTES.md): lo que quedó para después.
