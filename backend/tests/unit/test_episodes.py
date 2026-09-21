@@ -65,8 +65,35 @@ def test_un_evento_pegado_en_active_se_corta_por_duracion_maxima():
     assert cerrados == [primero] and es_nuevo
 
 
-def test_un_inactive_suelto_se_guarda_cerrado():
+def test_un_inactive_suelto_se_descarta():
     grouper = EpisodeGrouper()
     episodio, es_nuevo, cerrados = grouper.add(CAMARA, alerta(estado="inactive"), T0)
-    assert es_nuevo and cerrados == [episodio]
+    assert episodio is None and not es_nuevo and cerrados == []
     assert grouper.open_count == 0
+
+
+def test_inactive_sin_regla_cierra_el_episodio_de_la_regla():
+    """La PTZ real manda el active con regionID y el inactive sin él."""
+    grouper = EpisodeGrouper()
+    abierto, _, _ = grouper.add(
+        CAMARA, alerta(tipo="line_crossing", regla="1", raw="linedetection"), T0
+    )
+    episodio, es_nuevo, cerrados = grouper.add(
+        CAMARA,
+        alerta(tipo="line_crossing", estado="inactive", regla=None, raw="linedetection"),
+        T0 + timedelta(seconds=4),
+    )
+    assert episodio is abierto and not es_nuevo
+    assert cerrados == [abierto]
+    assert grouper.open_count == 0
+
+
+def test_inactive_con_regla_solo_cierra_su_regla():
+    grouper = EpisodeGrouper()
+    regla1, _, _ = grouper.add(CAMARA, alerta(tipo="line_crossing", regla="1"), T0)
+    grouper.add(CAMARA, alerta(tipo="line_crossing", regla="3"), T0)
+    _, _, cerrados = grouper.add(
+        CAMARA, alerta(tipo="line_crossing", estado="inactive", regla="1"), T0
+    )
+    assert cerrados == [regla1]
+    assert grouper.open_count == 1

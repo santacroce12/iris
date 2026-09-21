@@ -109,7 +109,9 @@ class CameraListener:
 
         episodio, es_nuevo, cerrados = self.grouper.add(self.camera_id, alerta, now)
         async with SessionLocal() as session:
-            await self._persist(session, episodio, es_nuevo)
+            # Si el aviso cerró el episodio, se guarda una sola vez, ya cerrado.
+            if episodio is not None and episodio not in cerrados:
+                await self._persist(session, episodio, es_nuevo)
             await self._flush(session, cerrados)
             await session.commit()
 

@@ -22,6 +22,7 @@ NORMALIZED_TYPES: dict[str, str] = {
     "scenechangedetection": "scene_change",
     "defocus": "defocus",
     "audioexception": "audio_exception",
+    "soundclassificationdetection": "sound_classification",
     "facesnap": "face_capture",
     "facedetection": "face_capture",
     "anpr": "anpr",
