@@ -24,13 +24,17 @@ class OnvifTarget:
 _AUTH_HINTS = ("notauthorized", "not authorized", "unauthorized", "authority failure")
 
 
-def translate_error(exc: BaseException) -> DriverError:
+def translate_error(exc: BaseException, timeout_s: float | None = None) -> DriverError:
     message = str(exc)
     lowered = message.lower()
     if isinstance(exc, ONVIFAuthError) or any(h in lowered for h in _AUTH_HINTS):
         return AuthenticationFailed(f"ONVIF: {message}")
     if isinstance(exc, ONVIFTimeoutError | asyncio.TimeoutError | TimeoutError):
-        return CameraUnreachable(f"ONVIF timeout: {message}")
+        # asyncio.TimeoutError no trae mensaje propio: sin esto queda "ONVIF timeout: " vacío.
+        detalle = message or (
+            f"sin respuesta en {timeout_s:.0f}s" if timeout_s else "sin respuesta"
+        )
+        return CameraUnreachable(f"ONVIF timeout: {detalle}")
     if isinstance(exc, aiohttp.ClientError | OSError):
         return CameraUnreachable(f"ONVIF sin conexión: {message}")
     if "actionnotsupported" in lowered or "not supported" in lowered:
@@ -58,7 +62,7 @@ class OnvifSession:
         except DriverError:
             raise
         except Exception as exc:  # zeep/aiohttp lanzan una variedad amplia de errores
-            raise translate_error(exc) from exc
+            raise translate_error(exc, self.target.timeout_s) from exc
 
 
 @asynccontextmanager

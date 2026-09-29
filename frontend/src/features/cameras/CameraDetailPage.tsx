@@ -20,8 +20,10 @@ import { Badge, Button, Card, EmptyState, cn } from '@/components/ui'
 import { CameraFormDialog } from '@/features/cameras/CameraFormDialog'
 import { useConnectivity } from '@/features/cameras/CamerasPage'
 import { LivePlayer } from '@/features/live/LivePlayer'
+import { RecordingPanel } from '@/features/live/RecordingPanel'
+import { RulesTab } from '@/features/rules/RulesTab'
 
-const tabs = ['Vivo', 'Perfiles', 'Capacidades', 'Registro'] as const
+const tabs = ['Vivo', 'Reglas', 'Perfiles', 'Capacidades', 'Registro'] as const
 type Tab = (typeof tabs)[number]
 
 export function CameraDetailPage() {
@@ -131,6 +133,7 @@ export function CameraDetailPage() {
       </div>
 
       {tab === 'Vivo' && <LiveTab camera={camera} />}
+      {tab === 'Reglas' && <RulesTab camera={camera} />}
       {tab === 'Perfiles' && <ProfilesTab cameraId={camera.id} />}
       {tab === 'Capacidades' && <CapabilitiesTab cameraId={camera.id} />}
       {tab === 'Registro' && <OperationsTab cameraId={camera.id} />}
@@ -206,6 +209,7 @@ function LiveTab({ camera }: { camera: Camera }) {
           Cámara → RTSP → MediaMTX → WebRTC en el navegador. Las credenciales nunca salen del
           backend.
         </p>
+        <RecordingPanel cameraId={camera.id} stream={stream} />
       </div>
 
       <Card className="h-fit overflow-hidden">

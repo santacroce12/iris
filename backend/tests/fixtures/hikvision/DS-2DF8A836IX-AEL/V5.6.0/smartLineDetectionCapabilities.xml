@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LineDetection version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
 <id>1</id>
-<enabled opt="true,false">false</enabled>
+<enabled opt="true,false">true</enabled>
 <normalizedScreenSize>
 <normalizedScreenWidth>1000</normalizedScreenWidth>
 <normalizedScreenHeight>1000</normalizedScreenHeight>
@@ -14,12 +14,12 @@
 <directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
 <CoordinatesList>
 <Coordinates>
-<positionX>0</positionX>
-<positionY>1000</positionY>
+<positionX>150</positionX>
+<positionY>500</positionY>
 </Coordinates>
 <Coordinates>
-<positionX>0</positionX>
-<positionY>1000</positionY>
+<positionX>850</positionX>
+<positionY>500</positionY>
 </Coordinates>
 </CoordinatesList>
 <detectionTarget opt="human,vehicle,others"> </detectionTarget>

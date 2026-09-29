@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldDetection version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled opt="true,false">false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<FieldDetectionRegionList size="4" >
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<timeThreshold min="0" max="60" def="0">0</timeThreshold>
+<CoordinatesList>
+<Coordinates>
+<positionX>50</positionX>
+<positionY>750</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>50</positionX>
+<positionY>0</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>950</positionX>
+<positionY>0</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>950</positionX>
+<positionY>750</positionY>
+</Coordinates>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 1</ruleName>
+</FieldDetectionRegion>
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>2</id>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<timeThreshold min="0" max="60" def="0">0</timeThreshold>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 2</ruleName>
+</FieldDetectionRegion>
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>3</id>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<timeThreshold min="0" max="60" def="0">0</timeThreshold>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 3</ruleName>
+</FieldDetectionRegion>
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>4</id>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<timeThreshold min="0" max="60" def="0">0</timeThreshold>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 4</ruleName>
+</FieldDetectionRegion>
+</FieldDetectionRegionList>
+<isSupportMultiScene>false</isSupportMultiScene>
+<isSupportTargetMultiSelect>true</isSupportTargetMultiSelect>
+<contAlarmForStaticTargetEnabled opt="true,false">true</contAlarmForStaticTargetEnabled>
+<targetAlarmInterval min="1" max="5">5</targetAlarmInterval>
+<isSupportAllDayUpload>true</isSupportAllDayUpload>
+</FieldDetection>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IntelliTrace version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled>true</enabled>
+<tracktime>300</tracktime>
+<ratio>50</ratio>
+<peopleAmplifyTrackcolor>50</peopleAmplifyTrackcolor>
+<peopleSustainTrackcolor>50</peopleSustainTrackcolor>
+<carAmplifyTrackcolor>50</carAmplifyTrackcolor>
+<carSustainTrackcolor>50</carSustainTrackcolor>
+</IntelliTrace>

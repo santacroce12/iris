@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EventTriggersCap version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<DiskfullTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</DiskfullTriggerCap>
+<DiskerrorTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</DiskerrorTriggerCap>
+<NicbrokenTriggerCap>
+<isSupportIO>true</isSupportIO>
+</NicbrokenTriggerCap>
+<IpconflictTriggerCap>
+<isSupportIO>true</isSupportIO>
+</IpconflictTriggerCap>
+<IllaccesTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</IllaccesTriggerCap>
+<IOTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportBeep>true</isSupportBeep>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+</IOTriggerCap>
+<MotionDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportBeep>true</isSupportBeep>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+</MotionDetectionTriggerCap>
+<TamperDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</TamperDetectionTriggerCap>
+<DefocusDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</DefocusDetectionTriggerCap>
+<SceneChangeDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+</SceneChangeDetectionTriggerCap>
+<StorageDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</StorageDetectionTriggerCap>
+<AudioExceptionCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</AudioExceptionCap>
+<isSupportAudioAction>true</isSupportAudioAction>
+<isSupportAudioTrigger>true</isSupportAudioTrigger>
+<audioTriggerSchedule>false</audioTriggerSchedule>
+<LumaTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</LumaTriggerCap>
+<ChromaTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</ChromaTriggerCap>
+<SnowTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</SnowTriggerCap>
+<StreakTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</StreakTriggerCap>
+<FreezeTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</FreezeTriggerCap>
+<SigLoseTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</SigLoseTriggerCap>
+<ClarityTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</ClarityTriggerCap>
+<JItterTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</JItterTriggerCap>
+<BlockTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</BlockTriggerCap>
+<FlowersTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</FlowersTriggerCap>
+<NoiseTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</NoiseTriggerCap>
+<GhostTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</GhostTriggerCap>
+<PurpleTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</PurpleTriggerCap>
+<ICRTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</ICRTriggerCap>
+<ProtectiveFilmTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportIO>true</isSupportIO>
+</ProtectiveFilmTriggerCap>
+<CertificateRevocation>
+<isSupportCenter>true</isSupportCenter>
+<isSupportEmail>true</isSupportEmail>
+</CertificateRevocation>
+<VibrationDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+</VibrationDetectionTriggerCap>
+<AbnormalRebootTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+</AbnormalRebootTriggerCap>
+<SoundClassificationDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportEmail>true</isSupportEmail>
+</SoundClassificationDetectionTriggerCap>
+<FiledDetectTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportBeep>true</isSupportBeep>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<customOverHTTP>
+<enabled>true</enabled>
+<id min="1" max="10">1</id>
+<httpID min="1" max="10">1</httpID>
+</customOverHTTP>
+<audioAlarmTriggerParam>
+<audioIndexList>
+<indexID min="1" max="3" def="1"></indexID>
+<indexName min="1" max="128"></indexName>
+<alarmTimes min="1" max="50" def="5"></alarmTimes>
+<audioTypeListCap></audioTypeListCap>
+</audioIndexList>
+<timeRangeList>
+<week opt="1,2,3,4,5,6,7">1</week>
+<timeRange>
+<timeRangeID>1</timeRangeID>
+<audioID opt="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,35,36,37,38,39,40,41,42,43">1</audioID>
+<indexID min="1" max="3" def="1"></indexID>
+<beginTime>00:00:00</beginTime>
+<endTime>24:00:00</endTime>
+</timeRange>
+</timeRangeList>
+<audioAlarmTriggerEnabled>true</audioAlarmTriggerEnabled>
+</audioAlarmTriggerParam>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</FiledDetectTriggerCap>
+<LineDetectTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportBeep>true</isSupportBeep>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<customOverHTTP>
+<enabled>true</enabled>
+<id min="1" max="10">1</id>
+<httpID min="1" max="10">1</httpID>
+</customOverHTTP>
+<audioAlarmTriggerParam>
+<audioIndexList>
+<indexID min="1" max="3" def="1"></indexID>
+<indexName min="1" max="128"></indexName>
+<alarmTimes min="1" max="50" def="5"></alarmTimes>
+<audioTypeListCap></audioTypeListCap>
+</audioIndexList>
+<timeRangeList>
+<week opt="1,2,3,4,5,6,7">1</week>
+<timeRange>
+<timeRangeID>1</timeRangeID>
+<audioID opt="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,35,36,37,38,39,40,41,42,43">1</audioID>
+<indexID min="1" max="3" def="1"></indexID>
+<beginTime>00:00:00</beginTime>
+<endTime>24:00:00</endTime>
+</timeRange>
+</timeRangeList>
+<audioAlarmTriggerEnabled>true</audioAlarmTriggerEnabled>
+</audioAlarmTriggerParam>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</LineDetectTriggerCap>
+<RegionEntranceTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportBeep>true</isSupportBeep>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<customOverHTTP>
+<enabled>true</enabled>
+<id min="1" max="10">1</id>
+<httpID min="1" max="10">1</httpID>
+</customOverHTTP>
+<audioAlarmTriggerParam>
+<audioIndexList>
+<indexID min="1" max="3" def="1"></indexID>
+<indexName min="1" max="128"></indexName>
+<alarmTimes min="1" max="50" def="5"></alarmTimes>
+<audioTypeListCap></audioTypeListCap>
+</audioIndexList>
+<timeRangeList>
+<week opt="1,2,3,4,5,6,7">1</week>
+<timeRange>
+<timeRangeID>1</timeRangeID>
+<audioID opt="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,35,36,37,38,39,40,41,42,43">1</audioID>
+<indexID min="1" max="3" def="1"></indexID>
+<beginTime>00:00:00</beginTime>
+<endTime>24:00:00</endTime>
+</timeRange>
+</timeRangeList>
+<audioAlarmTriggerEnabled>true</audioAlarmTriggerEnabled>
+</audioAlarmTriggerParam>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</RegionEntranceTriggerCap>
+<RegionExitingTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportBeep>true</isSupportBeep>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<customOverHTTP>
+<enabled>true</enabled>
+<id min="1" max="10">1</id>
+<httpID min="1" max="10">1</httpID>
+</customOverHTTP>
+<audioAlarmTriggerParam>
+<audioIndexList>
+<indexID min="1" max="3" def="1"></indexID>
+<indexName min="1" max="128"></indexName>
+<alarmTimes min="1" max="50" def="5"></alarmTimes>
+<audioTypeListCap></audioTypeListCap>
+</audioIndexList>
+<timeRangeList>
+<week opt="1,2,3,4,5,6,7">1</week>
+<timeRange>
+<timeRangeID>1</timeRangeID>
+<audioID opt="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,35,36,37,38,39,40,41,42,43">1</audioID>
+<indexID min="1" max="3" def="1"></indexID>
+<beginTime>00:00:00</beginTime>
+<endTime>24:00:00</endTime>
+</timeRange>
+</timeRangeList>
+<audioAlarmTriggerEnabled>true</audioAlarmTriggerEnabled>
+</audioAlarmTriggerParam>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</RegionExitingTriggerCap>
+<LoiteringTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</LoiteringTriggerCap>
+<GroupDetectionTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</GroupDetectionTriggerCap>
+<RapidMoveTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</RapidMoveTriggerCap>
+<ParkingTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</ParkingTriggerCap>
+<UnattendedBaggageTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</UnattendedBaggageTriggerCap>
+<AttendedBaggageTriggerCap>
+<isSupportCenter>true</isSupportCenter>
+<isSupportRecord>true</isSupportRecord>
+<isSupportIO>true</isSupportIO>
+<isSupportFTP>true</isSupportFTP>
+<isSupportEmail>true</isSupportEmail>
+<isSupportTriggersEnabled>true</isSupportTriggersEnabled>
+</AttendedBaggageTriggerCap>
+</EventTriggersCap>

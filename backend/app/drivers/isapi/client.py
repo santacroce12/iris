@@ -66,7 +66,10 @@ def _isapi_error_detail(response: httpx.Response) -> str:
 class IsapiClient:
     """Cliente HTTP Digest para ISAPI. Un cliente por cámara; usar como context manager."""
 
-    def __init__(self, target: IsapiTarget) -> None:
+    def __init__(
+        self, target: IsapiTarget, transport: httpx.AsyncBaseTransport | None = None
+    ) -> None:
+        """`transport` permite hablar con la cámara simulada sin salir por la red."""
         self.target = target
         self._http = httpx.AsyncClient(
             base_url=target.base_url,
@@ -74,6 +77,7 @@ class IsapiClient:
             verify=target.verify_tls,
             timeout=httpx.Timeout(target.timeout_s),
             follow_redirects=True,
+            transport=transport,
         )
 
     async def __aenter__(self) -> "IsapiClient":

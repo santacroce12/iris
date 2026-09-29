@@ -23,3 +23,9 @@ class NotSupported(DriverError):
 
 class InvalidResponse(DriverError):
     code = "invalid_response"
+
+
+class VerificationFailed(DriverError):
+    """La cámara respondió OK pero al releer el recurso el cambio no estaba."""
+
+    code = "verification_failed"

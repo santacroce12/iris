@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LineItem>
+<id>2</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<directionSensitivity>any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget>human,vehicle</detectionTarget>
+<alarmConfidence>low</alarmConfidence>
+<ruleName>Rule 2</ruleName>
+</LineItem>

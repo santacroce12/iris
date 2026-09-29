@@ -2,6 +2,8 @@
 
 from datetime import UTC, datetime
 
+import pytest
+
 from app.domain.events import is_heartbeat, normalize_type
 from app.drivers.isapi.events import MultipartBuffer, parse_part
 
@@ -69,3 +71,22 @@ def test_evento_en_json():
 
 def test_tipos_desconocidos_quedan_en_minuscula():
     assert normalize_type("ALGOnuevo") == "algonuevo"
+
+
+async def test_el_feed_termina_cuando_el_servidor_se_apaga():
+    """Sin esto uvicorn se queda esperando que cierre la conexión del navegador."""
+    from app.api.events import stream_events
+    from app.engine.event_bus import EventBus, bus
+
+    original = bus.cerrando
+    bus.cerrando = EventBus().cerrando
+    try:
+        respuesta = await stream_events()
+        generador = respuesta.body_iterator
+        assert await anext(generador) == ": conectado\n\n"
+
+        bus.cerrando.set()
+        with pytest.raises(StopAsyncIteration):
+            await anext(generador)
+    finally:
+        bus.cerrando = original

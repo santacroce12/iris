@@ -5,6 +5,7 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.domain.enums import CameraStatus, NetworkMode, StreamType
+from app.domain.rules import Rule, RuleKindInfo, RuleSet, RuleUpdate
 
 
 class CameraBase(BaseModel):
@@ -164,3 +165,193 @@ class ListenerState(BaseModel):
     episodes_saved: int
     open_episodes: int
     last_error: str | None
+
+
+class RuleOut(BaseModel):
+    """Una regla vista desde la plataforma: coordenadas 0..1 con origen arriba a la izquierda."""
+
+    kind: str
+    external_id: str
+    name: str | None
+    points: list[tuple[float, float]]
+    enabled: bool
+    configured: bool
+    sensitivity: int | None
+    direction: str | None
+    target: list[str]
+    extra: dict[str, Any]
+
+    @classmethod
+    def desde(cls, regla: Rule) -> "RuleOut":
+        return cls(
+            kind=regla.kind.value,
+            external_id=regla.external_id,
+            name=regla.name,
+            points=regla.points,
+            enabled=regla.enabled,
+            configured=regla.configured,
+            sensitivity=regla.sensitivity,
+            direction=regla.direction,
+            target=regla.target,
+            extra=regla.extra,
+        )
+
+
+class RuleKindOut(BaseModel):
+    """Lo que la cámara permite para un tipo de regla."""
+
+    kind: str
+    max_rules: int
+    enabled: bool
+    min_points: int
+    max_points: int
+    targets: list[str]
+    directions: list[str]
+    toggle_per_rule: bool
+
+    @classmethod
+    def desde(cls, info: RuleKindInfo) -> "RuleKindOut":
+        return cls(**{**info.__dict__, "kind": info.kind.value})
+
+
+class RuleSetOut(BaseModel):
+    family: str
+    kinds: list[RuleKindOut]
+    rules: list[RuleOut]
+    note: str | None
+
+    @classmethod
+    def desde(cls, conjunto: RuleSet) -> "RuleSetOut":
+        return cls(
+            family=conjunto.family.value,
+            kinds=[RuleKindOut.desde(k) for k in conjunto.kinds],
+            rules=[RuleOut.desde(r) for r in conjunto.rules],
+            note=conjunto.note,
+        )
+
+
+class RulePatch(BaseModel):
+    """Solo se escribe lo que viene; el resto de la regla queda como está en la cámara."""
+
+    points: list[tuple[float, float]] | None = None
+    enabled: bool | None = None
+    sensitivity: int | None = Field(default=None, ge=1, le=100)
+    direction: str | None = None
+    target: list[str] | None = None
+    name: str | None = Field(default=None, max_length=32)
+
+    def a_update(self) -> RuleUpdate:
+        return RuleUpdate(**self.model_dump(exclude_unset=True))
+
+
+class ConfigBackupOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    resource: str
+    content_type: str
+    created_at: datetime
+    restored_at: datetime | None
+
+
+class MatrixCellOut(BaseModel):
+    camera_id: uuid.UUID
+    protocol: str
+    level: str
+    source: str | None
+    latency_ms: float | None
+    checked_at: datetime | None
+    evidence: dict[str, Any] | None
+
+
+class MatrixRowOut(BaseModel):
+    """Una función del catálogo, con una celda por cámara y protocolo."""
+
+    code: str
+    group: str
+    label: str
+    protocols: list[str]
+    cells: list[MatrixCellOut]
+
+
+class MatrixCameraOut(BaseModel):
+    id: uuid.UUID
+    name: str
+    model: str | None
+    host: str
+
+
+class MatrixOut(BaseModel):
+    cameras: list[MatrixCameraOut]
+    rows: list[MatrixRowOut]
+
+
+class DeviceTimeOut(BaseModel):
+    local_time: str | None
+    timezone: str | None
+    mode: str | None
+    ntp_server: str | None
+
+
+class OsdOut(BaseModel):
+    show_name: bool | None
+    show_date: bool | None
+    name: str | None
+    date_format: str | None
+    lines: list[str]
+
+
+class ImageOut(BaseModel):
+    brightness: int | None
+    contrast: int | None
+    saturation: int | None
+    sharpness: int | None
+
+
+class MotionOut(BaseModel):
+    enabled: bool | None
+    sensitivity: int | None
+
+
+class SystemStatusOut(BaseModel):
+    uptime_s: int | None
+    cpu_percent: int | None
+    memory_percent: int | None
+
+
+class FunctionsOut(BaseModel):
+    """Las funciones comunes leídas por un protocolo, para poder compararlas lado a lado."""
+
+    protocol: str
+    status: SystemStatusOut | None = None
+    time: DeviceTimeOut | None = None
+    osd: OsdOut | None = None
+    image: ImageOut | None = None
+    motion: MotionOut | None = None
+    errors: dict[str, str] = Field(default_factory=dict)
+
+
+class OsdPatch(BaseModel):
+    show_name: bool | None = None
+    show_date: bool | None = None
+    name: str | None = Field(default=None, max_length=32)
+
+
+class ImagePatch(BaseModel):
+    brightness: int | None = Field(default=None, ge=0, le=100)
+    contrast: int | None = Field(default=None, ge=0, le=100)
+    saturation: int | None = Field(default=None, ge=0, le=100)
+    sharpness: int | None = Field(default=None, ge=0, le=100)
+
+
+class MotionPatch(BaseModel):
+    enabled: bool | None = None
+    sensitivity: int | None = Field(default=None, ge=0, le=100)
+
+
+class RecordingOut(BaseModel):
+    """Estado de la grabación continua de una cámara y los segmentos que ya quedaron."""
+
+    path: str
+    recording: bool
+    segments: list[dict[str, Any]] = Field(default_factory=list)

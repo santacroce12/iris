@@ -29,5 +29,13 @@ webrtcLocalTCPAddress: :8189
 webrtcIPsFromInterfaces: no
 webrtcAdditionalHosts: ["127.0.0.1"]
 
+# Grabación: la enciende el backend por ruta (record: yes). El nombre del archivo lleva la
+# ruta de la cámara y la fecha, para poder encontrar después la prueba de un día concreto.
+recordPath: /grabaciones/%path/%Y-%m-%d_%H-%M-%S-%f
+recordFormat: fmp4
+recordPartDuration: 1s
+recordSegmentDuration: 10m
+recordDeleteAfter: 0s
+
 paths:
   all_others:

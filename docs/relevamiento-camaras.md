@@ -64,6 +64,22 @@ además de VMD, sabotaje, desenfoque, audio y cambio de escena.
 GET (`methodNotAllowed` / `badParameters`): faltan los parámetros exactos, que no están en el manual
 DeepinView. Se resuelve mirando qué pide la propia interfaz web de la cámara.
 
+## Rarezas de la API de reglas (verificadas contra la PTZ)
+
+Tres comportamientos que no están en el manual y que obligan a programar distinto:
+
+1. **Escribir la lista completa devuelve 200 OK y no aplica nada.** La geometría solo cambia
+   escribiendo el recurso individual de la regla (`…/lineItem/<id>`, `…/regions/<id>`).
+2. **Leer la lista devuelve coordenadas vacías para reglas que sí existen.** Las líneas 2 y 3 de la
+   PTZ figuraban en `(0,1000)-(0,1000)` en `GET /ISAPI/Smart/LineDetection/1`, pero el recurso
+   individual devolvía `(349,560)-(619,560)` y `(491,4)-(497,997)`. Hay que leer regla por regla.
+3. **El `<enabled>` de cada regla se ignora**: lo que activa la analítica es el `<enabled>` del
+   recurso global del tipo.
+
+**Sistema de coordenadas** (verificado midiendo una regla dibujada a mano en la interfaz de la
+cámara): escala 0–1000, el eje horizontal va directo y **el vertical está invertido** (la cámara
+cuenta desde abajo). Una regla guardada en y=560 se ve al 44 % desde arriba de la imagen.
+
 ## Lo que dicen los manuales (y no está en estas dos cámaras)
 
 - **Conteo de personas**: la serie DeepinView sí tiene API completa —36 endpoints bajo

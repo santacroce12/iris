@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LineItem>
+<id>3</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<directionSensitivity>any</directionSensitivity>
+<CoordinatesList>
+<Coordinates>
+<positionX>491</positionX>
+<positionY>4</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>497</positionX>
+<positionY>997</positionY>
+</Coordinates>
+</CoordinatesList>
+<detectionTarget>human</detectionTarget>
+</LineItem>

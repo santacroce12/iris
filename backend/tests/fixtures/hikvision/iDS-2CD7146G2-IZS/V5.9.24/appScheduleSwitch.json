@@ -1,0 +1,54 @@
+{
+	"enabled":	false,
+	"mode":	"parallelMultiple",
+	"scheduleList":	[{
+			"dayOfWeek":	1,
+			"TimeRange":	[{
+					"startTime":	"00:00",
+					"endTime":	"24:00",
+					"parallelApps":	[]
+				}]
+		}, {
+			"dayOfWeek":	2,
+			"TimeRange":	[{
+					"startTime":	"00:00",
+					"endTime":	"24:00",
+					"parallelApps":	[]
+				}]
+		}, {
+			"dayOfWeek":	3,
+			"TimeRange":	[{
+					"startTime":	"00:00",
+					"endTime":	"24:00",
+					"parallelApps":	[]
+				}]
+		}, {
+			"dayOfWeek":	4,
+			"TimeRange":	[{
+					"startTime":	"00:00",
+					"endTime":	"24:00",
+					"parallelApps":	[]
+				}]
+		}, {
+			"dayOfWeek":	5,
+			"TimeRange":	[{
+					"startTime":	"00:00",
+					"endTime":	"24:00",
+					"parallelApps":	[]
+				}]
+		}, {
+			"dayOfWeek":	6,
+			"TimeRange":	[{
+					"startTime":	"00:00",
+					"endTime":	"24:00",
+					"parallelApps":	[]
+				}]
+		}, {
+			"dayOfWeek":	7,
+			"TimeRange":	[{
+					"startTime":	"00:00",
+					"endTime":	"24:00",
+					"parallelApps":	[]
+				}]
+		}]
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LineDetection version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled opt="true,false">false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<LineItemList size="4" >
+<LineItem>
+<id>1</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 1</ruleName>
+</LineItem>
+<LineItem>
+<id>2</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 2</ruleName>
+</LineItem>
+<LineItem>
+<id>3</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 3</ruleName>
+</LineItem>
+<LineItem>
+<id>4</id>
+<enabled opt="false,true">false</enabled>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<directionSensitivity opt="any,left-right,right-left">any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 4</ruleName>
+</LineItem>
+</LineItemList>
+<isSupportMultiScene>false</isSupportMultiScene>
+<recogRuleType>vectorMode</recogRuleType>
+<isSupportTargetMultiSelect>true</isSupportTargetMultiSelect>
+<isSupportAllDayUpload>true</isSupportAllDayUpload>
+</LineDetection>

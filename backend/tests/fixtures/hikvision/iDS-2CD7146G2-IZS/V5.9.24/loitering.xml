@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Loitering version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled>false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<LoiteringRegionList size="4" >
+<LoiteringRegion>
+<id>1</id>
+<sensitivityLevel>50</sensitivityLevel>
+<timeThreshold>5</timeThreshold>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<ruleName>Rule 1</ruleName>
+</LoiteringRegion>
+<LoiteringRegion>
+<id>2</id>
+<sensitivityLevel>50</sensitivityLevel>
+<timeThreshold>5</timeThreshold>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<ruleName>Rule 2</ruleName>
+</LoiteringRegion>
+<LoiteringRegion>
+<id>3</id>
+<sensitivityLevel>50</sensitivityLevel>
+<timeThreshold>5</timeThreshold>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<ruleName>Rule 3</ruleName>
+</LoiteringRegion>
+<LoiteringRegion>
+<id>4</id>
+<sensitivityLevel>50</sensitivityLevel>
+<timeThreshold>5</timeThreshold>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<ruleName>Rule 4</ruleName>
+</LoiteringRegion>
+</LoiteringRegionList>
+<isSupportMultiScene>false</isSupportMultiScene>
+</Loitering>

@@ -1,0 +1,14 @@
+<EventNotificationAlert version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<ipAddress>10.0.0.10</ipAddress>
+<ipv6Address>2803:9800:a846:6f:ce13:f3ff:fe67:b3ff</ipv6Address>
+<portNo>80</portNo>
+<protocol>HTTP</protocol>
+<macAddress>00:00:00:00:00:00</macAddress>
+<channelID>1</channelID>
+<dateTime>2026-09-29T21:27:13+08:00</dateTime>
+<activePostCount>1</activePostCount>
+<eventType>videoloss</eventType>
+<eventState>inactive</eventState>
+<eventDescription>videoloss alarm</eventDescription>
+<channelName>CAMARA RLINK</channelName>
+</EventNotificationAlert>

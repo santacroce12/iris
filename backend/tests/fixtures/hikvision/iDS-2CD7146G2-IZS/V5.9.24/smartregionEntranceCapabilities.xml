@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RegionEntrance version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled>false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<RegionEntranceRegionList size="4" >
+<RegionEntranceRegion>
+<id>1</id>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 1</ruleName>
+</RegionEntranceRegion>
+<RegionEntranceRegion>
+<id>2</id>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 2</ruleName>
+</RegionEntranceRegion>
+<RegionEntranceRegion>
+<id>3</id>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 3</ruleName>
+</RegionEntranceRegion>
+<RegionEntranceRegion>
+<id>4</id>
+<sensitivityLevel min="1" max="100">50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<minRegionCoordinatesNum>3</minRegionCoordinatesNum>
+<maxRegionCoordinatesNum>10</maxRegionCoordinatesNum>
+<detectionTarget opt="all,human,vehicle,animal,others" def="human,vehicle">human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high" def="low"/>
+<ruleName min="1" max="32">Rule 4</ruleName>
+</RegionEntranceRegion>
+</RegionEntranceRegionList>
+<isSupportMultiScene>false</isSupportMultiScene>
+<isSupportTargetMultiSelect>true</isSupportTargetMultiSelect>
+<isSupportAllDayUpload>true</isSupportAllDayUpload>
+</RegionEntrance>

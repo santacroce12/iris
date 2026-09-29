@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceInfo version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<deviceName>IP DOME</deviceName>
+<deviceID>fdd3c000-696d-11b3-81a6-988b0a7533b0</deviceID>
+<deviceDescription>IPDome</deviceDescription>
+<deviceLocation>hangzhou</deviceLocation>
+<systemContact>Hikvision.China</systemContact>
+<model>DS-2DF8A836IX-AEL</model>
+<serialNumber>SERIE-OCULTA</serialNumber>
+<macAddress>00:00:00:00:00:00</macAddress>
+<firmwareVersion>V5.6.0</firmwareVersion>
+<firmwareReleasedDate>build 190320</firmwareReleasedDate>
+<encoderVersion>V7.3</encoderVersion>
+<encoderReleasedDate>build 190318</encoderReleasedDate>
+<bootVersion>V1.3.4</bootVersion>
+<bootReleasedDate>100316</bootReleasedDate>
+<hardwareVersion>0x0</hardwareVersion>
+<deviceType>IPDome</deviceType>
+<telecontrolID>88</telecontrolID>
+<supportBeep>false</supportBeep>
+<supportVideoLoss>false</supportVideoLoss>
+<firmwareVersionInfo>B-R-H3-0</firmwareVersionInfo>
+</DeviceInfo>

@@ -1,14 +1,26 @@
 import type {
   Camera,
+  DeviceTime,
   CameraCreate,
   CameraEvent,
   CameraUpdate,
   EventFilters,
   ListenerState,
+  CameraFunctions,
   CapabilityCheck,
+  ConfigBackup,
   ConnectionReport,
+  ImageSettings,
   LiveUrls,
+  Matrix,
+  MotionDetection,
   OperationLog,
+  Osd,
+  Recording,
+  Rule,
+  RuleKind,
+  RulePatch,
+  RuleSet,
   StreamType,
   VideoProfile,
 } from './types'
@@ -58,7 +70,48 @@ export const api = {
   startLive: (id: string, stream: StreamType) =>
     request<LiveUrls>(`/cameras/${id}/live?stream=${stream}`, { method: 'POST' }),
   capabilities: (id: string) => request<CapabilityCheck[]>(`/cameras/${id}/capabilities`),
+  recording: (id: string, stream: StreamType = 'main') =>
+    request<Recording>(`/cameras/${id}/recording?stream=${stream}`),
+  setRecording: (id: string, enabled: boolean, stream: StreamType = 'main') =>
+    request<Recording>(`/cameras/${id}/recording?enabled=${enabled}&stream=${stream}`, {
+      method: 'POST',
+    }),
   operations: (id: string) => request<OperationLog[]>(`/cameras/${id}/operations`),
+  rules: (id: string) => request<RuleSet>(`/cameras/${id}/rules`),
+  patchRule: (id: string, kind: RuleKind, ruleId: string, patch: RulePatch) =>
+    request<Rule>(`/cameras/${id}/rules/${kind}/${ruleId}`, {
+      method: 'PATCH',
+      body: json(patch),
+    }),
+  backups: (id: string) => request<ConfigBackup[]>(`/cameras/${id}/backups`),
+
+  matrix: () => request<Matrix>('/matrix'),
+  detect: (id: string) =>
+    request<{ status: string }>(`/cameras/${id}/capabilities/detect`, { method: 'POST' }),
+  functions: (id: string, protocol: 'isapi' | 'onvif' = 'isapi') =>
+    request<CameraFunctions>(`/cameras/${id}/functions?protocol=${protocol}`),
+  setOsd: (id: string, patch: Partial<Osd>) =>
+    request<Osd>(`/cameras/${id}/functions/osd`, { method: 'PATCH', body: json(patch) }),
+  setImage: (id: string, patch: Partial<ImageSettings>) =>
+    request<ImageSettings>(`/cameras/${id}/functions/image`, {
+      method: 'PATCH',
+      body: json(patch),
+    }),
+  setMotion: (id: string, patch: Partial<MotionDetection>) =>
+    request<MotionDetection>(`/cameras/${id}/functions/motion`, {
+      method: 'PATCH',
+      body: json(patch),
+    }),
+  syncTime: (id: string, protocol: 'isapi' | 'onvif' = 'isapi') =>
+    request<DeviceTime>(`/cameras/${id}/functions/time/sync?protocol=${protocol}`, {
+      method: 'POST',
+    }),
+  reboot: (id: string) =>
+    request<Record<string, unknown>>(`/cameras/${id}/functions/reboot?confirm=true`, {
+      method: 'POST',
+    }),
+  restoreBackup: (id: string, backupId: string) =>
+    request<void>(`/cameras/${id}/backups/${backupId}/restore`, { method: 'POST' }),
   snapshotUrl: (id: string) => `/api/cameras/${id}/snapshot?t=${Date.now()}`,
 
   events: (filters: EventFilters = {}) => {

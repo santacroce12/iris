@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceInfo version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<deviceName>IP CAMERA</deviceName>
+<deviceID>21f74000-01e0-11b4-8268-cc13f367b3ff</deviceID>
+<deviceDescription>IPCamera</deviceDescription>
+<deviceLocation>hangzhou</deviceLocation>
+<systemContact>Hikvision.China</systemContact>
+<model>iDS-2CD7146G2-IZS</model>
+<serialNumber>SERIE-OCULTA</serialNumber>
+<macAddress>00:00:00:00:00:00</macAddress>
+<firmwareVersion>V5.9.24</firmwareVersion>
+<firmwareReleasedDate>build 260702</firmwareReleasedDate>
+<encoderVersion>V7.3</encoderVersion>
+<encoderReleasedDate>build 260629</encoderReleasedDate>
+<bootVersion>V1.3.4</bootVersion>
+<bootReleasedDate>100316</bootReleasedDate>
+<hardwareVersion>0x0</hardwareVersion>
+<deviceType>IPCamera</deviceType>
+<telecontrolID>88</telecontrolID>
+<supportBeep>true</supportBeep>
+<supportVideoLoss>false</supportVideoLoss>
+<firmwareVersionInfo>B-R-H11-0</firmwareVersionInfo>
+<manufacturer>hikvision</manufacturer>
+<subSerialNumber>GW3884556</subSerialNumber>
+<OEMCode>1</OEMCode>
+<firmware>opdevsdk mediaDrv:v2.0.0</firmware>
+<platformName>H11</platformName>
+<bootTime>2026-09-25T22:09:28</bootTime>
+<encryptionModel>0x28712</encryptionModel>
+</DeviceInfo>

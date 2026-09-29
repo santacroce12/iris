@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RegionExiting version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>1</id>
+<enabled>false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<RegionExitingRegionList size="4" >
+<RegionExitingRegion>
+<id>1</id>
+<sensitivityLevel>50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<detectionTarget> </detectionTarget>
+</RegionExitingRegion>
+<RegionExitingRegion>
+<id>2</id>
+<sensitivityLevel>50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<detectionTarget> </detectionTarget>
+</RegionExitingRegion>
+<RegionExitingRegion>
+<id>3</id>
+<sensitivityLevel>50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<detectionTarget> </detectionTarget>
+</RegionExitingRegion>
+<RegionExitingRegion>
+<id>4</id>
+<sensitivityLevel>50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<detectionTarget> </detectionTarget>
+</RegionExitingRegion>
+</RegionExitingRegionList>
+<isSupportMultiScene>true</isSupportMultiScene>
+</RegionExiting>

@@ -44,3 +44,52 @@ class ProbeResult:
     error_code: str | None = None
     message: str | None = None
     data: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class DeviceTime:
+    """Hora de la cámara. Los eventos vienen con su hora, así que importa que esté bien."""
+
+    local_time: str | None = None  # como la reporta la cámara, con su huso
+    timezone: str | None = None
+    mode: str | None = None  # manual | ntp
+    ntp_server: str | None = None
+    raw: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class OsdSettings:
+    """Texto sobrepuesto en la imagen."""
+
+    show_name: bool | None = None
+    show_date: bool | None = None
+    name: str | None = None
+    date_format: str | None = None
+    lines: list[str] = field(default_factory=list)
+    raw: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class ImageSettings:
+    """Ajustes de imagen, normalizados a 0..100."""
+
+    brightness: int | None = None
+    contrast: int | None = None
+    saturation: int | None = None
+    sharpness: int | None = None
+    raw: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class MotionDetection:
+    enabled: bool | None = None
+    sensitivity: int | None = None  # 0..100
+    raw: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class SystemStatus:
+    uptime_s: int | None = None
+    cpu_percent: int | None = None
+    memory_percent: int | None = None
+    raw: dict[str, Any] = field(default_factory=dict)

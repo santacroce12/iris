@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldDetectionRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>3</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<timeThreshold>0</timeThreshold>
+<detectionTarget>human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high">low</alarmConfidence>
+<ruleName>Rule 3</ruleName>
+</FieldDetectionRegion>

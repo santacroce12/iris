@@ -3,9 +3,10 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import cameras, events
+from app.api import cameras, events, functions, matrix, rules
 from app.api.errors import register_error_handlers
 from app.core.config import get_settings
+from app.engine.event_bus import bus
 from app.engine.event_hub import hub
 
 
@@ -14,6 +15,7 @@ async def lifespan(app: FastAPI):
     # Al arrancar se reconectan los oyentes de las cámaras marcadas.
     await hub.start_enabled()
     yield
+    bus.close()
     await hub.stop_all()
 
 
@@ -35,6 +37,9 @@ def create_app() -> FastAPI:
     register_error_handlers(app)
     app.include_router(cameras.router)
     app.include_router(events.router)
+    app.include_router(rules.router)
+    app.include_router(functions.router)
+    app.include_router(matrix.router)
 
     @app.get("/api/health", tags=["sistema"])
     async def health() -> dict[str, str]:

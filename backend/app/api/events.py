@@ -56,13 +56,26 @@ async def stream_events() -> StreamingResponse:
     async def generar():
         async with bus.subscribe() as cola:
             yield ": conectado\n\n"
-            while True:
-                try:
-                    evento = await asyncio.wait_for(cola.get(), timeout=HEARTBEAT_S)
-                except TimeoutError:
+            # El feed también escucha el apagado: si solo esperara eventos, el servidor no
+            # podría cerrar (uvicorn se queda esperando que la conexión termine).
+            cierre = asyncio.create_task(bus.cerrando.wait())
+            try:
+                while True:
+                    siguiente = asyncio.create_task(cola.get())
+                    listos, _ = await asyncio.wait(
+                        {siguiente, cierre},
+                        timeout=HEARTBEAT_S,
+                        return_when=asyncio.FIRST_COMPLETED,
+                    )
+                    if siguiente in listos:
+                        yield f"event: camera-event\ndata: {json.dumps(siguiente.result())}\n\n"
+                        continue
+                    siguiente.cancel()
+                    if cierre in listos:
+                        break
                     yield ": latido\n\n"
-                    continue
-                yield f"event: camera-event\ndata: {json.dumps(evento)}\n\n"
+            finally:
+                cierre.cancel()
 
     return StreamingResponse(
         generar(),

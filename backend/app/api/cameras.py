@@ -14,6 +14,7 @@ from app.api.schemas import (
     LiveOut,
     OperationLogOut,
     ProtocolCheck,
+    RecordingOut,
     VideoProfileOut,
 )
 from app.core.config import get_settings
@@ -163,6 +164,31 @@ async def start_live(
 ) -> LiveOut:
     urls = await service.publish_live(session, camera, stream)
     return LiveOut(path=urls.path, webrtc=urls.webrtc, whep=urls.whep, hls=urls.hls)
+
+
+@router.post("/{camera_id}/recording", response_model=RecordingOut)
+async def set_recording(
+    camera: CameraDep,
+    session: Session,
+    enabled: bool = True,
+    stream: StreamType = StreamType.MAIN,
+) -> RecordingOut:
+    """Graba en disco lo que ve la cámara, para tener evidencia de las pruebas."""
+    urls = await service.set_recording(session, camera, enabled, stream)
+    return RecordingOut(
+        path=urls.path,
+        recording=enabled,
+        segments=await service.list_recordings(camera, stream),
+    )
+
+
+@router.get("/{camera_id}/recording", response_model=RecordingOut)
+async def get_recording(camera: CameraDep, stream: StreamType = StreamType.MAIN) -> RecordingOut:
+    return RecordingOut(
+        path=service.mediamtx_path(camera, stream),
+        recording=await service.recording_state(camera, stream),
+        segments=await service.list_recordings(camera, stream),
+    )
 
 
 @router.get("/{camera_id}/capabilities", response_model=list[CapabilityCheckOut])

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SubscribeEventCap version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<format opt="xml"/>
+<heartbeat min="1" max="100"/>
+<channelMode opt="all"/>
+<eventMode opt="all,list"/>
+<EventList>
+<Event>
+<type>IO</type>
+</Event>
+<Event>
+<type>VMD</type>
+</Event>
+<Event>
+<type>shelteralarm</type>
+</Event>
+<Event>
+<type>audioexception</type>
+</Event>
+<Event>
+<type>fielddetection</type>
+</Event>
+<Event>
+<type>linedetection</type>
+</Event>
+<Event>
+<type>regionEntrance</type>
+</Event>
+<Event>
+<type>regionExiting</type>
+</Event>
+<Event>
+<type>unattendedBaggage</type>
+</Event>
+<Event>
+<type>attendedBaggage</type>
+</Event>
+<Event>
+<type>HDFull</type>
+</Event>
+<Event>
+<type>HDError</type>
+</Event>
+<Event>
+<type>NicBroken</type>
+</Event>
+<Event>
+<type>IpConfict</type>
+</Event>
+<Event>
+<type>IllAccess</type>
+</Event>
+</EventList>
+<isSupportUnSubscribeEvent>true</isSupportUnSubscribeEvent>
+<ChangedUploadSub></ChangedUploadSub>
+</SubscribeEventCap>

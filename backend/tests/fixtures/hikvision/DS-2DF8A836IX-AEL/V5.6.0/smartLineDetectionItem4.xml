@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LineItem>
+<id>4</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<directionSensitivity>any</directionSensitivity>
+<CoordinatesList>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+<Coordinates>
+<positionX>0</positionX>
+<positionY>1000</positionY>
+</Coordinates>
+</CoordinatesList>
+<detectionTarget> </detectionTarget>
+</LineItem>

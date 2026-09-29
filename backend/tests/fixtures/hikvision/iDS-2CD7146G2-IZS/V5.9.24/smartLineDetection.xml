@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LineDetection>
+<id>1</id>
+<enabled>false</enabled>
+<normalizedScreenSize>
+<normalizedScreenWidth>1000</normalizedScreenWidth>
+<normalizedScreenHeight>1000</normalizedScreenHeight>
+</normalizedScreenSize>
+<LineItemList size="4" >
+<LineItem>
+<id>1</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<directionSensitivity>any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget>human,vehicle</detectionTarget>
+<alarmConfidence>low</alarmConfidence>
+<ruleName>Rule 1</ruleName>
+</LineItem>
+<LineItem>
+<id>2</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<directionSensitivity>any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget>human,vehicle</detectionTarget>
+<alarmConfidence>low</alarmConfidence>
+<ruleName>Rule 2</ruleName>
+</LineItem>
+<LineItem>
+<id>3</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<directionSensitivity>any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget>human,vehicle</detectionTarget>
+<alarmConfidence>low</alarmConfidence>
+<ruleName>Rule 3</ruleName>
+</LineItem>
+<LineItem>
+<id>4</id>
+<enabled>false</enabled>
+<sensitivityLevel>50</sensitivityLevel>
+<directionSensitivity>any</directionSensitivity>
+<CoordinatesList>
+</CoordinatesList>
+<detectionTarget>human,vehicle</detectionTarget>
+<alarmConfidence>low</alarmConfidence>
+<ruleName>Rule 4</ruleName>
+</LineItem>
+</LineItemList>
+<isSupportMultiScene>false</isSupportMultiScene>
+<recogRuleType>vectorMode</recogRuleType>
+</LineDetection>

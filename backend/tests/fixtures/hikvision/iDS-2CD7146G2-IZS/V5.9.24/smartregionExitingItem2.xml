@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RegionExitingRegion version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<id>2</id>
+<sensitivityLevel>50</sensitivityLevel>
+<RegionCoordinatesList>
+</RegionCoordinatesList>
+<detectionTarget>human,vehicle</detectionTarget>
+<alarmConfidence opt="low,mediumLow,mediumHigh,high">low</alarmConfidence>
+<ruleName>Rule 2</ruleName>
+</RegionExitingRegion>

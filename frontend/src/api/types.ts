@@ -166,3 +166,125 @@ export interface OperationLog {
   detail: Record<string, unknown> | null
   created_at: string
 }
+
+export type RuleKind = 'line' | 'field' | 'entrance' | 'exiting' | 'ai_zone'
+
+export interface Rule {
+  kind: RuleKind
+  external_id: string
+  name: string | null
+  points: [number, number][]
+  enabled: boolean
+  configured: boolean
+  sensitivity: number | null
+  direction: string | null
+  target: string[]
+  extra: Record<string, unknown>
+}
+
+export interface RuleKindInfo {
+  kind: RuleKind
+  max_rules: number
+  enabled: boolean
+  min_points: number
+  max_points: number
+  targets: string[]
+  directions: string[]
+  toggle_per_rule: boolean
+}
+
+export interface RuleSet {
+  family: 'smart' | 'aiop' | 'none'
+  kinds: RuleKindInfo[]
+  rules: Rule[]
+  note: string | null
+}
+
+export interface RulePatch {
+  points?: [number, number][]
+  enabled?: boolean
+  sensitivity?: number
+  direction?: string
+  target?: string[]
+  name?: string
+}
+
+export interface ConfigBackup {
+  id: string
+  resource: string
+  content_type: string
+  created_at: string
+  restored_at: string | null
+}
+
+export interface MatrixCell {
+  camera_id: string
+  protocol: Protocol
+  level: SupportLevel
+  source: 'declared' | 'verified' | null
+  latency_ms: number | null
+  checked_at: string | null
+  evidence: Record<string, unknown> | null
+}
+
+export interface MatrixRow {
+  code: string
+  group: string
+  label: string
+  protocols: Protocol[]
+  cells: MatrixCell[]
+}
+
+export interface Matrix {
+  cameras: { id: string; name: string; model: string | null; host: string }[]
+  rows: MatrixRow[]
+}
+
+export interface DeviceTime {
+  local_time: string | null
+  timezone: string | null
+  mode: string | null
+  ntp_server: string | null
+}
+
+export interface Osd {
+  show_name: boolean | null
+  show_date: boolean | null
+  name: string | null
+  date_format: string | null
+  lines: string[]
+}
+
+export interface ImageSettings {
+  brightness: number | null
+  contrast: number | null
+  saturation: number | null
+  sharpness: number | null
+}
+
+export interface MotionDetection {
+  enabled: boolean | null
+  sensitivity: number | null
+}
+
+export interface SystemStatus {
+  uptime_s: number | null
+  cpu_percent: number | null
+  memory_percent: number | null
+}
+
+export interface CameraFunctions {
+  protocol: Protocol
+  status: SystemStatus | null
+  time: DeviceTime | null
+  osd: Osd | null
+  image: ImageSettings | null
+  motion: MotionDetection | null
+  errors: Record<string, string>
+}
+
+export interface Recording {
+  path: string
+  recording: boolean
+  segments: Record<string, unknown>[]
+}

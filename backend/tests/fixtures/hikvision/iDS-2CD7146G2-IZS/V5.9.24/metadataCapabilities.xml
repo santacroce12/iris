@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetadataCfg version="2.0" xmlns="http://www.hikvision.com/ver20/XMLSchema">
+<MetadataList size="1" >
+<Metadata>
+<type>behaviorAnalysis</type>
+<enable>false</enable>
+</Metadata>
+</MetadataList>
+<isSupportSubscribeType>true</isSupportSubscribeType>
+</MetadataCfg>

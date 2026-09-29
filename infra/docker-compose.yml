@@ -21,6 +21,8 @@ services:
     image: bluenviron/mediamtx:1
     volumes:
       - ./mediamtx.yml:/mediamtx.yml:ro
+      # Las grabaciones quedan en el disco del host, fuera del contenedor.
+      - ../backend/media/grabaciones:/grabaciones
     ports:
       - "8554:8554"      # RTSP (re-publicación)
       - "8888:8888"      # HLS

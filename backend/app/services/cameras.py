@@ -223,8 +223,32 @@ def mediamtx_path(camera: Camera, stream_type: StreamType) -> str:
     return f"cam-{camera.id.hex[:12]}-{stream_type}"
 
 
+async def set_recording(
+    session: AsyncSession,
+    camera: Camera,
+    enabled: bool,
+    stream_type: StreamType = StreamType.MAIN,
+) -> LiveUrls:
+    """Enciende o apaga la grabación continua de esta cámara en MediaMTX."""
+    return await publish_live(session, camera, stream_type, record=enabled)
+
+
+async def recording_state(camera: Camera, stream_type: StreamType = StreamType.MAIN) -> bool:
+    config = await MediaMtx(get_settings()).path_config(mediamtx_path(camera, stream_type))
+    return bool(config and config.get("record"))
+
+
+async def list_recordings(
+    camera: Camera, stream_type: StreamType = StreamType.MAIN
+) -> list[dict[str, Any]]:
+    return await MediaMtx(get_settings()).recordings(mediamtx_path(camera, stream_type))
+
+
 async def publish_live(
-    session: AsyncSession, camera: Camera, stream_type: StreamType = StreamType.MAIN
+    session: AsyncSession,
+    camera: Camera,
+    stream_type: StreamType = StreamType.MAIN,
+    record: bool = False,
 ) -> LiveUrls:
     stream_digit = 2 if stream_type == StreamType.SUB else 1
     rtsp_path = f"/Streaming/Channels/{camera.channel}0{stream_digit}"
@@ -235,8 +259,8 @@ async def publish_live(
         camera_id=camera.id,
         capability="media.live",
         protocol=Protocol.RTSP,
-        operation=f"MediaMTX publish {rtsp_path}",
-        call=MediaMtx(get_settings()).publish(path, source),
+        operation=f"MediaMTX publish {rtsp_path}{' + grabación' if record else ''}",
+        call=MediaMtx(get_settings()).publish(path, source, record=record),
     )
     await session.commit()
     if not outcome.ok or outcome.value is None:
