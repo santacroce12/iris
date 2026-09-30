@@ -15,6 +15,7 @@ from app.db.models import Camera, Event, EventMedia
 from app.domain.enums import Protocol
 from app.domain.events import ParsedAlert, is_heartbeat
 from app.drivers.errors import DriverError
+from app.drivers.isapi import device as isapi_device
 from app.drivers.isapi.events import read_alert_stream
 from app.engine.episodes import Episode, EpisodeGrouper
 from app.engine.event_bus import bus
@@ -151,6 +152,8 @@ class CameraListener:
             await session.flush()
             episodio.event_id = evento.id
             self.episodes_saved += 1
+            if not episodio.pictures:
+                await self._snapshot_on_open(session, episodio)
         else:
             evento = await session.get(Event, episodio.event_id)
             if evento is None:
@@ -164,6 +167,26 @@ class CameraListener:
         fotos = await self._save_pictures(session, episodio, evento)
         episodio.dirty = False
         bus.publish(_to_payload(evento, fotos))
+
+    async def _snapshot_on_open(self, session: AsyncSession, episodio: Episode) -> None:
+        """Fotos en los eventos, replanteado (bitácora §6.6): al menos la PTZ no tiene forma de
+        adjuntar su propia foto al alertStream ("Notificar al software remoto" no ofrece esa
+        opción). En vez de esperar una foto que puede no llegar nunca, si el aviso que abrió el
+        episodio no trajo ninguna, la plataforma pide ella misma un snapshot del instante.
+
+        No es el fotograma exacto del momento del disparo (hay una latencia de red de por medio),
+        pero es una imagen real de la cámara y no depende de que el modelo soporte una función que
+        al menos uno de los dos equipos de este trabajo no tiene."""
+        camera = await session.get(Camera, self.camera_id)
+        if camera is None:
+            return
+        try:
+            async with targets.isapi_client(camera) as client:
+                foto = await isapi_device.get_snapshot(client, camera.channel)
+        except DriverError as exc:
+            log.info("Snapshot propio del episodio no disponible (%s): %s", self.camera_id, exc)
+            return
+        episodio.pictures.append((foto.mime, foto.content))
 
     async def _save_pictures(self, session: AsyncSession, episodio: Episode, evento: Event) -> int:
         guardadas = await session.scalar(

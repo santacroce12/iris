@@ -70,6 +70,9 @@ export function MatrixPage() {
         <Button icon={<Download className="size-3.5" />} onClick={() => descargarCsv(data)}>
           Exportar CSV
         </Button>
+        <Button icon={<Download className="size-3.5" />} onClick={() => descargarMarkdown(data)}>
+          Exportar Markdown
+        </Button>
       </div>
 
       <Card className="overflow-x-auto">
@@ -258,6 +261,57 @@ function descargarCsv(matriz: Matrix) {
   const enlace = document.createElement('a')
   enlace.href = url
   enlace.download = `matriz-compatibilidad-${new Date().toISOString().slice(0, 10)}.csv`
+  enlace.click()
+  URL.revokeObjectURL(url)
+}
+
+/** Símbolo de una celda para el Markdown, igual al de la tabla en pantalla (CELDA) pero en texto
+ * plano, con `v`/`d` para distinguir verificado de declarado (no hay color para eso en Markdown). */
+function simboloMarkdown(celda: MatrixCell | undefined, aplica: boolean): string {
+  if (!aplica && !celda) return '—'
+  const nivel = celda?.level ?? 'unverified'
+  const texto = CELDA[nivel].texto
+  if (!celda?.source) return texto
+  return `${texto}${celda.source === 'verified' ? '`v`' : '`d`'}`
+}
+
+function descargarMarkdown(matriz: Matrix) {
+  const grupos = [...new Set(matriz.rows.map((f) => f.group))]
+  const protocolos: Protocol[] = ['isapi', 'onvif', 'rtsp']
+  const lineas: string[] = []
+
+  lineas.push('# Matriz de compatibilidad')
+  lineas.push('')
+  lineas.push(
+    `Generada el ${new Date().toISOString().slice(0, 10)}. Cada celda muestra el nivel de ` +
+      'soporte (`✓` soportado, `~` parcial, `✕` no soportado, `·` no verificado, `!` error) y, ' +
+      'entre backticks, si se verificó llamando a la función (`v`) o solo se tomó de lo que la ' +
+      'cámara declara (`d`). `—` significa que ese protocolo no aplica a esa función.',
+  )
+  lineas.push('')
+
+  const encabezado = ['Función', ...matriz.cameras.flatMap((c) => protocolos.map((p) => `${c.name} (${p})`))]
+  lineas.push(`| ${encabezado.join(' | ')} |`)
+  lineas.push(`|${encabezado.map(() => '---').join('|')}|`)
+
+  for (const grupo of grupos) {
+    lineas.push(`| **${grupo}** | ${matriz.cameras.flatMap(() => protocolos.map(() => '')).join(' | ')} |`)
+    for (const fila of matriz.rows.filter((f) => f.group === grupo)) {
+      const celdas = matriz.cameras.flatMap((camara) =>
+        protocolos.map((protocolo) => {
+          const celda = fila.cells.find((c) => c.camera_id === camara.id && c.protocol === protocolo)
+          return simboloMarkdown(celda, fila.protocols.includes(protocolo))
+        }),
+      )
+      lineas.push(`| ${fila.label} | ${celdas.join(' | ')} |`)
+    }
+  }
+
+  const md = lineas.join('\n')
+  const url = URL.createObjectURL(new Blob([md], { type: 'text/markdown;charset=utf-8' }))
+  const enlace = document.createElement('a')
+  enlace.href = url
+  enlace.download = `matriz-compatibilidad-${new Date().toISOString().slice(0, 10)}.md`
   enlace.click()
   URL.revokeObjectURL(url)
 }

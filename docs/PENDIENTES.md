@@ -6,13 +6,22 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
 
 ## Eventos
 
-- [ ] **Fotos en los eventos — replanteado (29/09).** Se revisó en la interfaz de la PTZ: **este
+- [x] **Fotos en los eventos — implementado (29/09).** Se revisó en la interfaz de la PTZ: **este
       modelo no tiene una opción para adjuntar la foto al canal que ya escuchamos** ("Notificar al
       software remoto"). Lo único que ofrece es "Cargar en FTP/tarjeta de memoria/NAS", un mecanismo
-      distinto. Ver `bitacora-apis.md` §6.6 para el detalle y las dos alternativas posibles: montar
-      un servidor FTP propio, o (más simple) que la plataforma pida ella misma un snapshot
-      (`GET .../picture`, ya implementado) al abrir cada episodio. Falta decidir cuál, e implementarla.
-      Repetir la revisión en el domo por si su modelo sí tiene la opción.
+      distinto. Ver `bitacora-apis.md` §6.6 para el detalle. Se optó por la alternativa más simple
+      (sin infraestructura extra): **si el aviso que abre un episodio no trae ninguna foto, la
+      plataforma pide ella misma un snapshot** (`GET .../picture`) antes de guardarlo — no es el
+      fotograma exacto del instante, pero es real y no depende de una función que al menos la PTZ
+      no tiene. Implementado en `CameraListener._snapshot_on_open`
+      (`backend/app/engine/event_hub.py`), 5 tests nuevos contra un servidor ISAPI simulado con
+      `respx` (`backend/tests/integration/test_event_hub_snapshot.py`), incluida una prueba de
+      punta a punta que verifica el archivo escrito en disco, no solo el registro en la base.
+      **Confirmado contra la PTZ real el mismo 29/09**, apenas volvió la conectividad: desde el
+      reinicio del backend con este código, todos los eventos de cruce de línea de la PTZ
+      quedaron con 1 foto real adjunta (antes, 0), con el archivo `.jpg` verificado en disco y a
+      simple vista (una foto real de la oficina, con el overlay de fecha/hora de la propia
+      cámara).
 - [ ] **Recrear la tarea de análisis del domo desde su interfaz web** y capturar el pedido que
       manda el navegador. Después de un reinicio la tarea desapareció y no se pudo recrear por
       API (6 variantes, ver `bitacora-apis.md` §5.1). Sin tarea no hay analítica de IA.
@@ -111,10 +120,21 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
       con exportación a CSV.
 - [x] Seis funciones comunes por ISAPI: estado, hora, OSD, imagen, movimiento y reinicio.
 - [x] Las mismas por ONVIF, escritas y sin verificar (falta habilitar ONVIF en las cámaras).
-- [ ] **Verificar la columna ONVIF contra hardware.** Es lo único que falta para cerrar la
-      comparación estándar vs. propietario, que es la pregunta del anteproyecto.
-- [ ] Pantalla de funciones comunes en el detalle de cámara (hoy la API está, la UI no).
-- [ ] Exportar la matriz también a Markdown para pegarla en el documento de la tesis.
+- [x] **Verificar la columna ONVIF contra hardware.** Cerrado el 29/09 en las dos cámaras
+      Hikvision reales — es la comparación central del anteproyecto. Ver `07-resultados.md` §7.4
+      y §7.9 (matriz filtrada a las dos cámaras reales).
+- [x] **Pantalla de funciones comunes en el detalle de cámara** (29/09): pestaña nueva
+      "Funciones" (`frontend/src/features/cameras/FunctionsTab.tsx`), ISAPI y ONVIF lado a lado
+      —estado, hora con sincronización, OSD, imagen y movimiento editables por ISAPI (ONVIF en
+      solo lectura, porque el driver ONVIF de este trabajo no implementa esos `Set*` — ver
+      `07-resultados.md` §7.4) y reinicio por cualquiera de los dos protocolos. Probada de punta a
+      punta contra el simulador: guardado de OSD verificado con una relectura real por API, y el
+      panel ONVIF muestra el error de conexión sin romper la pantalla cuando ese protocolo no
+      responde (el caso real de un simulador que no habla ONVIF).
+- [x] **Exportar la matriz también a Markdown** (29/09): botón nuevo al lado de "Exportar CSV" en
+      la pantalla Matriz (`frontend/src/features/matrix/MatrixPage.tsx`). Usado para llenar
+      `docs/tesis/07-resultados.md` §7.9 y guardar la evidencia completa en
+      `docs/evidencias/matriz/`.
 
 ## Fase 5 (anteproyecto): evidencia
 
@@ -142,10 +162,16 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
 
 - [x] Grabador de respuestas: `uv run python -m tools.recorder --host <ip> --clave <clave>`.
 - [x] Grabación de video continua por cámara (botón en la pestaña "Vivo"), en segmentos de 10 min.
-- [ ] **La grabación de video no se pudo probar de punta a punta**: no hay ffmpeg en la máquina ni
-      una cámara accesible, así que solo se verificó que MediaMTX acepte y aplique la configuración
-      (`record=true`, `sourceOnDemand=false`). Falta confirmarlo con una cámara real y ver el
-      archivo en disco.
+- [x] **Grabación de video probada de punta a punta contra la PTZ real (29/09).** Se descargó
+      ffmpeg (build de gyan.dev, en el scratchpad de la sesión — no resultó ni siquiera necesario
+      para esta prueba: MediaMTX graba directo de la cámara, sin ffmpeg de por medio; sirve para
+      inspeccionar los archivos con `ffprobe`/`ffmpeg`, como se hizo acá). Se encendió la
+      grabación por API (`POST .../recording?enabled=true`), apareció un `.mp4` real en
+      `backend/media/grabaciones/` a los pocos segundos, `ffprobe` confirmó video H.264 real
+      (4096×2160, el streaming principal de la PTZ) creciendo mientras grababa, y un frame
+      extraído mostró la escena real de la oficina con el timestamp de la propia cámara. Apagada
+      la grabación después de confirmar (quedó un archivo de ~93 MB de prueba, no versionado —
+      `backend/media/` está en `.gitignore`).
 - [ ] Vincular las grabaciones con los episodios de eventos por rango de tiempo, para poder abrir
       el video del momento exacto de un evento.
 - [ ] Cuando vuelvas a tener las cámaras, en este orden: correr el grabador en las dos, encender
@@ -153,15 +179,25 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
 
 ## Código
 
-- [ ] **El backend vuelve a colgarse al recargar (`--reload`) si hay un tab con la pantalla de
-      Eventos abierto.** Se creía resuelto (el feed SSE escucha `bus.cerrando`), pero volvió a
-      pasar el 29/09 al editar `onvif/system.py` con la pestaña de eventos abierta en el
-      navegador: quedó en "Waiting for connections to close" indefinidamente. Hay que revisar el
-      orden real en que uvicorn dispara el evento de `lifespan: shutdown` durante un reload
-      cuando hay una conexión HTTP todavía abierta — puede que dependa de esperar a que la
-      conexión cierre antes de correr el shutdown, lo cual sería un candado circular con nuestro
-      propio mecanismo. Mientras tanto: cerrar la pestaña de Eventos antes de tocar el backend,
-      o reiniciar el proceso a mano si se cuelga.
+- [x] **El backend se colgaba al recargar (`--reload`) si hay una conexión SSE abierta —
+      diagnosticado, arreglado y confirmado en vivo (29/09).** Se creía resuelto (el feed SSE
+      escucha `bus.cerrando`), pero se reprodujo de nuevo y esta vez se leyó el propio código
+      fuente de uvicorn instalado (`uvicorn.server.Server.shutdown`) en vez de suponer: confirma
+      que uvicorn espera a que **todas** las conexiones HTTP terminen (`_wait_tasks_to_complete`,
+      **sin timeout por defecto**) *antes* de mandarle el shutdown al `lifespan` de la app. Un SSE
+      que solo se corta escuchando ese mismo shutdown nunca lo ve — el candado circular que ya se
+      sospechaba, confirmado línea por línea.
+
+      **Arreglo**: `app/main.py` ahora instala sus propios manejadores de SIGINT/SIGTERM que
+      cortan el bus (`bus.close()`) apenas llega la señal del sistema operativo, **antes** de que
+      uvicorn arranque su espera, y después encadenan con el manejador que uvicorn ya había
+      instalado (para no pisarle su propio apagado). 3 tests nuevos que prueban el encadenamiento
+      en sí (`backend/tests/unit/test_shutdown_signals.py`); 120/120 tests en verde.
+
+      **Confirmado en vivo (30/09)**: el mismo proceso de desarrollo recargó tres veces seguidas
+      durante la sesión del 29/09 (`PID 13528 → 32764 → 28528`, cada edición de archivo disparó
+      una recarga real) y **nunca volvió a quedar en "Waiting for connections to close"** — el
+      mensaje ni siquiera aparece en los logs de esas tres recargas. Cerrado.
 - [ ] 4 advertencias de lint en `frontend/src/features/events/` (estilo de React, no rompen nada).
 - [ ] `GET /api/events/{id}` no existe: hoy el detalle se arma con el listado.
 - [ ] Endpoint de estadísticas agregadas (hoy los contadores se calculan en el navegador sobre los

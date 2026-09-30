@@ -106,10 +106,11 @@ export const api = {
     request<DeviceTime>(`/cameras/${id}/functions/time/sync?protocol=${protocol}`, {
       method: 'POST',
     }),
-  reboot: (id: string) =>
-    request<Record<string, unknown>>(`/cameras/${id}/functions/reboot?confirm=true`, {
-      method: 'POST',
-    }),
+  reboot: (id: string, protocol: 'isapi' | 'onvif' = 'isapi') =>
+    request<Record<string, unknown>>(
+      `/cameras/${id}/functions/reboot?confirm=true&protocol=${protocol}`,
+      { method: 'POST' },
+    ),
   restoreBackup: (id: string, backupId: string) =>
     request<void>(`/cameras/${id}/backups/${backupId}/restore`, { method: 'POST' }),
   snapshotUrl: (id: string) => `/api/cameras/${id}/snapshot?t=${Date.now()}`,

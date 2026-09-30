@@ -314,8 +314,27 @@ que la plataforma usa**. El camino que sí es viable con lo que el equipo ofrece
    una foto real de la escena tomada en el momento del evento, sin depender de que el modelo
    soporte adjuntarla — y no exige levantar ningún servicio nuevo.
 
-Queda pendiente decidir cuál de las dos, y repetir la revisión en el domo por si su modelo sí
-tiene la opción que a la PTZ le falta.
+Queda pendiente repetir la revisión en el domo por si su modelo sí tiene la opción que a la PTZ le
+falta.
+
+**Decisión e implementación (29/09/2026): se eligió la alternativa 2.** Montar un servidor FTP
+propio agrega una pieza de infraestructura nueva solo para resolver un caso de contorno; pedir un
+snapshot propio reutiliza un endpoint que la plataforma ya tenía implementado y probado, y no
+depende de que el modelo de cámara ofrezca una opción de enlace que al menos esta PTZ no tiene.
+
+La regla quedó así: cuando `CameraListener` abre un episodio nuevo, si el aviso que lo abrió no
+trajo ninguna foto en el propio `alertStream` (`episodio.pictures` vacío), la plataforma pide un
+`GET /ISAPI/Streaming/channels/<canal>01/picture` antes de guardarlo (`_snapshot_on_open` en
+`app/engine/event_hub.py`). Si la cámara ya mandó una foto adjunta —el diseño no asume que
+*ninguna* cámara lo soporte, solo que al menos una no— no se pide nada de más. Si el snapshot
+falla (cámara ocupada, sin respuesta), se registra el error y el episodio se guarda igual sin
+foto: una foto que no se pudo tomar no puede tirar abajo el guardado del evento en sí.
+
+Probado con 5 tests contra un servidor ISAPI simulado con `respx`
+(`backend/tests/integration/test_event_hub_snapshot.py`), incluida una prueba de punta a punta que
+verifica el archivo `.jpg` escrito en disco, no solo la fila en la base. Todavía no se probó
+contra una cámara real (PTZ o domo) — es lo primero para confirmar la próxima vez que haya acceso
+a la red.
 
 ### 6.7 El domo cambió de IP y de comportamiento (29/09/2026)
 

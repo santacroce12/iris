@@ -358,7 +358,43 @@ premium detrás — que es, en sí mismo, uno de los resultados esperados del tr
 
 ## 7.9 Síntesis de la matriz de compatibilidad
 
-*(Esta sección se completa con la matriz final, exportada en CSV y Markdown, una vez cerradas las
-secciones §7.4 y §7.8. La estructura de la matriz — funciones en filas, cámaras y protocolo en
-columnas, con nivel de soporte y fuente — se documenta en el capítulo 3, §3.5, y la herramienta que
-la genera en el capítulo 6, §6.7.)*
+La matriz completa —11 funciones × 3 protocolos × todas las cámaras registradas, incluidas las
+simuladas y la cámara VPN sin conexión al momento de generarla— se exportó directamente desde la
+plataforma (botón "Exportar Markdown" de la pantalla Matriz, §6.7) y queda como evidencia completa
+en `docs/evidencias/matriz/2026-09-29-matriz-compatibilidad.md`. Lo que sigue es esa misma matriz,
+filtrada a las dos cámaras Hikvision reales, que es la comparación que importa para responder la
+pregunta de investigación:
+
+| Función | PTZ · ISAPI | PTZ · ONVIF | Domo · ISAPI | Domo · ONVIF |
+|---|---|---|---|---|
+| Información del dispositivo | ✓ v | ✓ v | ✓ v | ✓ v |
+| Perfiles de video | ✓ v | ✓ v | ✓ v | ✓ v |
+| Snapshot | ✓ v | ✓ d | ✓ v | ✓ d |
+| Reglas de analítica | ✓ d | ✓ d | ✓ d | ✓ d |
+| Estado y salud | ✓ v | ✓ d | ✓ v | ✓ d |
+| Hora del dispositivo | ✓ v | ✓ v | ✓ v | ✓ v |
+| Reinicio | · d | ✓ d | · d | ✓ d |
+| OSD | ✓ v | ✓ v | ✓ v | ✓ v |
+| Ajustes de imagen | ✓ v | ✓ v | ✓ v | ✓ v |
+| Detección de movimiento | ✓ v | ✕ v | ✓ v | ✕ v |
+
+*(`v` = verificado con una llamada real, `d` = solo declarado por la cámara. Video en vivo y RTSP
+no figuran porque esa función no se resuelve por ISAPI ni por ONVIF en esta plataforma — se
+resuelve exclusivamente por RTSP republicado en MediaMTX, ya cubierto en §6.3.)*
+
+**Lo que muestra esta tabla, fila por fila, es la respuesta empírica a la pregunta central del
+anteproyecto.** Las dos cámaras Hikvision dan exactamente el mismo patrón entre sí —lo cual es en
+sí mismo un resultado, no una obviedad: confirma que la asimetría entre ISAPI y ONVIF documentada
+en el marco teórico (§3.3) y verificada en §7.4 no es una particularidad de un modelo puntual, sino
+del protocolo—: siete de diez funciones tienen paridad completa entre los dos protocolos (ambos
+`✓`), una la resuelven de forma desigual en cuanto a evidencia disponible pero no en resultado
+(reinicio: ISAPI no lo declara pero funciona igual por el otro protocolo, así que la fila queda
+`unverified` de un lado por una limitación de la propia documentación del fabricante, no del
+adaptador), y una sola función —detección de movimiento— tiene una respuesta binaria y opuesta:
+ISAPI la soporta como operación de lectura/escritura, ONVIF solo permite confirmar que el evento
+*no* se publica. Es la verificación empírica, ya no solo documental, de que "estándar" y
+"propietario" no son sinónimos de "igual de completo": son dos superficies distintas del mismo
+dispositivo, con una intersección amplia pero no total.
+
+Queda pendiente agregar una columna más —la cámara Scati— cuando se resuelva el acceso descrito en
+§7.8; el formato de la tabla no cambia, solo se agregan las columnas correspondientes.

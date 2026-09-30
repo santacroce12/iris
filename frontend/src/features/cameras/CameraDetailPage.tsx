@@ -19,11 +19,12 @@ import { PROTOCOLS, ProtocolLight, StatusBadge, levelMeta, protocolMeta } from '
 import { Badge, Button, Card, EmptyState, cn } from '@/components/ui'
 import { CameraFormDialog } from '@/features/cameras/CameraFormDialog'
 import { useConnectivity } from '@/features/cameras/CamerasPage'
+import { FunctionsTab } from '@/features/cameras/FunctionsTab'
 import { LivePlayer } from '@/features/live/LivePlayer'
 import { RecordingPanel } from '@/features/live/RecordingPanel'
 import { RulesTab } from '@/features/rules/RulesTab'
 
-const tabs = ['Vivo', 'Reglas', 'Perfiles', 'Capacidades', 'Registro'] as const
+const tabs = ['Vivo', 'Reglas', 'Funciones', 'Perfiles', 'Capacidades', 'Registro'] as const
 type Tab = (typeof tabs)[number]
 
 export function CameraDetailPage() {
@@ -134,6 +135,7 @@ export function CameraDetailPage() {
 
       {tab === 'Vivo' && <LiveTab camera={camera} />}
       {tab === 'Reglas' && <RulesTab camera={camera} />}
+      {tab === 'Funciones' && <FunctionsTab cameraId={camera.id} />}
       {tab === 'Perfiles' && <ProfilesTab cameraId={camera.id} />}
       {tab === 'Capacidades' && <CapabilitiesTab cameraId={camera.id} />}
       {tab === 'Registro' && <OperationsTab cameraId={camera.id} />}

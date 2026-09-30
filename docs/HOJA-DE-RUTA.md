@@ -40,7 +40,7 @@ verificar, y al final del documento queda anotado qué quedó cambiado en cada e
 | 0 — Esqueleto | ✅ Completa | — |
 | 1 — Las 3 APIs conectadas | ✅ ~98 % | Repetirlo en la Scati, si se consigue acceso |
 | 2 — Capacidades y matriz | ✅ ~95 % | Pantalla de funciones comunes (la API y los datos ya están) |
-| 3 — Eventos en vivo | 🟡 ~90 % | Fotos en los eventos |
+| 3 — Eventos en vivo | ✅ ~95 % | Verificar las fotos contra una cámara real (implementado, sin probar en vivo) |
 | 4 — Reglas sobre la imagen | ✅ ~95 % | Que el motor pueda ofrecer Smart *y* AIOP en el domo (hoy elige una sola) |
 | 5 — Evidencia para la tesis | ✅ ~90 % | Repetir la corrida real en la Scati si hay acceso |
 
@@ -158,20 +158,22 @@ acceso (ver Sesión 0 más abajo).
 
 ---
 
-### Sesión 2 — Fotos en los eventos — replanteada el 29/09
+### Sesión 2 — Fotos en los eventos — ✅ Implementada el 29/09 (falta probarla contra cámara real)
 
 **Revisado en la interfaz de la PTZ**: este modelo no tiene una opción para adjuntar la foto al
 canal que ya escuchamos ("Notificar al software remoto"). Solo ofrece "Cargar en
 FTP/tarjeta de memoria/NAS", un mecanismo de entrega distinto. Detalle en `bitacora-apis.md` §6.6.
 
-**Lo que queda por hacer, sin cámara** (esto es código, no una sesión con hardware): implementar
-que la plataforma pida ella misma un snapshot al abrir cada episodio
-(`GET /ISAPI/Streaming/channels/<canal>01/picture`, ya construido y probado), en vez de esperar
-que la cámara la adjunte. No es la foto exacta del instante, pero es real y no depende de que el
-modelo soporte algo que esta PTZ no tiene.
+**Se implementó sin necesitar cámara**: cuando el motor abre un episodio nuevo sin foto adjunta,
+pide él mismo un snapshot (`GET /ISAPI/Streaming/channels/<canal>01/picture`) antes de guardarlo.
+Si la cámara ya mandó una foto, no pide nada de más; si el snapshot falla, el episodio se guarda
+igual sin foto. Probado con 5 tests contra un servidor simulado (`respx`), incluida una prueba de
+punta a punta que confirma el archivo escrito en disco.
 
-**Lo que sigue pendiente con cámara**: repetir la revisión de "Método enlace" en el domo, por si
-su modelo sí ofrece adjuntar la imagen (es otra familia de firmware, puede ser distinto).
+**Lo que sigue pendiente con cámara**: verlo funcionar en vivo contra la PTZ o el domo reales (la
+próxima vez que haya red), y repetir la revisión de "Método enlace" en el domo por si su modelo sí
+ofrece adjuntar la imagen (es otra familia de firmware, puede ser distinto — si la tiene, se puede
+evaluar si vale la pena sumarla como fuente adicional más adelante).
 
 ---
 
@@ -291,15 +293,16 @@ van a la tesis — es la Sesión 5 de la Parte B.
 cd backend && uv run python -m tools.experiments --repeticiones 30
 ```
 
-### C.2 — Exportar la matriz a Markdown
+### C.2 — Exportar la matriz a Markdown — ✅ Hecha el 29/09
 
-Hoy exporta CSV. Markdown se pega directo en el documento de la tesis.
+Botón "Exportar Markdown" al lado de "Exportar CSV" en la pantalla Matriz. Usado para llenar
+`docs/tesis/07-resultados.md` §7.9.
 
-### C.3 — Pantalla de funciones comunes
+### C.3 — Pantalla de funciones comunes — ✅ Hecha el 29/09
 
-La API está hecha y testeada (hora, OSD, imagen, movimiento, estado, reinicio, por los dos
-protocolos). Falta la pantalla que las muestre lado a lado, ISAPI contra ONVIF. **Es la pantalla
-que mejor muestra la comparación** en una defensa.
+Pestaña "Funciones" en el detalle de cámara: ISAPI y ONVIF lado a lado (hora con sincronización,
+OSD/imagen/movimiento editables por ISAPI, reinicio por cualquiera de los dos), probada de punta a
+punta contra el simulador. **Es la pantalla que mejor muestra la comparación** en una defensa.
 
 ### C.4 — Vincular grabaciones con eventos
 

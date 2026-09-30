@@ -21,8 +21,8 @@ disimularlo.
 | 4 | [Estado del arte](04-estado-del-arte.md) | 🟡 Borrador completo | — |
 | 5 | [Metodología](05-metodologia.md) | 🟡 Borrador completo | — |
 | 6 | [Arquitectura e implementación](06-arquitectura-implementacion.md) | 🟡 Borrador completo | — |
-| 7 | [Resultados](07-resultados.md) | 🟠 Parcial: falta ONVIF y Scati | Hardware real |
-| 8 | [Conclusiones](08-conclusiones.md) | 🔴 Esqueleto con preguntas guía | Resultados cerrados |
+| 7 | [Resultados](07-resultados.md) | 🟠 Parcial: falta la Scati (§7.8) | Acceso a la Scati |
+| 8 | [Conclusiones](08-conclusiones.md) | 🟡 Borrador completo (29/09) | — |
 | 9 | [Bibliografía](09-bibliografia.md) | 🟡 Borrador, crece con las citas que se agreguen | — |
 
 🟡 = escrito, listo para que Luca lo lea y corrija estilo/énfasis. 🟠 = escrito hasta donde da la
@@ -30,17 +30,17 @@ evidencia actual, con huecos marcados. 🔴 = todavía no se puede escribir en s
 
 ## Cómo se completa lo que falta
 
-Los capítulos 🟠 y 🔴 dependen de las sesiones con cámara de `../HOJA-DE-RUTA.md`, en particular:
+Al 29/09/2026, lo único que le falta al capítulo 7 es la **Sesión 0 (Scati)** de
+`../HOJA-DE-RUTA.md` — dar de alta esa cámara y llenar §7.8. Todo lo demás que dependía de
+hardware ya cerró: ONVIF verificado en las dos Hikvision (§7.4), la corrida real de experimentos en
+las dos (§7.5 y §7.5.1), y la analítica del domo documentada como resultado negativo con un hallazgo
+adicional relevante — que la misma cámara empezó a responder también a la analítica clásica
+(§7.2.1, §7.7).
 
-- **Sesión 0** (Scati) y **Sesión 1** (ONVIF en las Hikvision) → llenan la sección de ONVIF del
-  capítulo 7 y con eso se puede escribir la comparación ONVIF vs. propietaria del capítulo 8.
-- **Sesión 5** (experimentos contra hardware real) → reemplaza los números del simulador en el
-  capítulo 7 por los definitivos.
-- **Sesión 3** (analítica del domo) → cierra si el hallazgo queda en "no dispara, documentado" o
-  si se consigue un evento real.
-
-Cuando cualquiera de esas sesiones cierre, el capítulo 7 se actualiza con los datos reales y el 8
-se termina de escribir. No hace falta rehacer nada de lo ya escrito: los capítulos 1 a 6 no
+El capítulo 8 ya está escrito sobre esa base. Cuando se consiga acceso a la Scati, hay que: agregar
+su columna a la matriz de §7.9, completar §7.8, y revisar si el capítulo 8 necesita algún ajuste
+menor (no debería cambiar la síntesis general, porque la Scati es un caso de contraste ya previsto,
+no una pieza de la que dependa la respuesta a la pregunta de investigación). Los capítulos 1 a 6 no
 dependen de las cámaras y no deberían cambiar salvo detalle de redacción.
 
 ## Qué le falta a este documento y no es responsabilidad mía completar
