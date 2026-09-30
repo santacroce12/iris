@@ -31,13 +31,13 @@ cd backend && uv sync && uv run alembic upgrade head && uv run uvicorn app.main:
 cd frontend && pnpm install && pnpm dev
 ```
 
-Abrir http://localhost:5173. La API documentada queda en http://localhost:8000/docs.
+Abrir http://localhost:15173. La API documentada queda en http://localhost:8000/docs.
 
 | Servicio | Puerto |
 |---|---|
-| Frontend (Vite) | 5173 |
+| Frontend (Vite) | 15173 |
 | Backend (FastAPI) | 8000 |
-| PostgreSQL | 5434 |
+| PostgreSQL | 15432 |
 | MediaMTX WebRTC / HLS / API | 8889 / 8888 / 9997 |
 
 ## Tests

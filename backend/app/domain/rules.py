@@ -15,15 +15,23 @@ class RuleKind(StrEnum):
     ENTRANCE = "entrance"  # entrada a zona (polígono)
     EXITING = "exiting"  # salida de zona (polígono)
     AI_ZONE = "ai_zone"  # zona de una regla de IA (AI Open Platform)
+    PARKING_SPACE = "parking_space"  # plaza de estacionamiento (polígono de 4 puntos)
 
 
 class RuleFamily(StrEnum):
     SMART = "smart"  # /ISAPI/Smart/* (XML, 0..1000)
     AIOP = "aiop"  # /ISAPI/Intelligent/AIOpenPlatform/* (JSON, 0..1)
+    PARKING = "parking"  # /ISAPI/Parking/* (JSON, 0..1, polígonos de 4 puntos)
     NONE = "none"
 
 
-POLYGON_KINDS = {RuleKind.FIELD, RuleKind.ENTRANCE, RuleKind.EXITING, RuleKind.AI_ZONE}
+POLYGON_KINDS = {
+    RuleKind.FIELD,
+    RuleKind.ENTRANCE,
+    RuleKind.EXITING,
+    RuleKind.AI_ZONE,
+    RuleKind.PARKING_SPACE,
+}
 
 Point = tuple[float, float]
 

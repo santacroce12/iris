@@ -3,7 +3,7 @@ from pathlib import Path
 
 # Debe definirse antes de importar la app: el engine se crea al importar app.core.db.
 os.environ.setdefault(
-    "DATABASE_URL", "postgresql+asyncpg://camaras:camaras@localhost:5434/camaras_test"
+    "DATABASE_URL", "postgresql+asyncpg://camaras:camaras@localhost:15432/camaras_test"
 )
 os.environ.setdefault("SECRET_KEY", "clave-de-tests")
 

@@ -521,7 +521,25 @@ colección de reglas (§3.1).
 - **ONVIF ya venía activado**, con usuario `admin` de tipo administrador — a diferencia de la PTZ
   y el domo, que lo traían apagado de fábrica y hubo que habilitarlo (§6.5). Puede ser de fábrica
   o haber quedado así de la validación por VPN del proyecto anterior: no se puede distinguir, y
-  conviene decirlo así en vez de afirmar cuál de las dos.
+  conviene decirlo así en vez de afirmar cuál de las dos. **Pero no funciona**: la prueba de
+  conexión da `Fault('Unknown fault occured')`, así que este equipo queda `degraded` (ISAPI y RTSP
+  en verde, ONVIF en rojo). Es el tercer comportamiento distinto de ONVIF en tres cámaras de la
+  misma marca: dos apagadas de fábrica que se habilitaron sin problema, y una encendida que falla.
+  Queda pendiente entender si es el usuario ONVIF o una diferencia de autenticación (la cámara
+  declara `certificateType: digest`).
+
+**Integrado en la plataforma el mismo día.** Se sumó un driver de la familia
+(`app/drivers/isapi/rules/parking.py`) y la detección automática la reconoce sin configuración: al
+abrir la pestaña de Reglas de esta cámara aparece "ISAPI Parking", las 14 plazas con su ocupación
+en vivo, y **cada plaza se puede arrastrar sobre el snapshot** igual que las líneas de la PTZ. La
+escritura pasa por el mismo camino de respaldo → escribir → releer → verificar que el resto.
+
+**Una validación del equipo que conviene conocer**: al mover una plaza encima de otra, la cámara
+rechaza la escritura con `403` y `subStatusCode: parkingAreaOverlap`. Eso destapó un error propio
+de la plataforma: todo `403` se estaba traduciendo a "fallo de autenticación", lo que mandaba a
+revisar la contraseña cuando el problema era el contenido del pedido. Ahora un `403` con
+`subStatusCode` propio se reporta como rechazo del equipo (`RejectedByCamera`), y solo un `401`
+—o un `403` sin ningún detalle— se toma como problema de credenciales.
 
 ---
 

@@ -70,13 +70,21 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
       hallazgo de §7.2.1 (que de golpe empezara a responder la analítica clásica). No se pudo
       hacer el 30/09 porque su contraseña vive cifrada en la base y Postgres estaba caído. Es un
       solo `GET /ISAPI/System/Video/inputs/channels/1/VCAResource`.
-- [ ] **Dar de alta la bullet de parking en la plataforma** (queda hecho el reconocimiento por
-      ISAPI, falta el alta formal para que entre en la matriz de compatibilidad como tercera
-      cámara real). Bloqueado el 30/09 por Docker/Postgres caídos, no por la cámara.
-- [ ] **Soportar la familia de parking en el motor de reglas** (hoy solo conoce `smart` y `aiop`).
-      Con el editor de zonas ya construido, la geometría de 4 puntos en coordenadas 0–1 debería
-      entrar con poco trabajo. El proyecto anterior (`Escritorio\Cámaras`) tiene lógica y editor
-      de plazas ya validados contra este mismo modelo, reutilizables.
+- [x] **Bullet de parking dada de alta en la plataforma** (30/09): `status: degraded` — ISAPI y
+      RTSP en verde, ONVIF falla (ver abajo).
+- [x] **Familia de parking soportada en el motor de reglas** (30/09): driver nuevo
+      (`app/drivers/isapi/rules/parking.py`), detección automática de la familia, lectura con
+      ocupación en vivo y escritura con respaldo/relectura/verificación. **Las plazas se dibujan y
+      se arrastran desde la pantalla de Reglas** igual que las líneas y zonas de las otras dos
+      cámaras. 9 tests unitarios con la respuesta real del equipo; round-trip verificado contra
+      hardware (mover la plaza 001, la cámara la aplicó, restaurada).
+- [ ] **ONVIF de la bullet de parking falla** con `Fault('Unknown fault occured')`, aunque el
+      equipo lo trae activado (`Integrate.ONVIF.enable = true`, `certificateType: digest`) y
+      tiene un usuario ONVIF `admin` de tipo administrador. Es el único de los tres protocolos en
+      rojo en esta cámara, y el tercer comportamiento distinto de ONVIF entre las tres Hikvision:
+      dos venían apagadas de fábrica y se habilitaron bien, esta viene encendida y falla. Vale la
+      pena entenderlo: puede ser que el usuario ONVIF necesite recrearse, o una diferencia de
+      autenticación (digest contra WS-UsernameToken).
 - [ ] **Dar de alta la cámara Scati** (27/09: confirmado que hay acceso). Es el caso "otra marca"
       que pedía el cronograma del anteproyecto (Fase 3: "validación de Scati u otra marca
       disponible"). No tiene analítica — es el resultado esperado, no un problema: el propio

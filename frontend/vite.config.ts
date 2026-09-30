@@ -9,7 +9,7 @@ export default defineConfig({
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
   server: {
-    port: 5173,
+    port: 15173,
     // El backend queda detrás del mismo origen: sin CORS y con SSE sin vueltas.
     proxy: { '/api': 'http://localhost:8000' },
   },

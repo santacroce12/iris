@@ -12,7 +12,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    database_url: str = "postgresql+asyncpg://camaras:camaras@localhost:5434/camaras"
+    database_url: str = "postgresql+asyncpg://camaras:camaras@localhost:15432/camaras"
     # Frase secreta para cifrar credenciales de cámaras (Fernet derivado por SHA-256).
     secret_key: str = "desarrollo-cambiar-esta-clave"
 
@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     mediamtx_hls_url: str = "http://localhost:8888"
     media_dir: Path = BACKEND_DIR / "media"
 
-    cors_origins: list[str] = ["http://localhost:5173"]
+    cors_origins: list[str] = ["http://localhost:15173"]
 
     camera_timeout_s: float = 8.0
 

@@ -167,7 +167,7 @@ export interface OperationLog {
   created_at: string
 }
 
-export type RuleKind = 'line' | 'field' | 'entrance' | 'exiting' | 'ai_zone'
+export type RuleKind = 'line' | 'field' | 'entrance' | 'exiting' | 'ai_zone' | 'parking_space'
 
 export interface Rule {
   kind: RuleKind
@@ -194,7 +194,7 @@ export interface RuleKindInfo {
 }
 
 export interface RuleSet {
-  family: 'smart' | 'aiop' | 'none'
+  family: 'smart' | 'aiop' | 'parking' | 'none'
   kinds: RuleKindInfo[]
   rules: Rule[]
   note: string | null

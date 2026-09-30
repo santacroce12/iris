@@ -11,6 +11,7 @@ from app.drivers.errors import (
     DriverError,
     InvalidResponse,
     NotSupported,
+    RejectedByCamera,
 )
 from app.drivers.isapi import xml
 
@@ -152,6 +153,12 @@ class IsapiClient:
         # hay que mirar el cuerpo antes de asumir un problema de credenciales.
         if status in (404, 405, 501) or detail.lower() in ("notsupport", "invalid operation"):
             raise NotSupported(message, http_status=status)
-        if status in (401, 403):
+        if status == 401:
+            raise AuthenticationFailed(message, http_status=status)
+        # Un 403 con un subStatusCode propio es el equipo rechazando el *contenido* del pedido
+        # (p. ej. `parkingAreaOverlap`), no las credenciales. Sin ese dato, sí se asume permisos.
+        if status == 403:
+            if detail:
+                raise RejectedByCamera(message, http_status=status)
             raise AuthenticationFailed(message, http_status=status)
         raise DriverError(message, http_status=status)

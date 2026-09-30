@@ -31,7 +31,7 @@ Las tres cámaras Hikvision integradas en este trabajo hablan el mismo protocolo
 | Geometría | línea de 2 puntos o polígono | según el modelo de IA | polígono de **exactamente 4 puntos** |
 | Qué detecta | cruce de línea, intrusión, entrada y salida de zona | lo que traiga el modelo de IA instalado | ocupación de plazas de estacionamiento |
 | Activación | un interruptor por **tipo** de regla | un interruptor por **regla individual** | un interruptor **global** de la función |
-| Documentación | en el manual ISAPI de la serie PTZ Ultra | **no figura en el manual DeepinView** | no figura en el manual; se recuperó de un proyecto propio anterior |
+| Documentación | en el manual ISAPI de la serie PTZ Ultra | **no figura en el manual DeepinView** | **tampoco figura**: el manual nombra la función pero no su API (ver abajo) |
 
 En el domo, todos los indicadores de analítica clásica declaran `false` y cada endpoint de
 `/ISAPI/Smart/*` responde explícitamente que no está soportado. Su analítica corre sobre AI Open
@@ -53,6 +53,30 @@ DeepinView (974 páginas revisadas). Se recuperaron descargando y analizando los
 JavaScript de la propia interfaz web de administración de la cámara y localizando las URLs que su
 código arma dinámicamente — la funcionalidad de mayor valor del equipo no está documentada para
 quien no tiene acceso al código fuente de su interfaz.
+
+**El mismo patrón se repite, y se puede cuantificar, en la tercera familia.** El manual ISAPI de
+la serie DeepinView —el que corresponde a la bullet de parking— se procesó completo a texto
+(31.685 líneas). El resultado:
+
+- `/ISAPI/Parking`: **cero apariciones**. El árbol de endpoints que configura la función central
+  del modelo no está documentado en ninguna parte del manual de su propia serie.
+- `packingSpaceRecognition` / `PackingSpaceRecognition`: **cuatro apariciones**, todas como
+  *valor dentro de un enum* — en la lista de tipos de imagen buscables, en la de modos de análisis
+  de video y en la de páginas que la interfaz web sabe mostrar. El manual reconoce que la función
+  existe; no dice cómo se la configura.
+
+La distinción importa para el argumento: no es que el fabricante oculte la función, es que
+**documenta su nombre y no su interfaz**. Un integrador que lea el manual completo sabe que el
+equipo hace reconocimiento de plazas y sigue sin poder programarlo. En este trabajo los endpoints
+se recuperaron de un desarrollo propio anterior, validado contra este mismo modelo; sin esa
+fuente, el camino habría sido el mismo que con AI Open Platform: leer el código de la interfaz web
+del equipo.
+
+Un detalle adicional del mismo manual refuerza §7.2.2: el enum de modos de análisis de video
+documentado para la serie lista alrededor de ochenta valores posibles, mientras que la cámara
+física declara solo cuatro (`roadDetection`, `smart`, `PackingSpaceRecognition`, `close`). Es
+decir, **el manual describe el superconjunto de la familia y cada equipo expone su propio
+subconjunto**, que solo se conoce preguntándole al equipo.
 
 ### 7.2.1 Actualización (29/09): el mismo domo empezó a responder también a la API clásica
 

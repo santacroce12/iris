@@ -21,6 +21,18 @@ class NotSupported(DriverError):
     code = "not_supported"
 
 
+class RejectedByCamera(DriverError):
+    """La cámara entendió el pedido y lo rechazó por una razón propia del dominio.
+
+    Hikvision usa 403 para casi todo lo que no le gusta, no solo para credenciales (eso es 401):
+    plazas de parking que se superponen (`parkingAreaOverlap`), parámetros fuera de rango,
+    estados incompatibles. Confundirlo con un problema de autenticación manda a revisar la
+    contraseña cuando el problema es el contenido del pedido.
+    """
+
+    code = "rejected"
+
+
 class InvalidResponse(DriverError):
     code = "invalid_response"
 

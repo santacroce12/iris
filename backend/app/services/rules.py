@@ -24,7 +24,7 @@ from app.domain.rules import (
 )
 from app.drivers.errors import DriverError, NotSupported, VerificationFailed
 from app.drivers.isapi.client import IsapiClient
-from app.drivers.isapi.rules import aiop, smart
+from app.drivers.isapi.rules import aiop, parking, smart
 from app.services import targets
 from app.services.operations import run_operation
 
@@ -40,11 +40,27 @@ class Backend:
     family: RuleFamily
     smart_driver: smart.SmartRulesDriver | None = None
     ai_driver: aiop.AiopRulesDriver | None = None
+    parking_driver: parking.ParkingRulesDriver | None = None
     note: str | None = None
 
 
 async def detect_backend(client: IsapiClient, channel: int) -> Backend:
-    """El domo no soporta /ISAPI/Smart/* y la PTZ no conoce AI Open Platform."""
+    """Cada cámara habla una familia distinta, y el modo de VCA del equipo decide cuál.
+
+    Verificado contra las tres cámaras reales: la PTZ (modo `smart`) responde /ISAPI/Smart/*,
+    el domo responde AI Open Platform y la bullet de parking (modo `PackingSpaceRecognition`)
+    responde /ISAPI/Parking/*, rechazando las otras dos. Se pregunta en orden de especificidad:
+    parking y AI Open Platform son exclusivas del equipo que las tiene; la clásica es el caso
+    general.
+    """
+    parking_driver = parking.ParkingRulesDriver(client, channel)
+    try:
+        await client.get(parking_driver.rules_resource())
+    except DriverError:
+        pass
+    else:
+        return Backend(RuleFamily.PARKING, parking_driver=parking_driver)
+
     driver = aiop.AiopRulesDriver(client, channel)
     try:
         await client.get(f"{aiop.BASE}?format=json")
@@ -80,10 +96,21 @@ async def _read_aiop(driver: aiop.AiopRulesDriver) -> tuple[list[RuleKindInfo], 
     return [driver.kind_info(await driver.read_max_rules(), etiquetas)], reglas
 
 
+async def _read_parking(
+    driver: parking.ParkingRulesDriver,
+) -> tuple[list[RuleKindInfo], list[Rule]]:
+    config = await driver.read_config()
+    reglas = parking.parse_rules(config, await driver.read_status())
+    habilitado = bool(config.get("PackingSpaceRecognition", {}).get("enable"))
+    return [driver.kind_info(await driver.read_max_spaces(), habilitado)], reglas
+
+
 async def read_rule_set(session: AsyncSession, camera: Camera) -> RuleSet:
     async with targets.isapi_client(camera) as client:
         backend = await detect_backend(client, camera.channel)
-        if backend.family is RuleFamily.AIOP and backend.ai_driver is not None:
+        if backend.parking_driver is not None:
+            kinds, reglas = await _read_parking(backend.parking_driver)
+        elif backend.family is RuleFamily.AIOP and backend.ai_driver is not None:
             if backend.note is not None:  # hay plataforma de IA pero ninguna tarea corriendo
                 return RuleSet(RuleFamily.AIOP, [], [], note=backend.note)
             kinds, reglas = await _read_aiop(backend.ai_driver)
@@ -194,7 +221,11 @@ async def update_rule(
 ) -> Rule:
     async with targets.isapi_client(camera) as client:
         backend = await detect_backend(client, camera.channel)
-        if backend.family is RuleFamily.AIOP and backend.ai_driver is not None:
+        if backend.parking_driver is not None:
+            regla = await _update_parking(
+                session, camera, backend.parking_driver, external_id, update
+            )
+        elif backend.family is RuleFamily.AIOP and backend.ai_driver is not None:
             if backend.note is not None:
                 raise NotSupported(backend.note)
             regla = await _update_aiop(session, camera, backend.ai_driver, external_id, update)
@@ -305,6 +336,36 @@ async def _update_aiop(
     regla = _buscar(reglas, RuleKind.AI_ZONE, external_id)
     _verificar(regla, update, recurso)
     await _persist(session, camera, RuleFamily.AIOP, [regla])
+    return regla
+
+
+async def _update_parking(
+    session: AsyncSession,
+    camera: Camera,
+    driver: parking.ParkingRulesDriver,
+    external_id: str,
+    update: RuleUpdate,
+) -> Rule:
+    config = await driver.read_config()
+    recurso = driver.rules_resource()
+    await _backup(session, camera, recurso, json.dumps(config, indent=1), "application/json")
+
+    resultado = await run_operation(
+        session,
+        camera_id=camera.id,
+        capability=CAPABILITY,
+        protocol=Protocol.ISAPI,
+        operation=f"PUT {recurso}",
+        call=driver.write_config(parking.apply_update(config, external_id, update)),
+        detail={"space": external_id},
+    )
+    if resultado.error is not None:
+        raise resultado.error
+
+    reglas = parking.parse_rules(await driver.read_config(), await driver.read_status())
+    regla = _buscar(reglas, RuleKind.PARKING_SPACE, external_id)
+    _verificar(regla, update, recurso)
+    await _persist(session, camera, RuleFamily.PARKING, [regla])
     return regla
 
 

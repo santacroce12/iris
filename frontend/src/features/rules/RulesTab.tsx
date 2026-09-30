@@ -15,6 +15,7 @@ const KIND_LABELS: Record<RuleKind, string> = {
   entrance: 'Entrada a zona',
   exiting: 'Salida de zona',
   ai_zone: 'Zona de IA',
+  parking_space: 'Plaza',
 }
 
 const DIRECTION_LABELS: Record<string, string> = {
@@ -27,6 +28,29 @@ const TARGET_LABELS: Record<string, string> = {
   human: 'Persona',
   vehicle: 'Vehículo',
   others: 'Otros',
+}
+
+/** Las tres familias de analítica encontradas, cada una con su formato y su forma de activarse.
+ * Cuál responde lo decide el modo de VCA del equipo, que es excluyente (ver tesis §7.2.2). */
+const FAMILY_META: Record<string, { nombre: string; formato: string; descripcion: string }> = {
+  smart: {
+    nombre: 'ISAPI Smart',
+    formato: 'XML, 0–1000',
+    descripcion:
+      'Analítica clásica. El interruptor activa el tipo de regla entero, no cada regla: es así en la cámara.',
+  },
+  aiop: {
+    nombre: 'AI Open Platform',
+    formato: 'JSON, 0–1',
+    descripcion:
+      'La analítica la define la app de IA instalada en la cámara. Cada regla se activa por separado.',
+  },
+  parking: {
+    nombre: 'ISAPI Parking',
+    formato: 'JSON, 0–1, polígonos de 4 puntos',
+    descripcion:
+      'Reconocimiento de plazas de estacionamiento. Cada plaza es un cuadrilátero y un solo interruptor activa toda la función. La cámara rechaza plazas que se superpongan.',
+  },
 }
 
 export function RulesTab({ camera }: { camera: Camera }) {
@@ -181,6 +205,7 @@ export function RulesTab({ camera }: { camera: Camera }) {
                   {regla.name ?? `${KIND_LABELS[regla.kind]} ${regla.external_id}`}
                   {!regla.configured && <span className="ml-1.5 text-xs text-muted">(vacía)</span>}
                 </span>
+                <Ocupacion regla={regla} />
                 <Badge tone={regla.enabled ? 'ok' : 'neutral'}>
                   {regla.enabled ? 'activa' : 'apagada'}
                 </Badge>
@@ -215,6 +240,18 @@ export function RulesTab({ camera }: { camera: Camera }) {
   )
 }
 
+/** Solo las plazas de parking traen ocupación en vivo; el resto de las familias no la tiene. */
+function Ocupacion({ regla }: { regla: Rule }) {
+  const ocupada = regla.extra?.ocupada
+  if (typeof ocupada !== 'boolean') return null
+  const segundos = regla.extra?.segundos_estacionado
+  const hace =
+    typeof segundos === 'number' && segundos > 0 ? ` · ${Math.round(segundos / 60)} min` : ''
+  return (
+    <Badge tone={ocupada ? 'warn' : 'ok'}>{ocupada ? `ocupada${hace}` : 'libre'}</Badge>
+  )
+}
+
 function FamilyCard({
   family,
   note,
@@ -224,18 +261,14 @@ function FamilyCard({
   note: string | null
   kinds: RuleKindInfo[]
 }) {
-  const esIA = family === 'aiop'
+  const meta = FAMILY_META[family] ?? FAMILY_META.smart
   return (
     <Card className="space-y-2 p-3 text-xs">
       <div className="flex items-center gap-2">
-        <Badge tone="accent">{esIA ? 'AI Open Platform' : 'ISAPI Smart'}</Badge>
-        <span className="text-muted">{esIA ? 'JSON, 0–1' : 'XML, 0–1000'}</span>
+        <Badge tone="accent">{meta.nombre}</Badge>
+        <span className="text-muted">{meta.formato}</span>
       </div>
-      <p className="text-muted">
-        {esIA
-          ? 'La analítica la define la app de IA instalada en la cámara. Cada regla se activa por separado.'
-          : 'Analítica clásica. El interruptor activa el tipo de regla entero, no cada regla: es así en la cámara.'}
-      </p>
+      <p className="text-muted">{meta.descripcion}</p>
       {note && <p className="text-warn">{note}</p>}
       <div className="flex flex-wrap gap-1">
         {kinds.map((k) => (

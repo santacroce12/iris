@@ -11,7 +11,7 @@
       "name": "frontend",
       "runtimeExecutable": "pnpm.cmd",
       "runtimeArgs": ["--dir", "frontend", "dev"],
-      "port": 5173
+      "port": 15173
     }
   ]
 }

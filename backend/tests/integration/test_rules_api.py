@@ -83,6 +83,12 @@ class CamaraFalsa:
             403,
             content=b"<ResponseStatus><subStatusCode>notSupport</subStatusCode></ResponseStatus>",
         )
+        # La PTZ está en modo de VCA `smart`, así que rechaza la familia de parking igual que
+        # rechaza AI Open Platform (verificado contra la bullet, que hace lo simétrico).
+        mock.get(url__startswith=f"{HOST}/ISAPI/Parking").respond(
+            403,
+            content=b"<ResponseStatus><subStatusCode>notSupport</subStatusCode></ResponseStatus>",
+        )
         for tipo in ("FieldDetection", "regionEntrance", "regionExiting"):
             mock.get(url__startswith=f"{HOST}/ISAPI/Smart/{tipo}/1").respond(
                 403,
