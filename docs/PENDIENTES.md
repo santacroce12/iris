@@ -58,6 +58,25 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
 
 ## Cámaras y red
 
+- [x] **Tercera cámara real integrada: la bullet de parking** (30/09), iDS-2CD7A46G0/P-IZHSY,
+      firmware V5.8.61, en `192.168.1.11`. Aporta una **tercera familia de analítica**
+      (`/ISAPI/Parking/channels/1/packingSpaceRecognition?format=json`) y, con ella, la
+      explicación estructural de por qué existen las familias: **los modos de VCA son mutuamente
+      excluyentes** (`roadDetection|smart|PackingSpaceRecognition|close`). Escritura de geometría
+      verificada con respaldo, relectura, comparación y restauración. ONVIF ya venía activado, a
+      diferencia de las otras dos. Ver `bitacora-apis.md` §6.9 y `07-resultados.md` §7.2.2/§7.3.7.
+- [ ] **Confirmar el `VCAResource` del domo** — es la verificación más importante que quedó
+      pendiente. Si el domo cambió de modo de VCA en el reinicio del 25/09, eso explicaría el
+      hallazgo de §7.2.1 (que de golpe empezara a responder la analítica clásica). No se pudo
+      hacer el 30/09 porque su contraseña vive cifrada en la base y Postgres estaba caído. Es un
+      solo `GET /ISAPI/System/Video/inputs/channels/1/VCAResource`.
+- [ ] **Dar de alta la bullet de parking en la plataforma** (queda hecho el reconocimiento por
+      ISAPI, falta el alta formal para que entre en la matriz de compatibilidad como tercera
+      cámara real). Bloqueado el 30/09 por Docker/Postgres caídos, no por la cámara.
+- [ ] **Soportar la familia de parking en el motor de reglas** (hoy solo conoce `smart` y `aiop`).
+      Con el editor de zonas ya construido, la geometría de 4 puntos en coordenadas 0–1 debería
+      entrar con poco trabajo. El proyecto anterior (`Escritorio\Cámaras`) tiene lógica y editor
+      de plazas ya validados contra este mismo modelo, reutilizables.
 - [ ] **Dar de alta la cámara Scati** (27/09: confirmado que hay acceso). Es el caso "otra marca"
       que pedía el cronograma del anteproyecto (Fase 3: "validación de Scati u otra marca
       disponible"). No tiene analítica — es el resultado esperado, no un problema: el propio

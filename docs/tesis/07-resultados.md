@@ -1,11 +1,11 @@
 # 7. Resultados
 
-> **Estado de este capítulo al 29/09/2026**: completo para ISAPI, ONVIF y RTSP en las **dos**
-> cámaras Hikvision (PTZ y domo). El mismo día, el domo —que había cambiado de dirección IP tras
-> un reinicio— empezó a responder también a la analítica clásica `/ISAPI/Smart/*`, que hasta
-> entonces daba `403 notSupport` y se consideraba exclusiva de la PTZ; esto nuancea el hallazgo
-> central de §7.2 y se desarrolla en §7.2.1. Falta la integración de la cámara Scati (§7.8). Se
-> marca cada sección según corresponda.
+> **Estado de este capítulo al 30/09/2026**: completo para ISAPI, ONVIF y RTSP en las **tres**
+> cámaras Hikvision integradas (PTZ, domo y bullet de parking). El 29/09, el domo —que había
+> cambiado de dirección IP tras un reinicio— empezó a responder también a la analítica clásica
+> `/ISAPI/Smart/*`, que hasta entonces daba `403 notSupport`; el 30/09 se integró la bullet de
+> parking, que expone una **tercera** familia de analítica y aporta la explicación estructural de
+> por qué existen estas familias (§7.2.2). La cámara Scati sigue pendiente de acceso (§7.8).
 
 ## 7.1 Equipos utilizados
 
@@ -13,29 +13,33 @@
 |---|---|---|---|
 | PTZ | DS-2DF8A836IX-AEL (Speed Dome 8MP, serie Ultra) | V5.6.0 | Caso fuerte de analítica clásica dibujable |
 | Domo | iDS-2CD7146G2-IZS (DeepinView) | V5.9.24 | Caso de plataforma de IA abierta (AI Open Platform); desde el 29/09 responde también a la API clásica (§7.2.1) |
-| Bullet | iDS-2CD7A46G0/P-IZHSY (DeepinView) | V5.8.61 | Validada previamente por VPN; parking/ANPR según manual |
+| Bullet | iDS-2CD7A46G0/P-IZHSY (DeepinView) | V5.8.61 | Tercera familia de analítica: reconocimiento de plazas de parking (§7.2.2) |
 | Value | DS-2CD1023G2-I | V5.8.4 | Caso sin analítica, contraste |
 | Scati | *(modelo a completar)* | — | Marca distinta a Hikvision; **pendiente de integración**, ver §7.7 |
 
-## 7.2 Hallazgo central: dos APIs incompatibles dentro de la misma marca
+## 7.2 Hallazgo central: tres APIs de analítica incompatibles dentro de la misma marca
 
-Las dos cámaras Hikvision principales de este trabajo hablan el mismo protocolo de transporte
+Las tres cámaras Hikvision integradas en este trabajo hablan el mismo protocolo de transporte
 (ISAPI) y, sin embargo, exponen su analítica por caminos que no tienen nada en común entre sí:
 
-| | PTZ (DS-2DF8A836IX-AEL) | Domo (iDS-2CD7146G2-IZS) |
-|---|---|---|
-| Recurso | `/ISAPI/Smart/<tipo>/<canal>` | `/ISAPI/Intelligent/AIOpenPlatform/AIRuleConfig/task/<tarea>/channels/<canal>` |
-| Formato | XML | JSON |
-| Coordenadas | enteros 0–1000 | decimales 0–1 |
-| Origen del eje vertical | abajo a la izquierda | arriba a la izquierda |
-| Qué detecta | cruce de línea, intrusión, entrada y salida de zona | lo que traiga el modelo de IA instalado |
-| Activación | un interruptor por **tipo** de regla | un interruptor por **regla individual** |
-| Documentación | en el manual ISAPI de la serie PTZ Ultra | **no figura en el manual DeepinView** |
+| | PTZ (DS-2DF8A836IX-AEL) | Domo (iDS-2CD7146G2-IZS) | Bullet (iDS-2CD7A46G0/P) |
+|---|---|---|---|
+| Recurso | `/ISAPI/Smart/<tipo>/<canal>` | `/ISAPI/Intelligent/AIOpenPlatform/AIRuleConfig/task/<tarea>/channels/<canal>` | `/ISAPI/Parking/channels/<canal>/packingSpaceRecognition` |
+| Formato | XML | JSON | JSON, y `?format=json` es **obligatorio** |
+| Coordenadas | enteros 0–1000 | decimales 0–1 | decimales 0–1 |
+| Origen del eje vertical | abajo a la izquierda | arriba a la izquierda | arriba a la izquierda |
+| Geometría | línea de 2 puntos o polígono | según el modelo de IA | polígono de **exactamente 4 puntos** |
+| Qué detecta | cruce de línea, intrusión, entrada y salida de zona | lo que traiga el modelo de IA instalado | ocupación de plazas de estacionamiento |
+| Activación | un interruptor por **tipo** de regla | un interruptor por **regla individual** | un interruptor **global** de la función |
+| Documentación | en el manual ISAPI de la serie PTZ Ultra | **no figura en el manual DeepinView** | no figura en el manual; se recuperó de un proyecto propio anterior |
 
 En el domo, todos los indicadores de analítica clásica declaran `false` y cada endpoint de
-`/ISAPI/Smart/*` responde explícitamente que no está soportado. Su analítica corre exclusivamente
-sobre AI Open Platform, una plataforma de inferencia que aloja modelos cargables — el modelo
-presente durante este trabajo reconoce persona, cuchillo, arma, hacha y manos en alto.
+`/ISAPI/Smart/*` responde explícitamente que no está soportado. Su analítica corre sobre AI Open
+Platform, una plataforma de inferencia que aloja modelos cargables — el modelo presente durante
+este trabajo reconoce persona, cuchillo, arma, hacha y manos en alto. En la bullet ocurre lo
+simétrico: la analítica clásica responde `notSupport` y toda su funcionalidad vive en un tercer
+árbol de endpoints, `/ISAPI/Parking/*`, que no comparte formato, convención de coordenadas ni
+modelo de activación con ninguno de los otros dos.
 
 Este hallazgo es más severo que la fragmentación *entre* marcas que motivó originalmente el
 trabajo (§1.3): aparece **dentro del mismo fabricante y del mismo protocolo de transporte**. Tiene
@@ -90,6 +94,45 @@ capítulo 5.
 Queda como trabajo pendiente, no resuelto en esta versión: el motor de reglas de la plataforma hoy
 elige una sola familia de analítica por cámara (prioriza AI Open Platform por ser más específica) y
 no ofrece la familia clásica como alternativa cuando ambas responden en el mismo equipo.
+
+### 7.2.2 Por qué existen estas familias: los modos de VCA son mutuamente excluyentes
+
+La integración de la tercera cámara (30/09) aportó, además de una tercera familia de analítica, la
+explicación estructural de todo el fenómeno descrito en §7.2 — que hasta ese momento este trabajo
+solo podía constatar, no explicar.
+
+Las cámaras declaran un **modo de recurso de análisis de video (VCA)**, y ese modo determina qué
+familia de analítica responde:
+
+```
+GET /ISAPI/System/Video/inputs/channels/<canal>/VCAResource/capabilities
+    → type opt="roadDetection,smart,PackingSpaceRecognition,close"
+```
+
+Los cuatro valores son **excluyentes entre sí**: la cámara puede ser una sola clase de cámara
+analítica por vez. Contrastando el modo declarado por cada equipo con la familia que efectivamente
+responde:
+
+| Cámara | Modo de VCA | Familia que responde | Familia que rechaza |
+|---|---|---|---|
+| PTZ DS-2DF8A836IX-AEL | `smart` | `/ISAPI/Smart/*` | parking |
+| Bullet iDS-2CD7A46G0/P | `PackingSpaceRecognition` | `/ISAPI/Parking/*` | `/ISAPI/Smart/*` → `notSupport` |
+
+La correspondencia es exacta, y reencuadra el hallazgo central. Lo que en §7.2 se describió como
+"modelos distintos con APIs distintas" es, en el nivel de abajo, algo más incómodo para cualquier
+capa de abstracción: **un mismo equipo cambia su superficie de API completa según un parámetro de
+configuración**. Un árbol de endpoints entero aparece mientras otro desaparece, sin que cambie el
+modelo, el firmware ni el protocolo de transporte.
+
+Esto tiene dos consecuencias para la tesis. La primera es metodológica: refuerza, con un mecanismo
+concreto y verificable, por qué una matriz de compatibilidad no puede construirse a partir del
+modelo del equipo. La segunda es que **ofrece una hipótesis fundada para el hallazgo de §7.2.1**:
+si en el reinicio del 25/09 el domo cambió de modo de VCA, eso explicaría por qué
+`/ISAPI/Smart/*` empezó a responder de un día para el otro en un equipo que antes lo rechazaba.
+Esa hipótesis **queda sin confirmar** en esta versión del trabajo: requiere leer el `VCAResource`
+del domo, lo que no fue posible en la sesión del 30/09 por una caída de la base de datos que
+guarda sus credenciales. Es la primera verificación pendiente para la próxima sesión con hardware,
+y se la señala explícitamente en vez de presentar la hipótesis como resultado.
 
 ## 7.3 Rarezas verificadas contra el hardware real
 
@@ -164,6 +207,50 @@ convención de signo distinta entre dos cámaras del mismo fabricante. Refuerza 
 metodológica: la cadena que devuelve la cámara no alcanza como prueba de que la configuración es
 correcta; sólo la comparación contra un dato externo verificable —en este caso, la hora real del
 sistema, en la línea de cruce el propio video de la cámara (§7.3.4)— permite confirmarlo.
+
+### 7.3.7 Dos capacidades que se diferencian en cinco letras y significan cosas opuestas
+
+La cámara de parking (§7.2.2) produjo el caso que mejor ilustra, sobre un solo equipo, el problema
+que motiva el mecanismo de capacidades declaradas contra verificadas de este trabajo (§3.5).
+
+Consultando qué declara el equipo sobre su propia capacidad de parking se obtiene:
+
+| Documento | Campo | Valor |
+|---|---|---|
+| `/ISAPI/Smart/capabilities` | `isSupportParking` | **false** |
+| `/ISAPI/System/capabilities` | `isSupportParking` | **false** |
+| `/ISAPI/System/capabilities` | `isSupportParkingState` | **true** |
+
+Corresponde ser preciso: **la cámara no miente**. Son dos funciones distintas que comparten una
+palabra. `isSupportParking` se refiere a la regla clásica de estacionamiento indebido
+(`/ISAPI/Smart/parking/*`), que este equipo efectivamente no soporta; el reconocimiento de plazas
+—que es la función central del modelo, que estaba activa y que se verificó escribiendo y releyendo
+geometría real— se declara en `isSupportParkingState`, en otro documento y apuntando a otro árbol
+de endpoints.
+
+El resultado práctico, sin embargo, es indistinguible de una declaración falsa: un integrador que
+busque la palabra "parking" en el documento de capacidades que corresponde a la analítica encuentra
+primero un `false`, y concluye lo contrario de lo que el equipo hace. **Los dos campos se
+diferencian en cinco letras.** Este trabajo sostiene que el caso es más instructivo que una
+declaración simplemente errónea: muestra que el problema de confiar en lo declarado no se resuelve
+con fabricantes más honestos, porque acá no hay deshonestidad — hay un espacio de nombres
+ambiguo, y ninguna cantidad de buena fe del fabricante protege a un integrador de leer el campo
+correcto con el significado equivocado.
+
+Tres detalles menores del mismo recurso refuerzan la conclusión, y se documentan porque cada uno
+costó tiempo de integración real:
+
+1. **La ruta distingue mayúsculas de minúsculas.** `packingSpaceRecognition` responde;
+   `PackingSpaceRecognition` devuelve `403 invalidOperation`. La propia cámara usa las dos grafías
+   **en el mismo documento de capacidades**, una al lado de la otra, dentro del enum
+   `zoomFocusWebDisplay`.
+2. **`?format=json` no es opcional.** Sin ese parámetro el recurso responde `403 invalidOperation`
+   — un error que sugiere que la operación no corresponde, no que falte un parámetro. Un
+   integrador razonable concluye que el endpoint no existe.
+3. **Dos errores de tipeo congelados en la API pública**: la función se llama "**Packing**"
+   (embalaje) en vez de "Parking" en la ruta, en el tipo de evento y en el modo de VCA; y dentro
+   del payload, el identificador de cada plaza es `absoulteParkingNum` en vez de `absolute`.
+   Ninguno se puede corregir del lado del cliente: hay que reproducirlos exactamente.
 
 ## 7.4 ONVIF: verificado contra hardware real
 

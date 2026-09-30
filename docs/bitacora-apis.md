@@ -427,6 +427,104 @@ este capítulo.
 
 ---
 
+### 6.9 Una tercera familia de analítica: el parking de la bullet (30/09/2026)
+
+Apareció una tercera cámara real, la **iDS-2CD7A46G0/P-IZHSY** (firmware `V5.8.61 build 250901`,
+en `192.168.1.11`). Es el modelo de parking que figuraba en la tabla de equipos como "validada por
+VPN en un proyecto anterior" pero que nunca se había integrado acá. Trae **una familia de analítica
+distinta de las dos ya documentadas**, y con ella la explicación estructural de por qué existen
+esas familias.
+
+**El recurso, y cómo se encuentra.** La geometría de las plazas vive en:
+
+```
+GET/PUT /ISAPI/Parking/channels/1/packingSpaceRecognition?format=json
+```
+
+Tres detalles que hacen que no se encuentre adivinando:
+
+1. **`?format=json` es obligatorio.** Sin el parámetro, el mismo recurso responde
+   `403 invalidOperation` — no "falta un parámetro", no "usá json": un error que sugiere que la
+   operación no corresponde.
+2. **La ruta distingue mayúsculas.** `packingSpaceRecognition` (p minúscula) funciona;
+   `PackingSpaceRecognition` (P mayúscula) da `403 invalidOperation`. La propia cámara usa **las
+   dos grafías en el mismo documento de capacidades**: en `/ISAPI/System/capabilities`, el enum
+   `zoomFocusWebDisplay` lista `...,PackingSpaceRecognition,packingSpaceRecognition`, una al lado
+   de la otra.
+3. **El nombre tiene un error de tipeo del fabricante**: es "**Packing**" (embalaje), no "Parking",
+   y está congelado en la superficie pública de la API — en la ruta, en el tipo de evento
+   suscribible y en el modo de VCA. Dentro del payload hay un segundo error del mismo tipo:
+   `absoulteParkingNum` en vez de `absolute`.
+
+**Qué declara la cámara sobre sí misma.** Acá está el detalle fino, y conviene no exagerarlo:
+
+| Dónde | Campo | Valor |
+|---|---|---|
+| `/ISAPI/Smart/capabilities` | `isSupportParking` | **false** |
+| `/ISAPI/System/capabilities` | `isSupportParking` | **false** |
+| `/ISAPI/System/capabilities` | `isSupportParkingState` | **true** |
+
+No es que la cámara mienta: son **dos funciones distintas que comparten la palabra "parking"**.
+`isSupportParking` se refiere a la regla clásica de estacionamiento indebido
+(`/ISAPI/Smart/parking/*`), que este equipo efectivamente no soporta. El reconocimiento de plazas
+se declara en otro campo, `isSupportParkingState`, en otro documento, y apunta a otro árbol de
+endpoints. **El resultado práctico es el mismo que si mintiera**: un integrador que busque
+"parking" en el documento de capacidades que corresponde a la analítica encuentra primero el
+`false`, y concluye lo contrario de lo que el equipo hace. Los dos campos se diferencian en cinco
+letras.
+
+**La explicación estructural: los modos de VCA son excluyentes.** Esto es lo más importante de la
+sesión. La cámara declara:
+
+```
+GET /ISAPI/System/Video/inputs/channels/1/VCAResource/capabilities
+    → type opt="roadDetection,smart,PackingSpaceRecognition,close"
+GET /ISAPI/System/Video/inputs/channels/1/VCAResource
+    → type = PackingSpaceRecognition
+```
+
+Es decir: **el equipo puede ser una sola clase de cámara analítica por vez**. Cruzado con las
+fixtures grabadas de la PTZ (`vcaResource.xml` → `type = smart`), el patrón cierra:
+
+| Cámara | Modo de VCA | Analítica que responde | La que no |
+|---|---|---|---|
+| PTZ DS-2DF8A836IX-AEL | `smart` | `/ISAPI/Smart/*` (clásica) | parking |
+| Bullet iDS-2CD7A46G0/P | `PackingSpaceRecognition` | `/ISAPI/Parking/*` | `/ISAPI/Smart/*` → `notSupport` |
+
+Esto reencuadra todo lo que veníamos llamando "fragmentación entre modelos". No son solo APIs
+distintas por producto: **un mismo equipo cambia su superficie de API completa según un modo de
+configuración**. Un árbol de endpoints aparece y otro desaparece. Y da una hipótesis mucho mejor
+fundada para el hallazgo del domo (§6.7, §7.2.1): si en el reinicio del 25/09 cambió su modo de
+VCA, eso explicaría por qué `/ISAPI/Smart/*` empezó a responder de un día para el otro. **Queda
+por confirmar leyendo el `VCAResource` del domo** la próxima vez que esté accesible — no se pudo
+hacer en esta sesión porque su contraseña vive cifrada en la base y Postgres estaba caído.
+
+**Escritura verificada.** Se aplicó la disciplina de siempre sobre la plaza 001: respaldo del
+payload completo, mover un punto (`positionX 0.311 → 0.331`), releer, comparar, restaurar,
+verificar. La cámara **aplicó el cambio de verdad** y quedó restaurada exactamente como estaba.
+No es un endpoint decorativo de los que responden 200 sin hacer nada, como sí hace la PTZ con la
+colección de reglas (§3.1).
+
+**El resto de lo que se verificó**, sin tocar nada:
+
+- 14 plazas configuradas, máximo 40 (`/ISAPI/Parking/channels/1/parkingStatus/capabilities`).
+- Estado en vivo por plaza en `/ISAPI/Parking/channels/1/parkingStatus`: ocupada o libre, número
+  de vehículo y tiempo estacionado. Curiosidad: el elemento raíz se llama `ParkingStatusCap` aunque
+  devuelva estado en vivo, no capacidades.
+- Geometría: polígonos de **exactamente 4 puntos** (`Region.maxSize: 4`), coordenadas decimales
+  0–1 — la misma convención que AI Open Platform, no la de la analítica clásica (enteros 0–1000).
+- El OSD de la cámara quema los contadores en el video: `totalNumber: 14`,
+  `availableNumber: 14`, `occupiedNumber: 0`. La analítica está corriendo de verdad (la cámara
+  está apuntando a una pared de oficina, así que no hay autos que contar).
+- `subscribeEventCap` declara el evento `PackingSpaceRecognition`, así que el estado de las plazas
+  debería poder llegar por el `alertStream` que la plataforma ya sabe escuchar.
+- **ONVIF ya venía activado**, con usuario `admin` de tipo administrador — a diferencia de la PTZ
+  y el domo, que lo traían apagado de fábrica y hubo que habilitarlo (§6.5). Puede ser de fábrica
+  o haber quedado así de la validación por VPN del proyecto anterior: no se puede distinguir, y
+  conviene decirlo así en vez de afirmar cuál de las dos.
+
+---
+
 ## 7. Qué implica para la plataforma
 
 1. **Un adaptador por familia, no por marca.** La misma marca necesitó dos traductores distintos.

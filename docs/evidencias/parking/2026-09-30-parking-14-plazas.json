@@ -1,0 +1,526 @@
+{
+  "PackingSpaceRecognition": {
+    "channelID": 1,
+    "enable": true,
+    "PackingSpaceInfoList": [
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "001",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.311,
+                "positionY": 0.809
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.361,
+                "positionY": 0.809
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.373,
+                "positionY": 0.913
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.302,
+                "positionY": 0.911
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "002",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.373,
+                "positionY": 0.806
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.385,
+                "positionY": 0.904
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.452,
+                "positionY": 0.906
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.424,
+                "positionY": 0.802
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "003",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.436,
+                "positionY": 0.805
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.463,
+                "positionY": 0.902
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.528,
+                "positionY": 0.898
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.482,
+                "positionY": 0.798
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "004",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.495,
+                "positionY": 0.798
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.542,
+                "positionY": 0.898
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.616,
+                "positionY": 0.889
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.563,
+                "positionY": 0.792
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "005",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.575,
+                "positionY": 0.794
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.634,
+                "positionY": 0.894
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.704,
+                "positionY": 0.879
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.638,
+                "positionY": 0.783
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "006",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.652,
+                "positionY": 0.783
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.713,
+                "positionY": 0.87
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.775,
+                "positionY": 0.858
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.721,
+                "positionY": 0.777
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "007",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.313,
+                "positionY": 0.781
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.363,
+                "positionY": 0.781
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.357,
+                "positionY": 0.705
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.322,
+                "positionY": 0.703
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "008",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.372,
+                "positionY": 0.783
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.422,
+                "positionY": 0.783
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.405,
+                "positionY": 0.701
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.362,
+                "positionY": 0.707
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "009",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.431,
+                "positionY": 0.79
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.414,
+                "positionY": 0.705
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.463,
+                "positionY": 0.705
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.485,
+                "positionY": 0.786
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "0010",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.471,
+                "positionY": 0.705
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.492,
+                "positionY": 0.781
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.552,
+                "positionY": 0.777
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.519,
+                "positionY": 0.701
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "0011",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.527,
+                "positionY": 0.699
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.564,
+                "positionY": 0.777
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.615,
+                "positionY": 0.775
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.573,
+                "positionY": 0.694
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "0012",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.583,
+                "positionY": 0.701
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.619,
+                "positionY": 0.773
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.676,
+                "positionY": 0.767
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.635,
+                "positionY": 0.697
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "0013",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.684,
+                "positionY": 0.769
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.733,
+                "positionY": 0.769
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.691,
+                "positionY": 0.693
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.646,
+                "positionY": 0.694
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PackingSpaceInfo": {
+          "absoulteParkingNum": "0014",
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.74,
+                "positionY": 0.767
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.786,
+                "positionY": 0.762
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.744,
+                "positionY": 0.691
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.696,
+                "positionY": 0.692
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "PackingSpaceRegionList": [
+      {
+        "PackingSpaceRegion": {
+          "regionalID": 1,
+          "packingSpaceNum": 14,
+          "Region": [
+            {
+              "Point": {
+                "positionX": 0.097,
+                "positionY": 0.976
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.186,
+                "positionY": 0.76
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.279,
+                "positionY": 0.625
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.5,
+                "positionY": 0.616
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.77,
+                "positionY": 0.658
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.881,
+                "positionY": 0.792
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.984,
+                "positionY": 0.987
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.806,
+                "positionY": 0.992
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.594,
+                "positionY": 0.992
+              }
+            },
+            {
+              "Point": {
+                "positionX": 0.4,
+                "positionY": 0.991
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "remainingParkingSpaceDetection": {
+      "enabled": true,
+      "remainingParkingSpaceThreshold": 15
+    },
+    "parkingStatusIntervalParams": {
+      "enabled": false,
+      "alarmInterval": 1
+    },
+    "parkingTimeoutParams": {
+      "enabled": false,
+      "threshold": 30,
+      "alarmInterval": 3,
+      "alarmFrequency": 5
+    }
+  }
+}

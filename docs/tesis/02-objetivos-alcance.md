@@ -40,28 +40,34 @@ El objetivo pide "al menos tres escenarios de cámaras o fabricantes distintos, 
 Hikvision como caso principal". El trabajo integró los siguientes:
 
 1. **PTZ Hikvision** (DS-2DF8A836IX-AEL) — analítica clásica sobre `/ISAPI/Smart/*`.
-2. **Domo Hikvision DeepinView** (iDS-2CD7146G2-IZS) — analítica exclusivamente sobre AI Open
-   Platform, una API completamente distinta a la anterior aunque el fabricante sea el mismo.
-3. **Cámara Hikvision Value** (DS-2CD1023G2-I) — sin analítica, caso de contraste.
-4. **Cámara Scati** — marca distinta a Hikvision, sin funciones de analítica propietaria. [Estado
+2. **Domo Hikvision DeepinView** (iDS-2CD7146G2-IZS) — analítica sobre AI Open Platform, una API
+   completamente distinta a la anterior aunque el fabricante sea el mismo.
+3. **Bullet Hikvision DeepinView de parking** (iDS-2CD7A46G0/P-IZHSY) — reconocimiento de plazas
+   de estacionamiento sobre `/ISAPI/Parking/*`, una **tercera** familia de analítica, distinta de
+   las dos anteriores en formato, convención de coordenadas y modelo de activación (§7.2).
+4. **Cámara Hikvision Value** (DS-2CD1023G2-I) — sin analítica, caso de contraste.
+5. **Cámara Scati** — marca distinta a Hikvision, sin funciones de analítica propietaria. [Estado
    de la integración: ver cap. 7 — pendiente al momento de escribir este capítulo.]
 
 El anteproyecto original consideraba también, como arquitectura de referencia, adaptadores para
 Axis (VAPIX) y para un "tercer proveedor genérico", y el cronograma de la Fase 3 proponía
 específicamente validar Scati u otra marca disponible como caso comparativo. Sobre esto corresponde
-una aclaración metodológica: los dos primeros escenarios (PTZ y domo DeepinView) son,
-formalmente, de la misma marca. Sin embargo, se sostiene que satisfacen la intención del objetivo
-—y la superan— porque exponen una fragmentación **más severa** que la fragmentación entre marcas
-que motivó originalmente el trabajo: dos productos del mismo fabricante, hablando el mismo
-protocolo de transporte (ISAPI), resultan tan incompatibles entre sí en su analítica como lo serían
-dos fabricantes distintos. Este hallazgo se desarrolla en el capítulo 7 y se sostiene que
+una aclaración metodológica: los tres primeros escenarios (PTZ, domo DeepinView y bullet de
+parking) son, formalmente, de la misma marca. Sin embargo, se sostiene que satisfacen la intención
+del objetivo —y la superan— porque exponen una fragmentación **más severa** que la fragmentación
+entre marcas que motivó originalmente el trabajo: tres productos del mismo fabricante, hablando el
+mismo protocolo de transporte (ISAPI), resultan tan incompatibles entre sí en su analítica como lo
+serían tres fabricantes distintos. Este hallazgo se desarrolla en el capítulo 7 y se sostiene que
 constituye evidencia más fuerte para la hipótesis del trabajo, no una desviación de ella: si la
 fragmentación apareciera solo entre marcas, cabría pensar que basta con "conocer bien a cada
 fabricante" para resolverla; que aparezca dentro de una misma marca indica que el problema es
 estructural y no anecdótico. (El §7.2.1 agrega un matiz descubierto el 29/09: esa misma
 fragmentación puede no ser una propiedad fija del modelo, sino depender del estado de firmware o
-configuración de cada unidad en un momento dado — lo que refuerza, no debilita, la necesidad de
-verificar contra el hardware real en vez de asumir capacidades por modelo o por fabricante.)
+configuración de cada unidad en un momento dado. El §7.2.2, con la tercera cámara, identifica el
+mecanismo concreto detrás de eso: los modos de análisis de video del equipo son mutuamente
+excluyentes, de modo que una misma cámara cambia su superficie de API completa según cómo esté
+configurada. Ambos hallazgos refuerzan, no debilitan, la necesidad de verificar contra el hardware
+real en vez de asumir capacidades por modelo o por fabricante.)
 
 ## 2.6 Alcance
 
