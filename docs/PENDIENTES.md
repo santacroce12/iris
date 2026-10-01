@@ -214,8 +214,8 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
 
 ## Código
 
-- [ ] **El backend se colgaba al recargar (`--reload`) si hay una conexión SSE abierta —
-      diagnosticado, arreglado y confirmado en vivo (29/09).** Se creía resuelto (el feed SSE
+- [x] **El backend se cuelga al recargar (`--reload`) — causa encontrada, no se arregla desde
+      acá.** Se creía resuelto (el feed SSE
       escucha `bus.cerrando`), pero se reprodujo de nuevo y esta vez se leyó el propio código
       fuente de uvicorn instalado (`uvicorn.server.Server.shutdown`) en vez de suponer: confirma
       que uvicorn espera a que **todas** las conexiones HTTP terminen (`_wait_tasks_to_complete`,
@@ -236,15 +236,34 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
       abierto en la aplicación —que mantiene el feed de eventos conectado— el cuelgue se reprodujo
       igual el 01/10.
 
-      **Arreglo de verdad**: `--timeout-graceful-shutdown 3` en el arranque de uvicorn
-      (`.claude/launch.json` y el README). Es el parámetro que ataca la causa que ya estaba bien
-      diagnosticada: uvicorn espera a que cierren las conexiones **sin límite de tiempo** por
-      defecto, y con ese flag corta a los 3 segundos y sigue con el apagado. Los manejadores de
-      señal se dejan igual: ayudan cuando la señal sí llega, y el timeout cubre el resto.
+      **Causa real, encontrada el 01/10 — y las dos explicaciones anteriores estaban equivocadas.**
+      Se probó con el feed abierto y `--timeout-graceful-shutdown 3` puesto, y se colgó igual. La
+      pista decisiva: **"Shutting down" no aparece nunca en el log**. Si ese mensaje no sale,
+      `Server.shutdown()` jamás se llamó, así que el problema no está en cómo uvicorn apaga la app
+      — está antes, en que **el worker nunca se entera de que tiene que apagarse**.
 
-      **Lo que falta**: confirmarlo bien esta vez, o sea con el navegador abierto en la
-      aplicación, tocando un archivo y midiendo que el proceso nuevo arranque. No repetir el error
-      de dar por buena una recarga sin conexiones abiertas.
+      Leyendo `uvicorn/supervisors/basereload.py`, el recargador en Windows hace:
+
+      ```python
+      os.kill(self.process.pid, signal.CTRL_C_EVENT)
+      ```
+
+      `CTRL_C_EVENT` en Windows no se entrega a un PID: se entrega al **grupo de procesos de una
+      consola**. Cuando el servidor se lanza sin consola adjunta —como lo lanza el entorno de
+      desarrollo de este proyecto— ese evento no llega a ningún lado. El propio uvicorn tiene un
+      parche al lado (`sys.stdout.write(" ")` "para asegurar que el evento se procese") que delata
+      lo frágil que es el mecanismo.
+
+      Conclusión: **no hay ninguna señal que atrapar**, así que ni los manejadores de
+      SIGINT/SIGTERM de `app/main.py` ni `--timeout-graceful-shutdown` pueden resolverlo — los dos
+      actúan después de un disparador que nunca ocurre. Se dejan igual porque no molestan y sí
+      ayudan cuando el apagado viene por una vía que sí entrega señal (Ctrl+C en una terminal de
+      verdad, o `preview_stop`).
+
+      **No se va a seguir persiguiendo**: es una limitación del recargador de uvicorn en Windows
+      sin consola, no un defecto de esta plataforma, y no afecta ni los resultados ni la demo. La
+      salida práctica es reiniciar el proceso en vez de confiar en `--reload` cuando la aplicación
+      está abierta en el navegador.
 - [ ] 4 advertencias de lint en `frontend/src/features/events/` (estilo de React, no rompen nada).
 - [ ] `GET /api/events/{id}` no existe: hoy el detalle se arma con el listado.
 - [ ] Endpoint de estadísticas agregadas (hoy los contadores se calculan en el navegador sobre los
