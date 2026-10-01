@@ -24,7 +24,7 @@ docker compose -f infra/docker-compose.yml up -d
 ```
 
 ```bash
-cd backend && uv sync && uv run alembic upgrade head && uv run uvicorn app.main:app --reload
+cd backend && uv sync && uv run alembic upgrade head && uv run uvicorn app.main:app --reload --timeout-graceful-shutdown 3
 ```
 
 ```bash

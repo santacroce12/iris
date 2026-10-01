@@ -97,6 +97,9 @@ class LiveOut(BaseModel):
     webrtc: str
     whep: str
     hls: str
+    codec: str | None = None
+    # Por qué se está viendo otro stream del pedido, o por qué no se va a ver nada.
+    note: str | None = None
 
 
 class CapabilityCheckOut(BaseModel):

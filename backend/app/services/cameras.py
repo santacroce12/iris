@@ -1,6 +1,6 @@
 import asyncio
 import uuid
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import UTC, datetime
 from typing import Any
 
@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import get_settings
 from app.db.models import Camera, VideoProfile
+from app.domain import video
 from app.domain.enums import CameraStatus, Protocol, StreamType
 from app.drivers.errors import AuthenticationFailed
 from app.drivers.isapi import device as isapi_device
@@ -251,7 +252,24 @@ async def publish_live(
     record: bool = False,
 ) -> LiveUrls:
     stream_digit = 2 if stream_type == StreamType.SUB else 1
-    rtsp_path = f"/Streaming/Channels/{camera.channel}0{stream_digit}"
+    por_defecto = f"/Streaming/Channels/{camera.channel}0{stream_digit}"
+    # No alcanza con que la cámara entregue RTSP: el navegador tiene que poder decodificar el
+    # códec. Si el stream pedido es H.265, se busca otro de la misma cámara que sí se vea.
+    elegido = video.elegir_para_navegador(
+        [
+            video.PerfilDisponible(
+                stream_type=str(p.stream_type),
+                codec=p.codec,
+                rtsp_path=p.rtsp_path,
+                width=p.width,
+            )
+            for p in await list_profiles(session, camera.id)
+            if p.protocol == Protocol.ISAPI and p.rtsp_path
+        ],
+        pedido=str(stream_type),
+        ruta_por_defecto=por_defecto,
+    )
+    rtsp_path = elegido.rtsp_path
     path = mediamtx_path(camera, stream_type)
     source = rtsp_probe.credential_url(targets.rtsp_target(camera), rtsp_path)
     outcome = await run_operation(
@@ -266,4 +284,4 @@ async def publish_live(
     if not outcome.ok or outcome.value is None:
         assert outcome.error is not None
         raise outcome.error
-    return outcome.value
+    return replace(outcome.value, codec=elegido.codec, note=elegido.nota)

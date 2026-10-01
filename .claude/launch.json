@@ -4,7 +4,7 @@
     {
       "name": "backend",
       "runtimeExecutable": "C:\\Users\\lucas\\.local\\bin\\uv.exe",
-      "runtimeArgs": ["run", "--directory", "backend", "uvicorn", "app.main:app", "--reload", "--port", "8000"],
+      "runtimeArgs": ["run", "--directory", "backend", "uvicorn", "app.main:app", "--reload", "--port", "8000", "--timeout-graceful-shutdown", "3"],
       "port": 8000
     },
     {

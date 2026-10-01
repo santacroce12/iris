@@ -81,6 +81,9 @@ export interface LiveUrls {
   webrtc: string
   whep: string
   hls: string
+  codec: string | null
+  /** Por qué se está viendo otro stream del pedido, o por qué no se va a ver nada. */
+  note: string | null
 }
 
 export interface EventMedia {

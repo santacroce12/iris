@@ -276,6 +276,46 @@ costó tiempo de integración real:
    del payload, el identificador de cada plaza es `absoulteParkingNum` en vez de `absolute`.
    Ninguno se puede corregir del lado del cliente: hay que reproducirlos exactamente.
 
+### 7.3.8 Tres luces verdes y el usuario no ve nada: el códec
+
+La bullet de parking produjo el caso más claro de toda esta sección, porque el fallo ocurre
+*después* de que todas las comprobaciones del sistema dieron bien.
+
+Al abrir el video en vivo de esa cámara, el reproductor del navegador quedaba en negro. El estado
+del sistema en ese momento era:
+
+| Comprobación | Resultado |
+|---|---|
+| Prueba de conexión RTSP (`DESCRIBE`) de la plataforma | ✅ responde |
+| Ruta publicada en el servidor de medios | ✅ creada |
+| Estado de esa ruta (`ready`) | ✅ sí, recibiendo video |
+| Pistas detectadas | **H265, G711** |
+| Lo que ve el usuario | **nada** |
+
+El motivo es la última fila: la cámara entrega **H.265 (HEVC)**, que los navegadores no
+decodifican ni por WebRTC ni por HLS fuera de Safari. El video llegaba perfectamente hasta el
+servidor de medios —de ahí el `ready`— y moría en el último salto.
+
+Lo que vuelve al caso interesante para este trabajo es que **la cámara sí tenía streams
+reproducibles**: de sus cinco perfiles, dos (el principal y el secundario) son H.265 y tres son
+H.264. La plataforma no los ofrecía porque, como la mayoría de las herramientas del rubro, asumía
+que un equipo tiene "principal" y "secundario" y que con eso alcanza. La información necesaria
+para resolverlo ya estaba leída y guardada en la propia matriz de perfiles; simplemente no se la
+estaba usando para decidir.
+
+La corrección fue hacer que la plataforma elija el stream por códec y no por posición: si el
+pedido no es reproducible, busca otro de la misma cámara que sí lo sea, y **dice por qué lo
+cambió** en vez de dejar al usuario frente a un reproductor negro. Si ninguno sirve, lo informa y
+sugiere un reproductor externo, porque el video existe aunque el navegador no pueda mostrarlo.
+
+El valor metodológico del caso es que extiende la tesis central de este capítulo a una capa nueva.
+Hasta acá, "declarado contra verificado" (§3.5) se aplicaba a si una función existe. Este caso
+muestra que **una función puede estar verificada en todos los niveles que el sistema sabe medir y
+seguir sin servir para nada en el nivel que le importa al usuario**: el protocolo responde, el
+transporte funciona, el servidor recibe los datos, y el resultado sigue siendo una pantalla negra.
+Una matriz de compatibilidad honesta tiene que poder distinguir "la cámara entrega video" de "el
+usuario puede verlo", que no son la misma afirmación.
+
 ## 7.4 ONVIF: verificado contra hardware real
 
 Hasta el 29/09/2026, ONVIF nunca había respondido nada distinto de un rechazo de conexión: el

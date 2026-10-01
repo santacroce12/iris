@@ -163,7 +163,14 @@ async def start_live(
     camera: CameraDep, session: Session, stream: StreamType = StreamType.MAIN
 ) -> LiveOut:
     urls = await service.publish_live(session, camera, stream)
-    return LiveOut(path=urls.path, webrtc=urls.webrtc, whep=urls.whep, hls=urls.hls)
+    return LiveOut(
+        path=urls.path,
+        webrtc=urls.webrtc,
+        whep=urls.whep,
+        hls=urls.hls,
+        codec=urls.codec,
+        note=urls.note,
+    )
 
 
 @router.post("/{camera_id}/recording", response_model=RecordingOut)

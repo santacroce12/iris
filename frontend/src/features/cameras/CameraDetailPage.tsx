@@ -175,7 +175,15 @@ function LiveTab({ camera }: { camera: Camera }) {
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
       <div className="space-y-3">
         {live.data ? (
-          <LivePlayer urls={live.data} onRetry={() => live.mutate(stream)} />
+          <>
+            <LivePlayer urls={live.data} onRetry={() => live.mutate(stream)} />
+            {live.data.note && (
+              <p className="flex items-start gap-2 rounded-lg border border-warn/25 bg-warn/5 px-3 py-2 text-xs text-warn">
+                <ImageOff className="mt-0.5 size-3.5 shrink-0" />
+                {live.data.note}
+              </p>
+            )}
+          </>
         ) : (
           <div className="grid aspect-video place-items-center rounded-xl border border-line bg-black">
             <div className="flex flex-col items-center gap-3">

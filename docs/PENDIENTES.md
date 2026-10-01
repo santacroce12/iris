@@ -103,6 +103,14 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
       Falta que el motor de reglas pueda mostrar las dos cuando las dos funcionen.
 - [ ] Video del domo en el navegador del usuario: del lado del servidor funciona (MediaMTX lo lee,
       WebRTC y HLS responden). Falta saber qué ve exactamente el usuario para cerrar el tema.
+- [x] **El video en vivo de la bullet de parking no se veía: entrega H.265** (01/10), que el
+      navegador no reproduce ni por WebRTC ni por HLS. Todo lo demás daba bien —RTSP en verde,
+      ruta publicada, MediaMTX en `ready` recibiendo video— y el usuario igual veía negro. De sus
+      5 perfiles, main y sub son H.265 y tres son H.264; la plataforma solo ofrecía main/sub.
+      **Arreglado**: ahora elige el stream por códec (`app/domain/video.py`), y si tiene que
+      cambiarlo lo explica en pantalla en vez de dejar un reproductor negro. 16 tests nuevos.
+      Verificado a nivel API (elige el canal 104, H.264) pero **falta verlo reproducir en el
+      navegador**: la cámara se apagó antes de poder confirmarlo. Ver `07-resultados.md` §7.3.8.
 - [x] El usuario `stmcam` del domo es rechazado por RTSP (401): revisar si existe o sus permisos.
       **Confirmado por API (29/09): existe, es Operator, y tiene `preview: true` en el canal de
       video — los permisos están bien.** El 401 es una contraseña incorrecta o desconocida, no un
@@ -206,7 +214,7 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
 
 ## Código
 
-- [x] **El backend se colgaba al recargar (`--reload`) si hay una conexión SSE abierta —
+- [ ] **El backend se colgaba al recargar (`--reload`) si hay una conexión SSE abierta —
       diagnosticado, arreglado y confirmado en vivo (29/09).** Se creía resuelto (el feed SSE
       escucha `bus.cerrando`), pero se reprodujo de nuevo y esta vez se leyó el propio código
       fuente de uvicorn instalado (`uvicorn.server.Server.shutdown`) en vez de suponer: confirma
@@ -221,10 +229,22 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
       instalado (para no pisarle su propio apagado). 3 tests nuevos que prueban el encadenamiento
       en sí (`backend/tests/unit/test_shutdown_signals.py`); 120/120 tests en verde.
 
-      **Confirmado en vivo (30/09)**: el mismo proceso de desarrollo recargó tres veces seguidas
-      durante la sesión del 29/09 (`PID 13528 → 32764 → 28528`, cada edición de archivo disparó
-      una recarga real) y **nunca volvió a quedar en "Waiting for connections to close"** — el
-      mensaje ni siquiera aparece en los logs de esas tres recargas. Cerrado.
+      **Corrección (01/10): el arreglo de las señales NO alcanzaba, y la confirmación del 30/09
+      estaba mal hecha.** Las tres recargas limpias que se tomaron como prueba no tenían ninguna
+      conexión SSE abierta (el `curl` de prueba ya había expirado), así que no probaban nada: una
+      recarga sin conexiones abiertas funciona igual con o sin el arreglo. Con el navegador
+      abierto en la aplicación —que mantiene el feed de eventos conectado— el cuelgue se reprodujo
+      igual el 01/10.
+
+      **Arreglo de verdad**: `--timeout-graceful-shutdown 3` en el arranque de uvicorn
+      (`.claude/launch.json` y el README). Es el parámetro que ataca la causa que ya estaba bien
+      diagnosticada: uvicorn espera a que cierren las conexiones **sin límite de tiempo** por
+      defecto, y con ese flag corta a los 3 segundos y sigue con el apagado. Los manejadores de
+      señal se dejan igual: ayudan cuando la señal sí llega, y el timeout cubre el resto.
+
+      **Lo que falta**: confirmarlo bien esta vez, o sea con el navegador abierto en la
+      aplicación, tocando un archivo y midiendo que el proceso nuevo arranque. No repetir el error
+      de dar por buena una recarga sin conexiones abiertas.
 - [ ] 4 advertencias de lint en `frontend/src/features/events/` (estilo de React, no rompen nada).
 - [ ] `GET /api/events/{id}` no existe: hoy el detalle se arma con el listado.
 - [ ] Endpoint de estadísticas agregadas (hoy los contadores se calculan en el navegador sobre los

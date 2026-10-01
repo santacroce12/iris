@@ -17,6 +17,9 @@ class LiveUrls:
     webrtc: str  # página/endpoint WHEP
     whep: str
     hls: str
+    codec: str | None = None
+    # Por qué se está mostrando otro stream del que se pidió, o por qué no se va a ver nada.
+    note: str | None = None
 
 
 class MediaMtx:
