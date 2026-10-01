@@ -78,13 +78,18 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
       se arrastran desde la pantalla de Reglas** igual que las líneas y zonas de las otras dos
       cámaras. 9 tests unitarios con la respuesta real del equipo; round-trip verificado contra
       hardware (mover la plaza 001, la cámara la aplicó, restaurada).
-- [ ] **ONVIF de la bullet de parking falla** con `Fault('Unknown fault occured')`, aunque el
-      equipo lo trae activado (`Integrate.ONVIF.enable = true`, `certificateType: digest`) y
-      tiene un usuario ONVIF `admin` de tipo administrador. Es el único de los tres protocolos en
-      rojo en esta cámara, y el tercer comportamiento distinto de ONVIF entre las tres Hikvision:
-      dos venían apagadas de fábrica y se habilitaron bien, esta viene encendida y falla. Vale la
-      pena entenderlo: puede ser que el usuario ONVIF necesite recrearse, o una diferencia de
-      autenticación (digest contra WS-UsernameToken).
+- [x] **ONVIF de la bullet de parking resuelto (01/10)**: pasó de `degraded` a **`online` por los
+      tres protocolos**. Eran dos trampas encadenadas, ninguna relacionada con "estar habilitado"
+      (venía habilitado y con usuario). **(1)** La base de usuarios de ONVIF es independiente de la
+      de ISAPI y **la cámara anuncia el mismo realm para las dos** (`IP Camera(AC806)`): el mismo
+      digest, con las mismas credenciales, da 200 en ISAPI y 401 en ONVIF. Se creó un usuario ONVIF
+      propio (`tesisonvif`). **(2)** El equipo estaba en `certificateType: digest` (solo HTTP
+      Digest) y `onvif-zeep-async` firma todo con WS-Security; se pasó al modo permisivo
+      `digest/WSSE`, que acepta los dos. Ver `bitacora-apis.md` §6.10 y `07-resultados.md` §7.4.1.
+- [ ] **Comparar el `certificateType` de la PTZ y el domo** con el de la bullet. Si vienen de
+      fábrica en `digest/WSSE`, eso explicaría por qué nunca dieron este problema, y cierra el
+      análisis de §7.4.1. Es un solo `GET /ISAPI/System/Network/Integrate/capabilities` en cada
+      una; no se pudo el 01/10 porque la red `192.168.239.x` no era alcanzable desde la máquina.
 - [ ] **Dar de alta la cámara Scati** (27/09: confirmado que hay acceso). Es el caso "otra marca"
       que pedía el cronograma del anteproyecto (Fase 3: "validación de Scati u otra marca
       disponible"). No tiene analítica — es el resultado esperado, no un problema: el propio
@@ -140,6 +145,16 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
 - PTZ (192.168.239.189) y Domo (192.168.239.174): **zona horaria corregida de China (UTC+8) a
   Argentina (UTC-3)** (29/09). Respaldo del `/ISAPI/System/time` original de cada una en el
   scratchpad de esa sesión. Cambio intencional y permanente, no hay que restaurarlo.
+- Bullet de parking (192.168.1.11): **usuario ONVIF `tesisonvif` creado** (01/10), de tipo
+  administrador, con la misma contraseña que el admin web. Se agregó sin tocar el `admin` de ONVIF
+  que ya existía, cuya contraseña no tenemos. Es lo que permite que ONVIF funcione desde la
+  plataforma; si molesta, se borra con `DELETE /ISAPI/Security/ONVIF/users/<id>`.
+- Bullet de parking (192.168.1.11): **modo de autenticación ONVIF cambiado de `digest` a
+  `digest/WSSE`** (01/10). Es aditivo — el equipo pasa a aceptar los dos mecanismos en vez de uno
+  — y es necesario para cualquier cliente que use WS-Security, que es lo habitual. Respaldo del
+  `Integrate` original en el scratchpad de esa sesión.
+- Bullet de parking (192.168.1.11): la plaza 001 se movió y se restauró en las pruebas del 30/09 y
+  del 01/10; **quedó en su posición original**, verificado por relectura.
 
 ## Reglas: lo que falta del editor
 

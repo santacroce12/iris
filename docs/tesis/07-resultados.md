@@ -359,9 +359,64 @@ para siempre detrás de un "no soportado" que en realidad era un error propio.
 
 El mismo procedimiento se repitió, palabra por palabra, contra el domo DeepinView más tarde el
 mismo día (29/09), en su nueva dirección tras el cambio de IP descrito en §7.2.1, y funcionó
-igual al primer intento: `status: online` por los tres protocolos también en esa cámara. Con esto,
-la verificación de ONVIF contra hardware real queda cerrada para las dos cámaras Hikvision del
-trabajo — la única pendiente es la cámara Scati (§7.8).
+igual al primer intento: `status: online` por los tres protocolos también en esa cámara.
+
+### 7.4.1 La tercera cámara pidió un camino distinto: ONVIF estándar, tres rutas de acceso
+
+La bullet de parking (§7.2.2) venía con ONVIF **ya habilitado** de fábrica, con un usuario ONVIF
+ya creado — es decir, en el estado que en las otras dos cámaras costó dos escrituras alcanzar. Y
+sin embargo no se podía usar: el cliente fallaba con `Fault('Unknown fault occured')`. Resolverlo
+exigió bajar hasta el SOAP crudo y destapó dos obstáculos encadenados, ninguno relacionado con
+"estar habilitado".
+
+**Primero, la base de usuarios de ONVIF es independiente de la de la API propietaria, y el equipo
+anuncia el mismo *realm* de autenticación para ambas.** Enviando un digest HTTP calculado a mano,
+con las mismas credenciales, contra los dos servicios:
+
+| Servicio | *Realm* anunciado | Resultado |
+|---|---|---|
+| `/ISAPI/System/deviceInfo` | `IP Camera(AC806)` | **200 OK** |
+| `/onvif/device_service` | `IP Camera(AC806)` | **401** |
+
+El usuario `admin` que lista el recurso de usuarios ONVIF no es el `admin` de la interfaz web: es
+otra cuenta, con otra contraseña, que coincide en el nombre. Anunciar el mismo *realm* para dos
+bases de credenciales distintas es, en términos de diagnóstico, el peor caso posible: la
+información que el protocolo ofrece para orientarse apunta en la dirección equivocada.
+
+**Segundo, el mecanismo de autenticación de ONVIF del equipo era incompatible con el de la
+biblioteca cliente.** La cámara declaraba:
+
+```
+<certificateType opt="digest/WSSE,digest">digest</certificateType>
+```
+
+es decir, aceptaba **solo** HTTP Digest. La biblioteca utilizada en este trabajo firma todas sus
+llamadas SOAP con WS-Security UsernameToken y reserva el digest HTTP únicamente para descargar
+imágenes. Dos mecanismos de autenticación perfectamente válidos, ambos contemplados por el
+estándar, que no se cruzan nunca. Cambiando el equipo al modo permisivo (`digest/WSSE`, que acepta
+los dos) la verificación pasó a `status: online` por los tres protocolos.
+
+**Lo que este caso aporta al argumento del trabajo.** ONVIF es *el* protocolo estándar del
+dominio: su razón de existir es que un cliente pueda hablar con cualquier cámara sin conocer al
+fabricante. Las tres cámaras de este trabajo son de la misma marca, y cada una exigió un camino
+distinto para llegar al mismo resultado:
+
+| Cámara | Estado inicial de ONVIF | Qué hizo falta |
+|---|---|---|
+| PTZ | deshabilitado, sin usuario | habilitarlo y crear un usuario |
+| Domo | deshabilitado, sin usuario | lo mismo |
+| Bullet | **habilitado, con usuario** | crear otro usuario *y* cambiar el modo de autenticación |
+
+La conclusión no es que ONVIF no sirva —una vez resuelto el acceso, las tres responden el mismo
+conjunto de operaciones—, sino que **la estandarización cubre el vocabulario y no la puerta de
+entrada**. Un integrador que asuma "ONVIF es estándar, con credenciales alcanza" se encuentra, en
+tres equipos del mismo fabricante, con tres configuraciones distintas y un mensaje de error que no
+menciona ninguna de ellas. Queda pendiente comparar el `certificateType` de las otras dos cámaras
+para saber si venían de fábrica en el modo permisivo, lo que explicaría por qué nunca presentaron
+este obstáculo; no fue posible el 01/10 porque su red no era alcanzable.
+
+Con esto, la verificación de ONVIF contra hardware real queda cerrada para las **tres** cámaras
+Hikvision del trabajo — la única pendiente es la cámara Scati (§7.8).
 
 ## 7.5 Evidencia cuantitativa: tasa de éxito y latencias
 

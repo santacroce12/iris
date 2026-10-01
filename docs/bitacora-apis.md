@@ -528,6 +528,66 @@ colección de reglas (§3.1).
   Queda pendiente entender si es el usuario ONVIF o una diferencia de autenticación (la cámara
   declara `certificateType: digest`).
 
+### 6.10 ONVIF en la bullet: mismo realm, otra base de usuarios, otro modo de autenticación (01/10/2026)
+
+La bullet de parking quedaba en `degraded` porque ONVIF fallaba con un `Fault('Unknown fault
+occured')` — el mensaje más inútil posible. Resolverlo necesitó bajar hasta el SOAP crudo, y
+destapó **dos trampas apiladas**, las dos específicas de este equipo.
+
+**Primero: ONVIF funcionaba perfecto, el problema era el cliente.** Mandando peticiones SOAP a
+mano, `GetSystemDateAndTime` y `GetCapabilities` respondían `200` sin autenticación (como manda la
+norma), y las XAddr anunciadas eran correctas (`http://192.168.1.11/onvif/...`, sin rarezas de
+NAT). Con el cliente de la plataforma, `GetServices` funcionaba pero `GetDeviceInformation` y
+`GetProfiles` fallaban. Eso descartó de entrada "ONVIF está mal configurado".
+
+**Trampa 1: la base de usuarios de ONVIF es independiente de la de ISAPI, y la cámara anuncia el
+mismo realm para las dos.** Las llamadas que fallaban devolvían `HTTP 401` con
+`WWW-Authenticate: Digest realm="IP Camera(AC806)"`. Se escribió un digest HTTP a mano y se lo
+probó contra los dos servicios con las mismas credenciales:
+
+| Servicio | Realm anunciado | Resultado |
+|---|---|---|
+| `/ISAPI/System/deviceInfo` | `IP Camera(AC806)` | **200 OK** |
+| `/onvif/device_service` | `IP Camera(AC806)` | **401** |
+
+Mismo código, mismas credenciales, **mismo realm**, resultados opuestos. El `admin` que ve
+`/ISAPI/Security/ONVIF/users` no es el `admin` web: es otro usuario, con otra contraseña, que
+simplemente se llama igual. Que el equipo anuncie el mismo realm para ambos servicios vuelve el
+diagnóstico mucho más difícil de lo necesario — un cliente (o una persona) concluye razonablemente
+"mismo realm, mismas credenciales, debería andar". Se resolvió creando un usuario ONVIF propio con
+contraseña conocida, igual que en las otras dos cámaras (§6.5).
+
+**Trampa 2: el modo de autenticación de ONVIF era incompatible con la librería.** Con credenciales
+correctas, el digest HTTP a mano devolvía `200`, pero la plataforma seguía fallando. El motivo está
+en el cliente: `onvif-zeep-async` usa `DigestAuthMiddleware` **solo para snapshots**; todas las
+llamadas SOAP las firma con WS-Security UsernameToken. Y la cámara estaba configurada así:
+
+```
+GET /ISAPI/System/Network/Integrate/capabilities
+    → <certificateType opt="digest/WSSE,digest">digest</certificateType>
+```
+
+Es decir: aceptaba **solo** HTTP Digest, y la librería habla **solo** WS-Security. Dos mecanismos
+de autenticación válidos que no se cruzan nunca. Un `PUT` cambiando `certificateType` a
+`digest/WSSE` —el modo permisivo, que acepta los dos— y la prueba de conexión pasó a
+**`status: online` por los tres protocolos**. El cambio es aditivo: el equipo pasa a aceptar más
+mecanismos, no menos.
+
+**Por qué importa para la tesis.** Es el **tercer comportamiento distinto de ONVIF en tres cámaras
+de la misma marca**: dos venían con ONVIF apagado de fábrica y se habilitaron con la receta de
+§6.5; esta venía encendida y aun así no se podía usar, por dos razones que no tienen nada que ver
+con "estar habilitado". ONVIF es el protocolo *estándar* del dominio, y hasta acá cada equipo pidió
+un camino distinto para llegar a lo mismo. Queda pendiente comparar el `certificateType` de las
+otras dos —no se pudo el 01/10 porque su red no era alcanzable desde la máquina— para saber si
+venían en `digest/WSSE` de fábrica, que explicaría por qué nunca dieron este problema.
+
+**Detalle que encaja con §6.9**: en la matriz de esta cámara, `events.motion` queda como *no
+soportada y verificada* por **los dos** protocolos, mientras que en la PTZ y el domo ISAPI sí la
+soporta. Es coherente con el modo de VCA: el equipo está en `PackingSpaceRecognition` y eso
+desactiva la detección de movimiento clásica.
+
+---
+
 **Integrado en la plataforma el mismo día.** Se sumó un driver de la familia
 (`app/drivers/isapi/rules/parking.py`) y la detección automática la reconoce sin configuración: al
 abrir la pestaña de Reglas de esta cámara aparece "ISAPI Parking", las 14 plazas con su ocupación
