@@ -86,10 +86,18 @@ qué orden. **El documento de tesis en sí está en [docs/tesis/](tesis/README.m
       propio (`tesisonvif`). **(2)** El equipo estaba en `certificateType: digest` (solo HTTP
       Digest) y `onvif-zeep-async` firma todo con WS-Security; se pasó al modo permisivo
       `digest/WSSE`, que acepta los dos. Ver `bitacora-apis.md` §6.10 y `07-resultados.md` §7.4.1.
-- [ ] **Comparar el `certificateType` de la PTZ y el domo** con el de la bullet. Si vienen de
-      fábrica en `digest/WSSE`, eso explicaría por qué nunca dieron este problema, y cierra el
-      análisis de §7.4.1. Es un solo `GET /ISAPI/System/Network/Integrate/capabilities` en cada
-      una; no se pudo el 01/10 porque la red `192.168.239.x` no era alcanzable desde la máquina.
+- [x] **Comparado el `certificateType` de las tres (01/10)**, y el resultado **corrigió la
+      explicación**: el domo está en `digest/WSSE` pero **la PTZ está en `digest`** —el mismo
+      valor que bloqueaba a la bullet— y su ONVIF anda igual. Lo que cambia es el conjunto de
+      alternativas de cada firmware: con `digest/WSSE` enumerado aparte, `digest` significa "solo
+      HTTP Digest"; con `digest/basic` como alternativa, `digest` ya incluye WS-Security. Mismo
+      campo, mismo valor, otro significado según el modelo. Ver `07-resultados.md` §7.4.1.
+- [x] **Confirmado el `VCAResource` del domo (01/10) — y descarta la hipótesis de §7.2.2.** El
+      domo responde `403 notSupport` en todas las variantes: **no expone el recurso de modos de
+      VCA**, así que ese mecanismo no puede explicar por qué empezó a responder `/ISAPI/Smart/*`
+      tras el reinicio del 25/09. Queda **sin explicación verificada**, y así se consignó en la
+      tesis en vez de dejar la hipótesis como si fuera un resultado. Dato lateral: el domo declara
+      `isSupportTimerVCAResource = true` mientras el recurso dice que no está soportado.
 - [ ] **Dar de alta la cámara Scati** (27/09: confirmado que hay acceso). Es el caso "otra marca"
       que pedía el cronograma del anteproyecto (Fase 3: "validación de Scati u otra marca
       disponible"). No tiene analítica — es el resultado esperado, no un problema: el propio

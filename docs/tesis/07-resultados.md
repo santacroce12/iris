@@ -148,15 +148,30 @@ capa de abstracción: **un mismo equipo cambia su superficie de API completa seg
 configuración**. Un árbol de endpoints entero aparece mientras otro desaparece, sin que cambie el
 modelo, el firmware ni el protocolo de transporte.
 
-Esto tiene dos consecuencias para la tesis. La primera es metodológica: refuerza, con un mecanismo
-concreto y verificable, por qué una matriz de compatibilidad no puede construirse a partir del
-modelo del equipo. La segunda es que **ofrece una hipótesis fundada para el hallazgo de §7.2.1**:
-si en el reinicio del 25/09 el domo cambió de modo de VCA, eso explicaría por qué
-`/ISAPI/Smart/*` empezó a responder de un día para el otro en un equipo que antes lo rechazaba.
-Esa hipótesis **queda sin confirmar** en esta versión del trabajo: requiere leer el `VCAResource`
-del domo, lo que no fue posible en la sesión del 30/09 por una caída de la base de datos que
-guarda sus credenciales. Es la primera verificación pendiente para la próxima sesión con hardware,
-y se la señala explícitamente en vez de presentar la hipótesis como resultado.
+La consecuencia metodológica es directa: refuerza, con un mecanismo concreto y verificable, por qué
+una matriz de compatibilidad no puede construirse a partir del modelo del equipo.
+
+**Una hipótesis que este trabajo formuló y después tuvo que descartar.** Al encontrar este
+mecanismo, resultaba natural extenderlo al hallazgo de §7.2.1: si en el reinicio del 25/09 el domo
+hubiera cambiado de modo de VCA, eso explicaría por qué `/ISAPI/Smart/*` empezó a responder de un
+día para el otro. La hipótesis se registró explícitamente como *no confirmada*, pendiente de leer
+el `VCAResource` de esa cámara.
+
+Esa lectura se hizo el 01/10, y **el resultado descarta la hipótesis**: el domo responde
+`403 notSupport` a `/ISAPI/System/Video/inputs/channels/1/VCAResource` en todas sus variantes
+(XML, JSON y el recurso de capacidades). No es que esté en otro modo: **ese equipo no expone el
+recurso de modos de VCA en absoluto**, de modo que el mecanismo descrito en esta sección no puede
+ser la explicación de §7.2.1. Por qué el domo cambió de comportamiento sigue sin explicación
+verificada, y así queda consignado.
+
+Se deja el recorrido completo —hipótesis, criterio de verificación y refutación— porque ilustra el
+principio que ordena todo este capítulo: una explicación plausible y mecánicamente coherente no es
+un resultado hasta que se la contrasta contra el equipo, y acá el contraste la descartó.
+
+Un último detalle del mismo chequeo, que vuelve sobre §3.5: el documento general de capacidades
+del domo declara `isSupportTimerVCAResource = true`, mientras el recurso de VCA responde que no
+está soportado. Es una contradicción interna más entre lo declarado y lo verificable, en el mismo
+equipo y en la misma consulta.
 
 ## 7.3 Rarezas verificadas contra el hardware real
 
@@ -390,11 +405,32 @@ biblioteca cliente.** La cámara declaraba:
 <certificateType opt="digest/WSSE,digest">digest</certificateType>
 ```
 
-es decir, aceptaba **solo** HTTP Digest. La biblioteca utilizada en este trabajo firma todas sus
-llamadas SOAP con WS-Security UsernameToken y reserva el digest HTTP únicamente para descargar
-imágenes. Dos mecanismos de autenticación perfectamente válidos, ambos contemplados por el
-estándar, que no se cruzan nunca. Cambiando el equipo al modo permisivo (`digest/WSSE`, que acepta
-los dos) la verificación pasó a `status: online` por los tres protocolos.
+La biblioteca utilizada en este trabajo firma todas sus llamadas SOAP con WS-Security
+UsernameToken y reserva el digest HTTP únicamente para descargar imágenes. Cambiando el equipo al
+otro valor disponible (`digest/WSSE`) la verificación pasó a `status: online` por los tres
+protocolos.
+
+**Y acá aparece el hallazgo que no se buscaba.** La explicación natural de lo anterior sería "el
+valor `digest` significa *solo HTTP Digest* y por eso rechaza WS-Security". Al contrastarlo contra
+las otras dos cámaras, esa explicación no se sostiene:
+
+| Cámara | Valor actual | Valores que ofrece | ¿ONVIF funciona? |
+|---|---|---|---|
+| Domo iDS-2CD7146G2-IZS | `digest/WSSE` | `digest/WSSE,digest` | sí |
+| **PTZ DS-2DF8A836IX-AEL** | **`digest`** | **`digest,digest/basic`** | **sí** |
+| Bullet iDS-2CD7A46G0/P | `digest` → `digest/WSSE` | `digest/WSSE,digest` | solo tras el cambio |
+
+La PTZ está en `digest` —el mismo valor literal que bloqueaba a la bullet— y su ONVIF funciona sin
+problemas. La diferencia está en el **conjunto de valores que cada equipo ofrece**: donde el
+firmware enumera `digest/WSSE` como alternativa, `digest` significa "solo HTTP Digest"; donde la
+alternativa enumerada es `digest/basic`, el valor `digest` evidentemente ya incluye WS-Security,
+porque de otro modo la PTZ no respondería.
+
+Es decir: **el mismo campo de configuración, con el mismo valor literal, significa cosas distintas
+en dos cámaras del mismo fabricante**, y lo único que lo delata es la lista de alternativas que
+cada una enumera. Pertenece a la misma familia que el eje vertical invertido (§7.3.4) y que el
+signo de la zona horaria (§7.3.6): campos homónimos y documentados igual, con semánticas que solo
+se descubren probando contra cada equipo.
 
 **Lo que este caso aporta al argumento del trabajo.** ONVIF es *el* protocolo estándar del
 dominio: su razón de existir es que un cliente pueda hablar con cualquier cámara sin conocer al
@@ -410,10 +446,8 @@ distinto para llegar al mismo resultado:
 La conclusión no es que ONVIF no sirva —una vez resuelto el acceso, las tres responden el mismo
 conjunto de operaciones—, sino que **la estandarización cubre el vocabulario y no la puerta de
 entrada**. Un integrador que asuma "ONVIF es estándar, con credenciales alcanza" se encuentra, en
-tres equipos del mismo fabricante, con tres configuraciones distintas y un mensaje de error que no
-menciona ninguna de ellas. Queda pendiente comparar el `certificateType` de las otras dos cámaras
-para saber si venían de fábrica en el modo permisivo, lo que explicaría por qué nunca presentaron
-este obstáculo; no fue posible el 01/10 porque su red no era alcanzable.
+tres equipos del mismo fabricante, con tres configuraciones distintas, un campo que significa
+cosas distintas según el modelo, y un mensaje de error que no menciona ninguna de ellas.
 
 Con esto, la verificación de ONVIF contra hardware real queda cerrada para las **tres** cámaras
 Hikvision del trabajo — la única pendiente es la cámara Scati (§7.8).

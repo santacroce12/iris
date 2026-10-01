@@ -361,8 +361,15 @@ aplicar nada, como sí ocurre en la PTZ (§3.1). El endpoint de AI Open Platform
 tarea de análisis (`{"Tasks": []}`, igual que el 24/09): no es que una API haya reemplazado a la
 otra, es que **ahora responden las dos a la vez**.
 
-La causa más probable es una actualización de firmware o un cambio de licencia/modo de VCA
-aplicado en el reinicio del 25/09 — no se puede confirmar sin acceso al historial de
+**Descartado el 01/10**: se leyó el `VCAResource` del domo y responde `403 notSupport` en todas
+sus variantes. Ese equipo **no expone el recurso de modos de VCA**, así que el mecanismo
+documentado en §6.9 para la bullet no puede explicar este cambio de comportamiento. (De paso,
+otra contradicción interna: `System/capabilities` del domo declara `isSupportTimerVCAResource =
+true` mientras el recurso responde que no está soportado.) Por qué el domo empezó a responder la
+analítica clásica sigue **sin explicación verificada**.
+
+La causa más probable es una actualización de firmware o un cambio de licencia aplicado en el
+reinicio del 25/09 — no se puede confirmar sin acceso al historial de
 mantenimiento del equipo. Lo que sí se puede afirmar con evidencia es el resultado: **la
 compatibilidad de una cámara no es una propiedad fija que se mide una vez**; el mismo equipo, sin
 cambiar de firmware documentado ni de modelo, pasó de exponer una sola familia de analítica a
@@ -577,9 +584,22 @@ mecanismos, no menos.
 de la misma marca**: dos venían con ONVIF apagado de fábrica y se habilitaron con la receta de
 §6.5; esta venía encendida y aun así no se podía usar, por dos razones que no tienen nada que ver
 con "estar habilitado". ONVIF es el protocolo *estándar* del dominio, y hasta acá cada equipo pidió
-un camino distinto para llegar a lo mismo. Queda pendiente comparar el `certificateType` de las
-otras dos —no se pudo el 01/10 porque su red no era alcanzable desde la máquina— para saber si
-venían en `digest/WSSE` de fábrica, que explicaría por qué nunca dieron este problema.
+un camino distinto para llegar a lo mismo.
+
+**La comparación con las otras dos (01/10) corrigió la explicación.** Lo intuitivo sería que el
+valor `digest` signifique "solo HTTP Digest" y por eso rechace WS-Security. No es así:
+
+| Cámara | Valor actual | Valores que ofrece | ¿ONVIF anda? |
+|---|---|---|---|
+| Domo iDS-2CD7146G2-IZS | `digest/WSSE` | `digest/WSSE,digest` | sí |
+| **PTZ DS-2DF8A836IX-AEL** | **`digest`** | **`digest,digest/basic`** | **sí** |
+| Bullet iDS-2CD7A46G0/P | `digest` → `digest/WSSE` | `digest/WSSE,digest` | solo tras el cambio |
+
+La PTZ está en `digest`, el mismo valor que bloqueaba a la bullet, y anda. Lo que cambia es el
+**conjunto de alternativas que enumera cada firmware**: donde aparece `digest/WSSE` como opción
+aparte, `digest` quiere decir "solo HTTP Digest"; donde la alternativa es `digest/basic`, el
+`digest` ya incluye WS-Security. Mismo campo, mismo valor literal, significados distintos según el
+modelo — la misma familia de rareza que el eje Y invertido y el signo de la zona horaria.
 
 **Detalle que encaja con §6.9**: en la matriz de esta cámara, `events.motion` queda como *no
 soportada y verificada* por **los dos** protocolos, mientras que en la PTZ y el domo ISAPI sí la
