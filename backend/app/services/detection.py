@@ -159,6 +159,24 @@ def sondas_onvif(session: OnvifSession) -> list[Sonda]:
     ]
 
 
+def _declara(crudo: str, marca: str) -> bool | None:
+    """Qué dice el documento de capacidades sobre una marca.
+
+    Devuelve True si la declara, False si la **niega explícitamente**, y None si ni la menciona.
+    Distinguir los tres casos importa: el documento mezcla banderas booleanas
+    (`<isSupportSmart>false</isSupportSmart>`) con bloques cuya sola presencia es la declaración
+    (`<SmartCap>...</SmartCap>`). Buscar solo si la etiqueta aparece da por soportado justo lo
+    que la cámara está negando.
+    """
+    if f"<{marca}>true<" in crudo:
+        return True
+    if f"<{marca}>false<" in crudo:
+        return False
+    if f"<{marca}>" in crudo or f"<{marca} " in crudo:
+        return True  # bloque, no bandera: que exista ya es la declaración
+    return None
+
+
 async def _declaradas_isapi(session: AsyncSession, camera: Camera, client: IsapiClient) -> None:
     """Lo que la cámara dice soportar, antes de probar nada."""
     try:
@@ -166,22 +184,31 @@ async def _declaradas_isapi(session: AsyncSession, camera: Camera, client: Isapi
     except DriverError:
         return
     for code, marcas in DECLARADAS_ISAPI.items():
-        presente = any(f"<{m}>true<" in crudo or f"<{m}" in crudo for m in marcas)
-        if not presente and code in NO_SE_PRUEBAN:
+        dichos = [_declara(crudo, m) for m in marcas]
+        if any(d is True for d in dichos):
+            nivel, nota = SupportLevel.SUPPORTED, None
+        elif any(d is False for d in dichos):
+            # La cámara la niega. No es prueba —se vio un equipo que niega el parking y lo
+            # soporta por otro árbol (§7.3.7 de la tesis)— pero es su declaración, y decir
+            # lo contrario sería inventarle soporte.
+            nivel, nota = SupportLevel.UNSUPPORTED, "La cámara la declara como no soportada"
+        elif code in NO_SE_PRUEBAN:
             continue  # no pisar la nota de "no se prueba" con una conclusión que no se tiene
+        else:
+            # Que una marca no aparezca en el documento de capacidades NO prueba que la
+            # función no exista: solo una llamada que responda "notSupport" lo prueba.
+            nivel, nota = SupportLevel.UNVERIFIED, "La cámara no lo declara; hay que probarlo"
         await record_check(
             session,
             camera_id=camera.id,
             code=code,
             protocol=Protocol.ISAPI,
-            # Que una marca no aparezca en el documento de capacidades NO prueba que la
-            # función no exista: solo una llamada que responda "notSupport" lo prueba.
-            level=SupportLevel.SUPPORTED if presente else SupportLevel.UNVERIFIED,
+            level=nivel,
             source=CapabilitySource.DECLARED,
             evidence={
                 "marcas": list(marcas),
-                "encontrada": presente,
-                **({} if presente else {"nota": "La cámara no lo declara; hay que probarlo"}),
+                "declarado": dict(zip(marcas, dichos, strict=True)),
+                **({"nota": nota} if nota else {}),
             },
         )
 
