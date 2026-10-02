@@ -22,3 +22,6 @@ desktop.ini
 
 # Claude Code (config local de cada maquina)
 .claude/settings.local.json
+
+# Scratch del navegador automatizado (volcados con timestamp, se regeneran solos)
+.playwright-cli/

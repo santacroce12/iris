@@ -1,0 +1,9 @@
+camara,funcion,protocolo,repeticiones,exitos,tasa_exito,latencia_p50_ms,latencia_p95_ms,latencia_media_ms,latencia_min_ms,latencia_max_ms
+"QA ptz","device.info","isapi","30","30","1.000","47.4","81.4","51.6","27.3","94.7"
+"QA ptz","events.motion","isapi","30","30","1.000","46.4","94.0","53.2","30.7","103.0"
+"QA ptz","media.profiles","isapi","30","30","1.000","51.7","70.2","52.3","28.5","105.8"
+"QA ptz","media.snapshot","isapi","30","30","1.000","47.9","90.6","52.5","30.6","90.9"
+"QA ptz","system.status","isapi","30","30","1.000","37.6","68.3","40.4","27.8","92.7"
+"QA ptz","system.time","isapi","30","30","1.000","67.0","106.5","72.6","52.8","108.6"
+"QA ptz","video.image","isapi","30","30","1.000","34.2","45.8","35.5","27.0","49.2"
+"QA ptz","video.osd","isapi","30","30","1.000","35.1","44.0","35.9","29.5","45.4"

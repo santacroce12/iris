@@ -1,0 +1,185 @@
+FFFFFFFFFFFFFFFFFFFFFF......FFF                                          [100%]
+================================== FAILURES ===================================
+_______ test_patch_rejects_invalid_camera_fields_before_commit[patch0] ________
+tests\qa\test_contracts.py:78: in test_patch_rejects_invalid_camera_fields_before_commit
+    assert response.status_code == 422, response.text
+E   AssertionError: Internal Server Error
+E   assert 500 == 422
+E    +  where 500 = <Response [500 Internal Server Error]>.status_code
+_______ test_patch_rejects_invalid_camera_fields_before_commit[patch1] ________
+tests\qa\test_contracts.py:78: in test_patch_rejects_invalid_camera_fields_before_commit
+    assert response.status_code == 422, response.text
+E   AssertionError: Internal Server Error
+E   assert 500 == 422
+E    +  where 500 = <Response [500 Internal Server Error]>.status_code
+_______ test_patch_rejects_invalid_camera_fields_before_commit[patch2] ________
+tests\qa\test_contracts.py:78: in test_patch_rejects_invalid_camera_fields_before_commit
+    assert response.status_code == 422, response.text
+E   AssertionError: Internal Server Error
+E   assert 500 == 422
+E    +  where 500 = <Response [500 Internal Server Error]>.status_code
+_______ test_patch_rejects_invalid_camera_fields_before_commit[patch3] ________
+tests\qa\test_contracts.py:78: in test_patch_rejects_invalid_camera_fields_before_commit
+    assert response.status_code == 422, response.text
+E   AssertionError: Internal Server Error
+E   assert 500 == 422
+E    +  where 500 = <Response [500 Internal Server Error]>.status_code
+_______ test_patch_rejects_invalid_camera_fields_before_commit[patch4] ________
+tests\qa\test_contracts.py:78: in test_patch_rejects_invalid_camera_fields_before_commit
+    assert response.status_code == 422, response.text
+E   AssertionError: Internal Server Error
+E   assert 500 == 422
+E    +  where 500 = <Response [500 Internal Server Error]>.status_code
+______________ test_create_rejects_whitespace_only_fields[name] _______________
+tests\qa\test_contracts.py:86: in test_create_rejects_whitespace_only_fields
+    assert response.status_code == 422, response.text
+E   AssertionError: {"name":"   ","host":"127.0.0.1","http_port":80,"use_https":false,"verify_tls":false,"rtsp_port":554,"onvif_port":80,"channel":1,"username":"admin","onvif_username":null,"network_mode":"lan","id":"ee509c80-cc44-43c6-9fc6-87645f47c7ee","vendor":null,"model":null,"serial":null,"firmware":null,"mac":null,"vca_mode":null,"status":"unknown","last_seen_at":null,"listen_events":false,"created_at":"2026-10-01T14:05:28.222865Z"}
+E   assert 201 == 422
+E    +  where 201 = <Response [201 Created]>.status_code
+______________ test_create_rejects_whitespace_only_fields[host] _______________
+tests\qa\test_contracts.py:86: in test_create_rejects_whitespace_only_fields
+    assert response.status_code == 422, response.text
+E   AssertionError: {"name":"QA","host":"   ","http_port":80,"use_https":false,"verify_tls":false,"rtsp_port":554,"onvif_port":80,"channel":1,"username":"admin","onvif_username":null,"network_mode":"lan","id":"9897ad28-bd3d-4e06-8767-eb79f911f90a","vendor":null,"model":null,"serial":null,"firmware":null,"mac":null,"vca_mode":null,"status":"unknown","last_seen_at":null,"listen_events":false,"created_at":"2026-10-01T14:05:28.547696Z"}
+E   assert 201 == 422
+E    +  where 201 = <Response [201 Created]>.status_code
+____________ test_create_rejects_whitespace_only_fields[username] _____________
+tests\qa\test_contracts.py:86: in test_create_rejects_whitespace_only_fields
+    assert response.status_code == 422, response.text
+E   AssertionError: {"name":"QA","host":"127.0.0.1","http_port":80,"use_https":false,"verify_tls":false,"rtsp_port":554,"onvif_port":80,"channel":1,"username":"   ","onvif_username":null,"network_mode":"lan","id":"c09b49af-1be3-4d80-a167-1327c6f36d1d","vendor":null,"model":null,"serial":null,"firmware":null,"mac":null,"vca_mode":null,"status":"unknown","last_seen_at":null,"listen_events":false,"created_at":"2026-10-01T14:05:28.877942Z"}
+E   assert 201 == 422
+E    +  where 201 = <Response [201 Created]>.status_code
+_____________ test_operations_limit_negative_is_validation_error ______________
+tests\qa\test_contracts.py:91: in test_operations_limit_negative_is_validation_error
+    assert response.status_code == 422, response.text
+E   AssertionError: Internal Server Error
+E   assert 500 == 422
+E    +  where 500 = <Response [500 Internal Server Error]>.status_code
+_______ test_connection_edit_invalidates_previous_evidence_and_profiles _______
+tests\qa\test_contracts.py:121: in test_connection_edit_invalidates_previous_evidence_and_profiles
+    assert not any(c["level"] == "supported" for c in checks) and not profiles, (checks, profiles)
+E   AssertionError: ([{'capability_code': 'device.info', 'protocol': 'isapi', 'level': 'supported', 'source': 'verified', ...}], [{'id': '77d7e288-31d5-462f-b644-14568594bb07', 'protocol': 'isapi', 'token': '101', 'name': None, ...}])
+E   assert (not True)
+E    +  where True = any(<generator object test_connection_edit_invalidates_previous_evidence_and_profiles.<locals>.<genexpr> at 0x000002BAC0647850>)
+____________ test_false_capability_flag_is_not_declared_supported _____________
+tests\qa\test_contracts.py:145: in test_false_capability_flag_is_not_declared_supported
+    assert check.level != "supported", check.evidence
+E   AssertionError: {'marcas': ['isSupportSmart', 'SmartCap'], 'encontrada': True}
+E   assert 'supported' != 'supported'
+E    +  where 'supported' = <app.db.models.CapabilityCheck object at 0x000002BAC18442C0>.level
+______________ test_rule_failure_keeps_backup_and_operation_log _______________
+tests\qa\test_contracts.py:157: in test_rule_failure_keeps_backup_and_operation_log
+    assert backups and operations, {"backups": backups, "operations": operations}
+E   AssertionError: {'backups': [], 'operations': []}
+E   assert ([])
+_______________ test_failed_restore_is_not_reported_as_success ________________
+tests\qa\test_contracts.py:183: in test_failed_restore_is_not_reported_as_success
+    assert response.status_code == 502, f"restore inform� {response.status_code} sin verificar"
+E   AssertionError: restore inform� 204 sin verificar
+E   assert 204 == 502
+E    +  where 204 = <Response [204 No Content]>.status_code
+_ test_common_write_detects_camera_ignoring_change[image-imageColor.xml-patch0] _
+tests\qa\test_contracts.py:206: in test_common_write_detects_camera_ignoring_change
+    assert response.status_code == 502, response.text
+E   AssertionError: {"brightness":50,"contrast":50,"saturation":50,"sharpness":null}
+E   assert 200 == 502
+E    +  where 200 = <Response [200 OK]>.status_code
+__ test_common_write_detects_camera_ignoring_change[osd-overlays.xml-patch1] __
+tests\qa\test_contracts.py:206: in test_common_write_detects_camera_ignoring_change
+    assert response.status_code == 502, response.text
+E   AssertionError: {"show_name":false,"show_date":true,"name":null,"date_format":"MM-DD-YYYY","lines":[]}
+E   assert 200 == 502
+E    +  where 200 = <Response [200 OK]>.status_code
+_ test_common_write_detects_camera_ignoring_change[motion-motionDetection.xml-patch2] _
+tests\qa\test_contracts.py:206: in test_common_write_detects_camera_ignoring_change
+    assert response.status_code == 502, response.text
+E   AssertionError: {"enabled":true,"sensitivity":40}
+E   assert 200 == 502
+E    +  where 200 = <Response [200 OK]>.status_code
+___________________ test_common_write_saves_backup_and_log ____________________
+tests\qa\test_contracts.py:220: in test_common_write_saves_backup_and_log
+    assert backups and operations, {"backups": backups, "operations": operations}
+E   AssertionError: {'backups': [], 'operations': []}
+E   assert ([])
+_________ test_invalid_rule_geometry_is_rejected_before_camera_write __________
+tests\qa\test_contracts.py:230: in test_invalid_rule_geometry_is_rejected_before_camera_write
+    assert response.status_code == 422 and not fake.escrituras, (
+E   AssertionError: (502, 1)
+E   assert (502 == 422)
+E    +  where 502 = <Response [502 Bad Gateway]>.status_code
+__________________ test_invalid_line_point_count_is_rejected __________________
+tests\qa\test_contracts.py:244: in test_invalid_line_point_count_is_rejected
+    assert response.status_code == 422 and not fake.escrituras, (
+E   AssertionError: (200, 1)
+E   assert (200 == 422)
+E    +  where 200 = <Response [200 OK]>.status_code
+___________ test_rtsp_is_not_accepted_as_system_protocol[functions] ___________
+tests\qa\test_contracts.py:271: in test_rtsp_is_not_accepted_as_system_protocol
+    assert response.status_code == 422 and not calls, (response.text, len(calls))
+E   AssertionError: ('{"error_code":"not_supported","message":"QA: se invoc� ONVIF para un pedido RTSP"}', 1)
+E   assert (422 == 422 and not [OnvifTarget(host='10.0.0.77', port=80, username='admin', password='qa', timeout_s=8.0, nat_override=False)])
+E    +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+______ test_rtsp_is_not_accepted_as_system_protocol[functions/time/sync] ______
+tests\qa\test_contracts.py:271: in test_rtsp_is_not_accepted_as_system_protocol
+    assert response.status_code == 422 and not calls, (response.text, len(calls))
+E   AssertionError: ('{"error_code":"not_supported","message":"QA: se invoc� ONVIF para un pedido RTSP"}', 1)
+E   assert (422 == 422 and not [OnvifTarget(host='10.0.0.77', port=80, username='admin', password='qa', timeout_s=8.0, nat_override=False)])
+E    +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+_ test_rtsp_is_not_accepted_as_system_protocol[functions/reboot?confirm=true] _
+tests\qa\test_contracts.py:271: in test_rtsp_is_not_accepted_as_system_protocol
+    assert response.status_code == 422 and not calls, (response.text, len(calls))
+E   AssertionError: ('{"error_code":"not_supported","message":"QA: se invoc� ONVIF para un pedido RTSP"}', 1)
+E   assert (422 == 422 and not [OnvifTarget(host='10.0.0.77', port=80, username='admin', password='qa', timeout_s=8.0, nat_override=False)])
+E    +  where 422 = <Response [422 Unprocessable Entity]>.status_code
+_____________ test_opening_live_does_not_disable_active_recording _____________
+tests\qa\test_contracts.py:305: in test_opening_live_does_not_disable_active_recording
+    assert configuration["record"] is True, configuration
+E   AssertionError: {'record': False, 'sourceOnDemand': True, 'source': 'rtsp://admin:qa@10.0.0.77:554/Streaming/Channels/101', 'rtspTransport': 'tcp'}
+E   assert False is True
+____________________ test_delete_camera_stops_its_listener ____________________
+tests\qa\test_contracts.py:318: in test_delete_camera_stops_its_listener
+    assert cid not in hub.listeners
+E   AssertionError: assert UUID('e914721d-bb98-4c25-b48d-a34e58bdb37d') not in {UUID('e914721d-bb98-4c25-b48d-a34e58bdb37d'): <app.engine.event_hub.CameraListener object at 0x000002BAC1912390>}
+E    +  where {UUID('e914721d-bb98-4c25-b48d-a34e58bdb37d'): <app.engine.event_hub.CameraListener object at 0x000002BAC1912390>} = <app.engine.event_hub.EventHub object at 0x000002BAC05C34D0>.listeners
+_______________ test_osd_name_with_ampersand_produces_valid_xml _______________
+..\..\..\..\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\xml\etree\ElementTree.py:1706: in feed
+    self.parser.Parse(data, False)
+E   xml.parsers.expat.ExpatError: not well-formed (invalid token): line 1, column 72
+
+During handling of the above exception, another exception occurred:
+tests\qa\test_contracts.py:342: in test_osd_name_with_ampersand_produces_valid_xml
+    root = ElementTree.fromstring(sent[0])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\defusedxml\common.py:126: in fromstring
+    parser.feed(text)
+..\..\..\..\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\xml\etree\ElementTree.py:1708: in feed
+    self._raiseerror(v)
+..\..\..\..\AppData\Roaming\uv\python\cpython-3.12.14-windows-x86_64-none\Lib\xml\etree\ElementTree.py:1615: in _raiseerror
+    raise err
+E   xml.etree.ElementTree.ParseError: not well-formed (invalid token): line 1, column 72
+=========================== short test summary info ===========================
+FAILED tests/qa/test_contracts.py::test_patch_rejects_invalid_camera_fields_before_commit[patch0]
+FAILED tests/qa/test_contracts.py::test_patch_rejects_invalid_camera_fields_before_commit[patch1]
+FAILED tests/qa/test_contracts.py::test_patch_rejects_invalid_camera_fields_before_commit[patch2]
+FAILED tests/qa/test_contracts.py::test_patch_rejects_invalid_camera_fields_before_commit[patch3]
+FAILED tests/qa/test_contracts.py::test_patch_rejects_invalid_camera_fields_before_commit[patch4]
+FAILED tests/qa/test_contracts.py::test_create_rejects_whitespace_only_fields[name]
+FAILED tests/qa/test_contracts.py::test_create_rejects_whitespace_only_fields[host]
+FAILED tests/qa/test_contracts.py::test_create_rejects_whitespace_only_fields[username]
+FAILED tests/qa/test_contracts.py::test_operations_limit_negative_is_validation_error
+FAILED tests/qa/test_contracts.py::test_connection_edit_invalidates_previous_evidence_and_profiles
+FAILED tests/qa/test_contracts.py::test_false_capability_flag_is_not_declared_supported
+FAILED tests/qa/test_contracts.py::test_rule_failure_keeps_backup_and_operation_log
+FAILED tests/qa/test_contracts.py::test_failed_restore_is_not_reported_as_success
+FAILED tests/qa/test_contracts.py::test_common_write_detects_camera_ignoring_change[image-imageColor.xml-patch0]
+FAILED tests/qa/test_contracts.py::test_common_write_detects_camera_ignoring_change[osd-overlays.xml-patch1]
+FAILED tests/qa/test_contracts.py::test_common_write_detects_camera_ignoring_change[motion-motionDetection.xml-patch2]
+FAILED tests/qa/test_contracts.py::test_common_write_saves_backup_and_log - A...
+FAILED tests/qa/test_contracts.py::test_invalid_rule_geometry_is_rejected_before_camera_write
+FAILED tests/qa/test_contracts.py::test_invalid_line_point_count_is_rejected
+FAILED tests/qa/test_contracts.py::test_rtsp_is_not_accepted_as_system_protocol[functions]
+FAILED tests/qa/test_contracts.py::test_rtsp_is_not_accepted_as_system_protocol[functions/time/sync]
+FAILED tests/qa/test_contracts.py::test_rtsp_is_not_accepted_as_system_protocol[functions/reboot?confirm=true]
+FAILED tests/qa/test_contracts.py::test_opening_live_does_not_disable_active_recording
+FAILED tests/qa/test_contracts.py::test_delete_camera_stops_its_listener - As...
+FAILED tests/qa/test_contracts.py::test_osd_name_with_ampersand_produces_valid_xml
+25 failed, 6 passed in 39.21s

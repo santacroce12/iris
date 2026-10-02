@@ -30,7 +30,7 @@ async def main(mode):
             start = time.perf_counter()
             try:
                 r = await api.request(method, path, **kwargs)
-                data = r.json() if "json" in r.headers.get("content-type", "") else {"bytes": len(r.content), "mime": r.headers.get("content-type")}
+                data = r.json() if r.content and "json" in r.headers.get("content-type", "") else {"bytes": len(r.content), "mime": r.headers.get("content-type")}
                 # Identidad y configuración no se copian completas a evidencia versionable.
                 if isinstance(data, dict):
                     data = {k: v for k, v in data.items() if k not in {"serial", "mac", "username", "onvif_username"}}

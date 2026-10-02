@@ -1,0 +1,458 @@
+[
+  {
+    "test": "conexión real",
+    "status": 200,
+    "ms": 709,
+    "result": {
+      "status": "offline",
+      "isapi": {
+        "ok": false,
+        "latency_ms": 62.5,
+        "error_code": "unreachable",
+        "message": "No se pudo conectar: All connection attempts failed",
+        "details": {}
+      },
+      "onvif": {
+        "ok": false,
+        "latency_ms": 22.1,
+        "error_code": "unreachable",
+        "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows]",
+        "details": {}
+      },
+      "rtsp": {
+        "ok": false,
+        "latency_ms": 11.5,
+        "error_code": "unreachable",
+        "message": "RTSP sin conexión: [WinError 1231] No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows",
+        "details": {}
+      }
+    }
+  },
+  {
+    "test": "perfiles real",
+    "status": 200,
+    "ms": 270,
+    "result": [
+      {
+        "id": "613380a3-43c0-45f8-8c58-ad6360a4991c",
+        "protocol": "isapi",
+        "token": "101",
+        "name": "Camera 01",
+        "stream_type": "main",
+        "codec": "H.264",
+        "width": 1920,
+        "height": 1200,
+        "fps": 25.0,
+        "bitrate_kbps": 4096,
+        "rtsp_path": "/Streaming/Channels/101"
+      },
+      {
+        "id": "02f2e8fe-748d-4dab-84b3-39c818e13d8c",
+        "protocol": "isapi",
+        "token": "102",
+        "name": "Camera 01",
+        "stream_type": "sub",
+        "codec": "H.264",
+        "width": 1920,
+        "height": 1080,
+        "fps": 25.0,
+        "bitrate_kbps": 2048,
+        "rtsp_path": "/Streaming/Channels/102"
+      }
+    ]
+  },
+  {
+    "test": "snapshot real",
+    "status": 504,
+    "ms": 163,
+    "result": {
+      "error_code": "unreachable",
+      "message": "No se pudo conectar: All connection attempts failed"
+    }
+  },
+  {
+    "test": "funciones ISAPI real",
+    "status": 200,
+    "ms": 350,
+    "result": {
+      "protocol": "isapi",
+      "status": null,
+      "time": null,
+      "osd": null,
+      "image": null,
+      "motion": null,
+      "errors": {
+        "status": "No se pudo conectar: All connection attempts failed",
+        "time": "No se pudo conectar: All connection attempts failed",
+        "osd": "No se pudo conectar: All connection attempts failed",
+        "image": "No se pudo conectar: All connection attempts failed",
+        "motion": "No se pudo conectar: All connection attempts failed"
+      }
+    }
+  },
+  {
+    "test": "funciones ONVIF real",
+    "status": 504,
+    "ms": 52,
+    "result": {
+      "error_code": "unreachable",
+      "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows]"
+    }
+  },
+  {
+    "test": "reglas real",
+    "status": 504,
+    "ms": 134,
+    "result": {
+      "error_code": "unreachable",
+      "message": "No se pudo conectar: All connection attempts failed"
+    }
+  },
+  {
+    "test": "detectar real",
+    "status": 202,
+    "ms": 470,
+    "result": {
+      "status": "listo"
+    }
+  },
+  {
+    "test": "capacidades real",
+    "status": 200,
+    "ms": 54,
+    "result": [
+      {
+        "capability_code": "analytics.rules",
+        "protocol": "isapi",
+        "level": "unverified",
+        "source": "declared",
+        "evidence": {
+          "nota": "La cámara no lo declara; hay que probarlo",
+          "marcas": [
+            "isSupportSmart",
+            "SmartCap"
+          ],
+          "encontrada": false
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T12:23:34.480640Z"
+      },
+      {
+        "capability_code": "analytics.rules",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "device.info",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 21.2
+        },
+        "latency_ms": 21.160399992368184,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "device.info",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "events.motion",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 25.2
+        },
+        "latency_ms": 25.232800006051548,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "events.motion",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "media.live",
+        "protocol": "rtsp",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "path": "/Streaming/Channels/101",
+          "message": "RTSP sin conexión: [WinError 1231] No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows",
+          "error_code": "unreachable",
+          "latency_ms": 11.5
+        },
+        "latency_ms": 11.500600012368523,
+        "checked_at": "2026-10-01T14:13:51.218458Z"
+      },
+      {
+        "capability_code": "media.profiles",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 26.1
+        },
+        "latency_ms": 26.102599993464537,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "media.profiles",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "media.snapshot",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 22.6
+        },
+        "latency_ms": 22.572600006242283,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "media.snapshot",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "system.reboot",
+        "protocol": "isapi",
+        "level": "unverified",
+        "source": "declared",
+        "evidence": {
+          "motivo": "No se prueba automáticamente: interrumpe el servicio"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "system.reboot",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "system.status",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 20.5
+        },
+        "latency_ms": 20.523699990008026,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "system.status",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "system.time",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 21.7
+        },
+        "latency_ms": 21.7277999909129,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "system.time",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "video.image",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 19.8
+        },
+        "latency_ms": 19.84920000541024,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "video.image",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "video.osd",
+        "protocol": "isapi",
+        "level": "error",
+        "source": "verified",
+        "evidence": {
+          "ok": false,
+          "message": "No se pudo conectar: All connection attempts failed",
+          "error_code": "unreachable",
+          "latency_ms": 27.8
+        },
+        "latency_ms": 27.77319999586325,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      },
+      {
+        "capability_code": "video.osd",
+        "protocol": "onvif",
+        "level": "unverified",
+        "source": "verified",
+        "evidence": {
+          "error": "unreachable",
+          "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+        },
+        "latency_ms": null,
+        "checked_at": "2026-10-01T14:13:52.376492Z"
+      }
+    ]
+  },
+  {
+    "test": "inicio listener real",
+    "status": 200,
+    "ms": 62,
+    "result": {
+      "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+      "status": "detenido",
+      "connected_since": null,
+      "alerts_received": 0,
+      "episodes_saved": 0,
+      "open_episodes": 0,
+      "last_error": null
+    }
+  },
+  {
+    "test": "estado listeners real",
+    "status": 200,
+    "ms": 1647,
+    "result": [
+      {
+        "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+        "status": "reconectando",
+        "connected_since": null,
+        "alerts_received": 0,
+        "episodes_saved": 0,
+        "open_episodes": 0,
+        "last_error": "Stream interrumpido: All connection attempts failed"
+      }
+    ]
+  },
+  {
+    "test": "eventos real",
+    "status": 200,
+    "ms": 672,
+    "result": []
+  },
+  {
+    "test": "parar listener real",
+    "status": 204,
+    "ms": 400,
+    "result": {
+      "bytes": 0,
+      "mime": "application/json"
+    }
+  },
+  {
+    "test": "publicar video real",
+    "status": 200,
+    "ms": 2720,
+    "result": {
+      "path": "cam-555b95419e8e-main",
+      "webrtc": "http://localhost:8889/cam-555b95419e8e-main",
+      "whep": "http://localhost:8889/cam-555b95419e8e-main/whep",
+      "hls": "http://localhost:8888/cam-555b95419e8e-main/index.m3u8",
+      "codec": "H.264",
+      "note": null
+    }
+  }
+]

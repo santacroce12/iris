@@ -1,0 +1,24 @@
+
+> frontend@0.0.0 lint C:\Users\lucas\OneDrive\Escritorio\TESIS CLAUDE\frontend
+> oxlint
+
+src/components/status.tsx:4:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/status.tsx:6:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/components/status.tsx:36:14: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/features/events/Timeline.tsx:12:31: warning react(purity): Cannot call impure function during render help: `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+src/components/ui.tsx:10:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/features/events/EventStream.tsx:81:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/features/cameras/CamerasPage.tsx:13:17: warning react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+src/features/events/LiveToasts.tsx:28:5: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/features/rules/RulesTab.tsx:79:23: warning react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'rules.length', 'selectedId', and 'rules' help: Either include it or remove the dependency array.
+src/features/cameras/CameraDetailPage.tsx:303:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:312:14: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:340:10: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:341:10: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:344:10: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:368:10: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:369:10: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:372:10: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:374:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/cameras/CameraDetailPage.tsx:376:12: warning react(jsx-key): Missing "key" prop for element in array.
+src/features/events/EventsPage.tsx:36:21: warning react(purity): Cannot call impure function during render help: `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders

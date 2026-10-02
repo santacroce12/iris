@@ -1,0 +1,4811 @@
+[
+  {
+    "test": "ptz conexión",
+    "status": 200,
+    "ms": 8522,
+    "result": {
+      "status": "degraded",
+      "isapi": {
+        "ok": true,
+        "latency_ms": 372.6,
+        "error_code": null,
+        "message": null,
+        "details": {
+          "model": "DS-2DF8A836IX-AEL",
+          "firmware": "V5.6.0 build 190320"
+        }
+      },
+      "onvif": {
+        "ok": false,
+        "latency_ms": 7041.1,
+        "error_code": "unreachable",
+        "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]",
+        "details": {}
+      },
+      "rtsp": {
+        "ok": false,
+        "latency_ms": 2159.0,
+        "error_code": "unreachable",
+        "message": "RTSP sin conexión: [WinError 1225] El equipo remoto rechazó la conexión de red",
+        "details": {}
+      }
+    }
+  },
+  {
+    "test": "ptz perfiles",
+    "status": 200,
+    "ms": 2420,
+    "result": [
+      {
+        "id": "1f12571a-2548-4c67-8524-bc5549947469",
+        "protocol": "isapi",
+        "token": "101",
+        "name": "Principal",
+        "stream_type": "main",
+        "codec": "H.265",
+        "width": 3840,
+        "height": 2160,
+        "fps": 25.0,
+        "bitrate_kbps": 8192,
+        "rtsp_path": "/Streaming/Channels/101"
+      },
+      {
+        "id": "f5bd49a6-363f-4726-b2fd-cf6e0850cf54",
+        "protocol": "isapi",
+        "token": "102",
+        "name": "Secundario",
+        "stream_type": "sub",
+        "codec": "H.264",
+        "width": 640,
+        "height": 480,
+        "fps": 15.0,
+        "bitrate_kbps": 512,
+        "rtsp_path": "/Streaming/Channels/102"
+      }
+    ]
+  },
+  {
+    "test": "ptz snapshot",
+    "status": 200,
+    "ms": 486,
+    "result": {
+      "bytes": 65095,
+      "mime": "image/jpeg"
+    }
+  },
+  {
+    "test": "ptz funciones",
+    "status": 200,
+    "ms": 1587,
+    "result": {
+      "protocol": "isapi",
+      "status": {
+        "uptime_s": 5170,
+        "cpu_percent": 17,
+        "memory_percent": 40
+      },
+      "time": {
+        "local_time": "2026-10-01T12:23:59+00:00",
+        "timezone": "CST-8:00:00",
+        "mode": "manual",
+        "ntp_server": "time.windows.com"
+      },
+      "osd": {
+        "show_name": true,
+        "show_date": true,
+        "name": "QA PRUEBA",
+        "date_format": "MM-DD-YYYY",
+        "lines": [
+          "Camara simulada"
+        ]
+      },
+      "image": {
+        "brightness": 37,
+        "contrast": 65,
+        "saturation": 50,
+        "sharpness": 50
+      },
+      "motion": {
+        "enabled": true,
+        "sensitivity": 73
+      },
+      "errors": {}
+    }
+  },
+  {
+    "test": "ptz reglas",
+    "status": 200,
+    "ms": 3088,
+    "result": {
+      "family": "smart",
+      "kinds": [
+        {
+          "kind": "line",
+          "max_rules": 4,
+          "enabled": true,
+          "min_points": 2,
+          "max_points": 2,
+          "targets": [
+            "human",
+            "vehicle",
+            "others"
+          ],
+          "directions": [
+            "any",
+            "a-b",
+            "b-a"
+          ],
+          "toggle_per_rule": false
+        },
+        {
+          "kind": "field",
+          "max_rules": 4,
+          "enabled": false,
+          "min_points": 4,
+          "max_points": 4,
+          "targets": [
+            "human",
+            "vehicle",
+            "others"
+          ],
+          "directions": [],
+          "toggle_per_rule": false
+        }
+      ],
+      "rules": [
+        {
+          "kind": "line",
+          "external_id": "1",
+          "name": null,
+          "points": [
+            [
+              0.15,
+              0.5
+            ],
+            [
+              0.85,
+              0.5
+            ]
+          ],
+          "enabled": true,
+          "configured": true,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [
+            "human",
+            "vehicle"
+          ],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "line",
+          "external_id": "2",
+          "name": null,
+          "points": [
+            [
+              0.349,
+              0.43999999999999995
+            ],
+            [
+              0.619,
+              0.43999999999999995
+            ]
+          ],
+          "enabled": true,
+          "configured": true,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [
+            "human",
+            "vehicle"
+          ],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "line",
+          "external_id": "3",
+          "name": null,
+          "points": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "enabled": true,
+          "configured": false,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "line",
+          "external_id": "4",
+          "name": null,
+          "points": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "enabled": true,
+          "configured": false,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "1",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 50,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "2",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 0,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "3",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 0,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "4",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 0,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        }
+      ],
+      "note": null
+    }
+  },
+  {
+    "test": "ptz detección",
+    "status": 202,
+    "ms": 4541,
+    "result": {
+      "status": "listo"
+    }
+  },
+  {
+    "test": "domo conexión",
+    "status": 200,
+    "ms": 3244,
+    "result": {
+      "status": "degraded",
+      "isapi": {
+        "ok": true,
+        "latency_ms": 374.1,
+        "error_code": null,
+        "message": null,
+        "details": {
+          "model": "iDS-2CD7146G2-IZS",
+          "firmware": "V5.9.24 build 260702"
+        }
+      },
+      "onvif": {
+        "ok": false,
+        "latency_ms": 2308.6,
+        "error_code": "unreachable",
+        "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]",
+        "details": {}
+      },
+      "rtsp": {
+        "ok": false,
+        "latency_ms": 2293.1,
+        "error_code": "unreachable",
+        "message": "RTSP sin conexión: [WinError 1225] El equipo remoto rechazó la conexión de red",
+        "details": {}
+      }
+    }
+  },
+  {
+    "test": "domo perfiles",
+    "status": 200,
+    "ms": 3059,
+    "result": [
+      {
+        "id": "621814b2-5ed1-40f6-afff-bbe18b5df22a",
+        "protocol": "isapi",
+        "token": "101",
+        "name": "Principal",
+        "stream_type": "main",
+        "codec": "H.265",
+        "width": 3840,
+        "height": 2160,
+        "fps": 25.0,
+        "bitrate_kbps": 8192,
+        "rtsp_path": "/Streaming/Channels/101"
+      },
+      {
+        "id": "13b42a06-5272-4c11-8d82-97e5587ce09f",
+        "protocol": "isapi",
+        "token": "102",
+        "name": "Secundario",
+        "stream_type": "sub",
+        "codec": "H.264",
+        "width": 640,
+        "height": 480,
+        "fps": 15.0,
+        "bitrate_kbps": 512,
+        "rtsp_path": "/Streaming/Channels/102"
+      }
+    ]
+  },
+  {
+    "test": "domo snapshot",
+    "status": 200,
+    "ms": 250,
+    "result": {
+      "bytes": 65095,
+      "mime": "image/jpeg"
+    }
+  },
+  {
+    "test": "domo funciones",
+    "status": 200,
+    "ms": 703,
+    "result": {
+      "protocol": "isapi",
+      "status": {
+        "uptime_s": 5409,
+        "cpu_percent": 17,
+        "memory_percent": 40
+      },
+      "time": {
+        "local_time": "2026-10-01T21:50:26+08:00",
+        "timezone": "CST-8:00:00",
+        "mode": "NTP",
+        "ntp_server": "time.windows.com"
+      },
+      "osd": {
+        "show_name": true,
+        "show_date": true,
+        "name": "Entrada",
+        "date_format": "MM-DD-YYYY",
+        "lines": [
+          "Camara simulada"
+        ]
+      },
+      "image": {
+        "brightness": 50,
+        "contrast": 50,
+        "saturation": 50,
+        "sharpness": 50
+      },
+      "motion": {
+        "enabled": false,
+        "sensitivity": 20
+      },
+      "errors": {}
+    }
+  },
+  {
+    "test": "domo reglas",
+    "status": 200,
+    "ms": 287,
+    "result": {
+      "family": "aiop",
+      "kinds": [],
+      "rules": [],
+      "note": "La cámara no tiene ninguna tarea de IA configurada"
+    }
+  },
+  {
+    "test": "domo detección",
+    "status": 202,
+    "ms": 3423,
+    "result": {
+      "status": "listo"
+    }
+  },
+  {
+    "test": "basica conexión",
+    "status": 200,
+    "ms": 2376,
+    "result": {
+      "status": "degraded",
+      "isapi": {
+        "ok": true,
+        "latency_ms": 179.8,
+        "error_code": null,
+        "message": null,
+        "details": {
+          "model": "DS-2CD1023G2-I",
+          "firmware": "V5.8.4"
+        }
+      },
+      "onvif": {
+        "ok": false,
+        "latency_ms": 2038.2,
+        "error_code": "unreachable",
+        "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]",
+        "details": {}
+      },
+      "rtsp": {
+        "ok": false,
+        "latency_ms": 2033.8,
+        "error_code": "unreachable",
+        "message": "RTSP sin conexión: [WinError 1225] El equipo remoto rechazó la conexión de red",
+        "details": {}
+      }
+    }
+  },
+  {
+    "test": "basica perfiles",
+    "status": 200,
+    "ms": 2974,
+    "result": [
+      {
+        "id": "384af2f5-6638-4eaa-a118-c67448afb6da",
+        "protocol": "isapi",
+        "token": "101",
+        "name": "Camera 01",
+        "stream_type": "main",
+        "codec": "H.264",
+        "width": 1920,
+        "height": 1080,
+        "fps": 25.0,
+        "bitrate_kbps": 4096,
+        "rtsp_path": "/Streaming/Channels/101"
+      },
+      {
+        "id": "00548c01-8767-48fb-8e20-c9d4fd7cf1cb",
+        "protocol": "isapi",
+        "token": "102",
+        "name": "Camera 01",
+        "stream_type": "sub",
+        "codec": "H.264",
+        "width": 640,
+        "height": 360,
+        "fps": 25.0,
+        "bitrate_kbps": 1024,
+        "rtsp_path": "/Streaming/Channels/102"
+      }
+    ]
+  },
+  {
+    "test": "basica snapshot",
+    "status": 200,
+    "ms": 132,
+    "result": {
+      "bytes": 65095,
+      "mime": "image/jpeg"
+    }
+  },
+  {
+    "test": "basica funciones",
+    "status": 200,
+    "ms": 561,
+    "result": {
+      "protocol": "isapi",
+      "status": {
+        "uptime_s": 5414,
+        "cpu_percent": 17,
+        "memory_percent": 40
+      },
+      "time": {
+        "local_time": "2026-10-01T21:50:36+08:00",
+        "timezone": "CST-8:00:00",
+        "mode": "NTP",
+        "ntp_server": "time.windows.com"
+      },
+      "osd": null,
+      "image": null,
+      "motion": {
+        "enabled": false,
+        "sensitivity": 20
+      },
+      "errors": {
+        "osd": "GET /ISAPI/System/Video/inputs/channels/1/overlays → HTTP 403 notSupport",
+        "image": "GET /ISAPI/Image/channels/1/color → HTTP 403 notSupport"
+      }
+    }
+  },
+  {
+    "test": "basica reglas",
+    "status": 200,
+    "ms": 181,
+    "result": {
+      "family": "none",
+      "kinds": [],
+      "rules": [],
+      "note": "La cámara no soporta ninguna familia de reglas conocida"
+    }
+  },
+  {
+    "test": "basica detección",
+    "status": 202,
+    "ms": 2686,
+    "result": {
+      "status": "listo"
+    }
+  },
+  {
+    "test": "cambiar OSD",
+    "status": 200,
+    "ms": 104,
+    "result": {
+      "show_name": true,
+      "show_date": true,
+      "name": "QA PRUEBA",
+      "date_format": "MM-DD-YYYY",
+      "lines": [
+        "Camara simulada"
+      ]
+    }
+  },
+  {
+    "test": "cambiar imagen",
+    "status": 200,
+    "ms": 123,
+    "result": {
+      "brightness": 37,
+      "contrast": 65,
+      "saturation": 50,
+      "sharpness": 50
+    }
+  },
+  {
+    "test": "cambiar movimiento",
+    "status": 200,
+    "ms": 93,
+    "result": {
+      "enabled": true,
+      "sensitivity": 73
+    }
+  },
+  {
+    "test": "sincronizar hora",
+    "status": 200,
+    "ms": 105,
+    "result": {
+      "local_time": "2026-10-01T13:50:39+00:00",
+      "timezone": "CST-8:00:00",
+      "mode": "manual",
+      "ntp_server": "time.windows.com"
+    }
+  },
+  {
+    "test": "reinicio sin confirmación",
+    "status": 422,
+    "ms": 34,
+    "result": {
+      "error_code": "not_supported",
+      "message": "El reinicio necesita confirmación explícita (confirm=true)"
+    }
+  },
+  {
+    "test": "reinicio simulador confirmado",
+    "status": 200,
+    "ms": 96,
+    "result": {
+      "status": 200
+    }
+  },
+  {
+    "test": "editar línea",
+    "status": 200,
+    "ms": 232,
+    "result": {
+      "kind": "line",
+      "external_id": "1",
+      "name": null,
+      "points": [
+        [
+          0.2,
+          0.30000000000000004
+        ],
+        [
+          0.8,
+          0.7
+        ]
+      ],
+      "enabled": true,
+      "configured": true,
+      "sensitivity": 50,
+      "direction": "any",
+      "target": [
+        "human",
+        "vehicle"
+      ],
+      "extra": {
+        "time_threshold": null
+      }
+    }
+  },
+  {
+    "test": "restaurar línea",
+    "status": 204,
+    "ms": 107,
+    "result": {
+      "bytes": 0,
+      "mime": "application/json"
+    }
+  },
+  {
+    "test": "línea restaurada",
+    "status": 200,
+    "ms": 676,
+    "result": {
+      "family": "smart",
+      "kinds": [
+        {
+          "kind": "line",
+          "max_rules": 4,
+          "enabled": true,
+          "min_points": 2,
+          "max_points": 2,
+          "targets": [
+            "human",
+            "vehicle",
+            "others"
+          ],
+          "directions": [
+            "any",
+            "a-b",
+            "b-a"
+          ],
+          "toggle_per_rule": false
+        },
+        {
+          "kind": "field",
+          "max_rules": 4,
+          "enabled": false,
+          "min_points": 4,
+          "max_points": 4,
+          "targets": [
+            "human",
+            "vehicle",
+            "others"
+          ],
+          "directions": [],
+          "toggle_per_rule": false
+        }
+      ],
+      "rules": [
+        {
+          "kind": "line",
+          "external_id": "1",
+          "name": null,
+          "points": [
+            [
+              0.15,
+              0.5
+            ],
+            [
+              0.85,
+              0.5
+            ]
+          ],
+          "enabled": true,
+          "configured": true,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [
+            "human",
+            "vehicle"
+          ],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "line",
+          "external_id": "2",
+          "name": null,
+          "points": [
+            [
+              0.349,
+              0.43999999999999995
+            ],
+            [
+              0.619,
+              0.43999999999999995
+            ]
+          ],
+          "enabled": true,
+          "configured": true,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [
+            "human",
+            "vehicle"
+          ],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "line",
+          "external_id": "3",
+          "name": null,
+          "points": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "enabled": true,
+          "configured": false,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "line",
+          "external_id": "4",
+          "name": null,
+          "points": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "enabled": true,
+          "configured": false,
+          "sensitivity": 50,
+          "direction": "any",
+          "target": [],
+          "extra": {
+            "time_threshold": null
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "1",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 50,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "2",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 0,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "3",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 0,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        },
+        {
+          "kind": "field",
+          "external_id": "4",
+          "name": null,
+          "points": [],
+          "enabled": false,
+          "configured": false,
+          "sensitivity": 0,
+          "direction": null,
+          "target": [],
+          "extra": {
+            "time_threshold": 0
+          }
+        }
+      ],
+      "note": null
+    }
+  },
+  {
+    "test": "iniciar listener simulador",
+    "status": 200,
+    "ms": 267,
+    "result": {
+      "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+      "status": "detenido",
+      "connected_since": null,
+      "alerts_received": 0,
+      "episodes_saved": 0,
+      "open_episodes": 0,
+      "last_error": null
+    }
+  },
+  {
+    "test": "SSE simulador",
+    "messages": [
+      {
+        "id": "19ce4913-cc0e-4dff-957a-7682be63ecc8",
+        "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+        "type": "line_crossing",
+        "raw_type": "linedetection",
+        "state": "active",
+        "channel": 1,
+        "occurred_at": "2026-10-01T13:50:44+00:00",
+        "ended_at": null,
+        "hits": 1,
+        "rule_ref": "1",
+        "target_type": "human",
+        "pictures": 1
+      },
+      {
+        "id": "19ce4913-cc0e-4dff-957a-7682be63ecc8",
+        "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+        "type": "line_crossing",
+        "raw_type": "linedetection",
+        "state": "active",
+        "channel": 1,
+        "occurred_at": "2026-10-01T13:50:44+00:00",
+        "ended_at": null,
+        "hits": 2,
+        "rule_ref": "1",
+        "target_type": "human",
+        "pictures": 1
+      },
+      {
+        "id": "19ce4913-cc0e-4dff-957a-7682be63ecc8",
+        "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+        "type": "line_crossing",
+        "raw_type": "linedetection",
+        "state": "active",
+        "channel": 1,
+        "occurred_at": "2026-10-01T13:50:44+00:00",
+        "ended_at": null,
+        "hits": 3,
+        "rule_ref": "1",
+        "target_type": "human",
+        "pictures": 1
+      },
+      {
+        "id": "19ce4913-cc0e-4dff-957a-7682be63ecc8",
+        "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+        "type": "line_crossing",
+        "raw_type": "linedetection",
+        "state": "active",
+        "channel": 1,
+        "occurred_at": "2026-10-01T13:50:44+00:00",
+        "ended_at": null,
+        "hits": 4,
+        "rule_ref": "1",
+        "target_type": "human",
+        "pictures": 1
+      },
+      {
+        "id": "19ce4913-cc0e-4dff-957a-7682be63ecc8",
+        "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+        "type": "line_crossing",
+        "raw_type": "linedetection",
+        "state": "ended",
+        "channel": 1,
+        "occurred_at": "2026-10-01T13:50:44+00:00",
+        "ended_at": "2026-10-01T13:50:49.062323+00:00",
+        "hits": 4,
+        "rule_ref": "1",
+        "target_type": "human",
+        "pictures": 1
+      }
+    ]
+  },
+  {
+    "test": "episodios y foto simulador",
+    "status": 200,
+    "ms": 324,
+    "result": [
+      {
+        "id": "19ce4913-cc0e-4dff-957a-7682be63ecc8",
+        "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+        "protocol": "isapi",
+        "raw_type": "linedetection",
+        "type": "line_crossing",
+        "state": "ended",
+        "channel": 1,
+        "occurred_at": "2026-10-01T13:50:44Z",
+        "ended_at": "2026-10-01T13:50:49.062323Z",
+        "received_at": "2026-10-01T13:50:45.019531Z",
+        "hits": 4,
+        "rule_ref": "1",
+        "target_type": "human",
+        "payload": {
+          "portNo": "80",
+          "dateTime": "2026-10-01T21:50:44+08:00",
+          "protocol": "HTTP",
+          "channelID": "1",
+          "eventType": "linedetection",
+          "ipAddress": "127.0.0.1",
+          "Extensions": {
+            "serialNumber": "SIMULADA-DS2DF8A836IX-0001"
+          },
+          "eventState": "active",
+          "macAddress": "02:00:00:00:00:01",
+          "channelName": "",
+          "activePostCount": "1",
+          "detectionTarget": "human",
+          "eventDescription": "linedetection alarm",
+          "DetectionRegionList": {
+            "DetectionRegionEntry": {
+              "regionID": "1",
+              "sensitivityLevel": "50",
+              "RegionCoordinatesList": {
+                "RegionCoordinates": [
+                  {
+                    "positionX": "150",
+                    "positionY": "500"
+                  },
+                  {
+                    "positionX": "850",
+                    "positionY": "500"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "media": [
+          {
+            "id": "0142b23e-142a-4430-b07f-3ed64cf550e6",
+            "kind": "full",
+            "mime": "image/jpeg",
+            "bytes": 65095
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "servir foto del episodio",
+    "status": 200,
+    "ms": 231,
+    "result": {
+      "bytes": 65095,
+      "mime": "image/jpeg"
+    }
+  },
+  {
+    "test": "parar listener simulador",
+    "status": 204,
+    "ms": 56,
+    "result": {
+      "bytes": 0,
+      "mime": "application/json"
+    }
+  },
+  {
+    "test": "logs escrituras simulador",
+    "status": 200,
+    "ms": 50,
+    "result": [
+      {
+        "id": "24094084-ba69-4f3a-81ff-96e1acad1d7f",
+        "capability_code": "analytics.rules",
+        "protocol": "isapi",
+        "operation": "PUT /ISAPI/Smart/LineDetection/1/lineItem/1",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 12.007099998299964,
+        "error_code": null,
+        "detail": {
+          "kind": "line",
+          "rule": "1"
+        },
+        "created_at": "2026-10-01T13:50:40.254689Z"
+      },
+      {
+        "id": "da292b02-ec3b-4632-831b-15a162181065",
+        "capability_code": "device.info",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/deviceInfo",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 137.83449999755248,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "e5659532-3002-46bb-881d-17850174d77c",
+        "capability_code": "media.profiles",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 27.73170000000391,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "479ce5b2-c44d-4ef9-aa25-37b26853f012",
+        "capability_code": "media.snapshot",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels/101/picture",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 22.430199998780154,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "d477b9d6-f4d0-4ff0-aaa5-5782e8155d88",
+        "capability_code": "system.status",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/status",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 64.14210000366438,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "91f22a3a-ae9b-44b0-aaf7-2f06ff10e805",
+        "capability_code": "system.time",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/time",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 49.04460000398103,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "ee0d0688-c5cd-4376-8cf5-1e8cedab0964",
+        "capability_code": "video.osd",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/Video/inputs/channels/_/overlays",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 143.35660000506323,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "15330acd-1989-4d92-b6b4-d9f5ef6ccea0",
+        "capability_code": "video.image",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Image/channels/_/color",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 141.29089999187272,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "9759ef92-1825-4d9c-bfd0-0bc0d459c984",
+        "capability_code": "events.motion",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/Video/inputs/channels/_/motionDetection",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 39.131500001531094,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:15.119092Z"
+      },
+      {
+        "id": "7be8fd41-7f00-4ec5-bb30-56e7944ecb1c",
+        "capability_code": "system.status",
+        "protocol": "isapi",
+        "operation": "leer status por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 84.53300000110175,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:10.319624Z"
+      },
+      {
+        "id": "9c928e87-3bbd-4055-8a18-eddac23ae83e",
+        "capability_code": "system.time",
+        "protocol": "isapi",
+        "operation": "leer time por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 218.79249998892192,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:10.319624Z"
+      },
+      {
+        "id": "23cf5738-7a44-4eb8-9107-9a948ed16d97",
+        "capability_code": "video.osd",
+        "protocol": "isapi",
+        "operation": "leer osd por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 19.07789999677334,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:10.319624Z"
+      },
+      {
+        "id": "7744d170-970c-4ab4-8484-d98ba8098e75",
+        "capability_code": "video.image",
+        "protocol": "isapi",
+        "operation": "leer image por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 421.98160001134966,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:10.319624Z"
+      },
+      {
+        "id": "c84bc0e6-675f-4306-82d5-9cb469b5342b",
+        "capability_code": "events.motion",
+        "protocol": "isapi",
+        "operation": "leer motion por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 272.70620000490453,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:10.319624Z"
+      },
+      {
+        "id": "45384e11-5542-4875-bc6f-b38af94f0a6d",
+        "capability_code": "media.snapshot",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels/101/picture",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 306.84809999365825,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:09.949370Z"
+      },
+      {
+        "id": "c028123a-d624-4e39-83be-90e2f5866ca1",
+        "capability_code": "media.profiles",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 159.43369999877177,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:50:07.565871Z"
+      },
+      {
+        "id": "ed67adb9-f386-46e8-9e3f-ac1f1032815e",
+        "capability_code": "media.profiles",
+        "protocol": "onvif",
+        "operation": "GetProfiles",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2039.6108999993885,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+        },
+        "created_at": "2026-10-01T13:50:07.565871Z"
+      },
+      {
+        "id": "3cc596f3-2365-4e27-9106-70f862835206",
+        "capability_code": "device.info",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/deviceInfo",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 372.6424000051338,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T13:49:59.885633Z"
+      },
+      {
+        "id": "a8903182-1787-41e3-b827-61e3f4ea236c",
+        "capability_code": "media.live",
+        "protocol": "rtsp",
+        "operation": "DESCRIBE /Streaming/Channels/101",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2159.0390000055777,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "RTSP sin conexión: [WinError 1225] El equipo remoto rechazó la conexión de red"
+        },
+        "created_at": "2026-10-01T13:49:59.885633Z"
+      },
+      {
+        "id": "d0d2ad2e-0a03-4556-8957-4fceb5c7e2b3",
+        "capability_code": "device.info",
+        "protocol": "onvif",
+        "operation": "GetDeviceInformation",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 7041.1260000109905,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+        },
+        "created_at": "2026-10-01T13:49:59.885633Z"
+      },
+      {
+        "id": "5004fc0e-20fd-4a23-bf38-a23917661cc1",
+        "capability_code": "media.profiles",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 49.80300000170246,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:26:56.865843Z"
+      },
+      {
+        "id": "e7a61cf4-4331-4daf-8580-602ed1f22b37",
+        "capability_code": "media.profiles",
+        "protocol": "onvif",
+        "operation": "GetProfiles",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2571705.7681000005,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "ONVIF timeout: sin respuesta en 8s"
+        },
+        "created_at": "2026-10-01T12:26:56.865843Z"
+      },
+      {
+        "id": "9114b06e-7fc2-4dcb-baf3-7dedf8e91e4c",
+        "capability_code": "device.info",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/deviceInfo",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 441.28400000045076,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:26:54.732939Z"
+      },
+      {
+        "id": "62ed75e8-35b1-4a91-b744-5a68ffdc05ee",
+        "capability_code": "media.live",
+        "protocol": "rtsp",
+        "operation": "DESCRIBE /Streaming/Channels/101",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2034.786800009897,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "RTSP sin conexión: [Errno 10061] Connect call failed ('127.0.0.1', 9)"
+        },
+        "created_at": "2026-10-01T12:26:54.732939Z"
+      },
+      {
+        "id": "e9088005-f859-408b-acf8-74819a0c1291",
+        "capability_code": "device.info",
+        "protocol": "onvif",
+        "operation": "GetDeviceInformation",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2048.0992999946466,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+        },
+        "created_at": "2026-10-01T12:26:54.732939Z"
+      },
+      {
+        "id": "d5584a25-0d55-4e3a-b4da-f7191f3dc138",
+        "capability_code": "analytics.rules",
+        "protocol": "isapi",
+        "operation": "PUT /ISAPI/Smart/LineDetection/1/lineItem/1",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 22.841300000436604,
+        "error_code": null,
+        "detail": {
+          "kind": "line",
+          "rule": "1"
+        },
+        "created_at": "2026-10-01T12:24:01.551494Z"
+      },
+      {
+        "id": "c8dab05a-50e6-4497-b7a1-6c7d943b5297",
+        "capability_code": "device.info",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/deviceInfo",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 28.497000006609596,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "450c0850-896b-495c-9b54-c1557ea8b45b",
+        "capability_code": "media.profiles",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 24.974200001452118,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "ea8ca50e-9d6d-4ad8-a5e0-ba0ef9661331",
+        "capability_code": "media.snapshot",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels/101/picture",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 19.059199999901466,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "6895921a-f36c-4496-8909-b7781afe8899",
+        "capability_code": "system.status",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/status",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 42.34379999979865,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "a57fb6b6-7819-44c8-8caa-283a141c1197",
+        "capability_code": "system.time",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/time",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 64.63449999864679,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "07d905a4-be17-4b82-91c4-251cb8dcc30c",
+        "capability_code": "video.osd",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/Video/inputs/channels/_/overlays",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 33.93659999710508,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "7ac4003f-91c8-4f44-a970-243f4baff026",
+        "capability_code": "video.image",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Image/channels/_/color",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 337.8023999975994,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "8db1eda8-1b5e-404b-857a-af071fcc2981",
+        "capability_code": "events.motion",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/Video/inputs/channels/_/motionDetection",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 116.86259999987669,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:38.460685Z"
+      },
+      {
+        "id": "748989ae-a6dc-49f3-8950-a64477c2c527",
+        "capability_code": "system.status",
+        "protocol": "isapi",
+        "operation": "leer status por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 75.77470000251196,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:34.213752Z"
+      },
+      {
+        "id": "c430abdf-43c9-43a2-9981-22c1be9f4dc5",
+        "capability_code": "system.time",
+        "protocol": "isapi",
+        "operation": "leer time por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 699.5420000021113,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:34.213752Z"
+      },
+      {
+        "id": "9ad3e7aa-1958-40ea-82f9-3392a0812ee1",
+        "capability_code": "video.osd",
+        "protocol": "isapi",
+        "operation": "leer osd por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 582.7152999991085,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:34.213752Z"
+      },
+      {
+        "id": "1c8a8ffe-4637-4da2-8f8a-922a1a351202",
+        "capability_code": "video.image",
+        "protocol": "isapi",
+        "operation": "leer image por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 284.04699999373406,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:34.213752Z"
+      },
+      {
+        "id": "6d76eeef-3e28-455f-9d44-d75976045c18",
+        "capability_code": "events.motion",
+        "protocol": "isapi",
+        "operation": "leer motion por isapi",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 19.496099994285032,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:34.213752Z"
+      },
+      {
+        "id": "46a6f0da-b90f-4796-98b7-2865b06d0d00",
+        "capability_code": "media.snapshot",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels/101/picture",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 76.02809999661986,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:33.948359Z"
+      },
+      {
+        "id": "cde6fefa-dfc8-4758-84df-35a02c716330",
+        "capability_code": "media.profiles",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/Streaming/channels",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 345.4741000023205,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:31.537333Z"
+      },
+      {
+        "id": "b63e423b-6094-498a-92d5-ec111f7a18fe",
+        "capability_code": "media.profiles",
+        "protocol": "onvif",
+        "operation": "GetProfiles",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2125.4574000049615,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+        },
+        "created_at": "2026-10-01T12:23:31.537333Z"
+      },
+      {
+        "id": "cbdda142-7c3a-495e-b220-b465570005c3",
+        "capability_code": "device.info",
+        "protocol": "isapi",
+        "operation": "GET /ISAPI/System/deviceInfo",
+        "http_status": null,
+        "success": true,
+        "latency_ms": 781.863100011833,
+        "error_code": null,
+        "detail": {},
+        "created_at": "2026-10-01T12:23:28.566822Z"
+      },
+      {
+        "id": "a0ce946d-4617-4324-8846-a3f4508da87f",
+        "capability_code": "media.live",
+        "protocol": "rtsp",
+        "operation": "DESCRIBE /Streaming/Channels/101",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2041.1937999888323,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "RTSP sin conexión: [Errno 10061] Connect call failed ('127.0.0.1', 9)"
+        },
+        "created_at": "2026-10-01T12:23:28.566822Z"
+      },
+      {
+        "id": "822c8137-de01-4f85-9b24-578a85ba3f6d",
+        "capability_code": "device.info",
+        "protocol": "onvif",
+        "operation": "GetDeviceInformation",
+        "http_status": null,
+        "success": false,
+        "latency_ms": 2059.216599998763,
+        "error_code": "unreachable",
+        "detail": {
+          "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+        },
+        "created_at": "2026-10-01T12:23:28.566822Z"
+      }
+    ]
+  },
+  {
+    "test": "matriz completa",
+    "status": 200,
+    "ms": 56,
+    "result": {
+      "cameras": [
+        {
+          "id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+          "name": "Bullet Parking (DeepinView)",
+          "model": "iDS-2CD7A46G0/P-IZHSY",
+          "host": "192.168.1.11"
+        },
+        {
+          "id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+          "name": "DeepinView RLINK",
+          "model": "iDS-2CD7146G2-IZS",
+          "host": "192.168.239.174"
+        },
+        {
+          "id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+          "name": "PTZ Oficina (Speed Dome 8MP)",
+          "model": "DS-2DF8A836IX-AEL",
+          "host": "192.168.239.189"
+        },
+        {
+          "id": "555b9541-9e8e-421f-9d10-13079444e257",
+          "name": "QA Sarmiento 18080",
+          "model": "iDS-TCR204-E",
+          "host": "190.15.193.250"
+        },
+        {
+          "id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+          "name": "QA basica",
+          "model": "DS-2CD1023G2-I",
+          "host": "127.0.0.1"
+        },
+        {
+          "id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+          "name": "QA domo",
+          "model": "iDS-2CD7146G2-IZS",
+          "host": "127.0.0.1"
+        },
+        {
+          "id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+          "name": "QA ptz",
+          "model": "DS-2DF8A836IX-AEL",
+          "host": "127.0.0.1"
+        },
+        {
+          "id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+          "name": "Sarmiento",
+          "model": null,
+          "host": "190.15.193.250"
+        },
+        {
+          "id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+          "name": "Simulada PTZ (sin hardware)",
+          "model": "DS-2DF8A836IX-AEL",
+          "host": "127.0.0.1"
+        },
+        {
+          "id": "df3d648a-1147-44a8-920d-8309ffb62720",
+          "name": "Simulada Value (sin analitica)",
+          "model": null,
+          "host": "127.0.0.1"
+        }
+      ],
+      "rows": [
+        {
+          "code": "device.info",
+          "group": "Dispositivo",
+          "label": "Información del dispositivo",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 171.17460000736173,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 171.2
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 57.57930000254419,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 57.6
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 76.16599998436868,
+              "checked_at": "2026-09-30T12:59:42.358034Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 76.2
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 82.48789998469874,
+              "checked_at": "2026-09-30T12:59:42.358034Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 82.5
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 245.53329998161644,
+              "checked_at": "2026-09-30T12:59:41.652393Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 245.5
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 256.35839998722076,
+              "checked_at": "2026-09-30T12:59:41.652393Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 256.4
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 29.463099999702536,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 29.5
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 25.292899998021312,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 25.3
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 30.057800002396107,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 30.1
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 137.83449999755248,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 137.8
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16012.345900002401,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/System/deviceInfo",
+                "error_code": "unreachable",
+                "latency_ms": 16012.3
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 13.903499988373369,
+              "checked_at": "2026-09-27T13:48:15.707819Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 13.9
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 16.576599999098107,
+              "checked_at": "2026-09-27T13:48:24.965152Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 16.6
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "media.profiles",
+          "group": "Video",
+          "label": "Perfiles de video",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 81.52680000057444,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 81.5
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 568.7572000024375,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 568.8
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 46.912799996789545,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 46.9
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 114.65850000968203,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 114.7
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 32.28400001535192,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 32.3
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 144.37509997515008,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 144.4
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 19.75049999600742,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 19.8
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 25.068500006454997,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 25.1
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 34.14899999916088,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 34.1
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 27.73170000000391,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 27.7
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16024.900700023863,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/Streaming/channels",
+                "error_code": "unreachable",
+                "latency_ms": 16024.9
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 14.131200005067512,
+              "checked_at": "2026-09-27T13:48:15.707819Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 14.1
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 12.89579999865964,
+              "checked_at": "2026-09-27T13:48:24.965152Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 12.9
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "media.live",
+          "group": "Video",
+          "label": "Video en vivo",
+          "protocols": [
+            "rtsp"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "rtsp",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 441.52930000564083,
+              "checked_at": "2026-10-01T12:19:52.353478Z",
+              "evidence": {
+                "ok": true,
+                "path": "/Streaming/Channels/101",
+                "media": [
+                  {
+                    "type": "video",
+                    "codec": "H265"
+                  },
+                  {
+                    "type": "audio",
+                    "codec": "PCMU"
+                  }
+                ],
+                "server": null,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 441.5
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "rtsp",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 23.494099965319037,
+              "checked_at": "2026-09-30T12:59:42.358034Z",
+              "evidence": {
+                "ok": true,
+                "path": "/Streaming/Channels/101",
+                "media": [
+                  {
+                    "type": "video",
+                    "codec": "H264"
+                  },
+                  {
+                    "type": "audio",
+                    "codec": "mpeg4-generic"
+                  }
+                ],
+                "server": null,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 23.5
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "rtsp",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 91.76159999333322,
+              "checked_at": "2026-09-30T12:59:41.652393Z",
+              "evidence": {
+                "ok": true,
+                "path": "/Streaming/Channels/101",
+                "media": [
+                  {
+                    "type": "video",
+                    "codec": "H264"
+                  }
+                ],
+                "server": null,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 91.8
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "rtsp",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 10.171500005526468,
+              "checked_at": "2026-10-01T13:49:59.887533Z",
+              "evidence": {
+                "ok": false,
+                "path": "/Streaming/Channels/101",
+                "message": "RTSP sin conexión: [WinError 1231] No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows",
+                "error_code": "unreachable",
+                "latency_ms": 10.2
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "rtsp",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 2033.8398000021698,
+              "checked_at": "2026-10-01T13:50:30.615866Z",
+              "evidence": {
+                "ok": false,
+                "path": "/Streaming/Channels/101",
+                "message": "RTSP sin conexión: [WinError 1225] El equipo remoto rechazó la conexión de red",
+                "error_code": "unreachable",
+                "latency_ms": 2033.8
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "rtsp",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 2293.0698999989545,
+              "checked_at": "2026-10-01T13:50:19.574701Z",
+              "evidence": {
+                "ok": false,
+                "path": "/Streaming/Channels/101",
+                "message": "RTSP sin conexión: [WinError 1225] El equipo remoto rechazó la conexión de red",
+                "error_code": "unreachable",
+                "latency_ms": 2293.1
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "rtsp",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 2159.0390000055777,
+              "checked_at": "2026-10-01T13:49:59.885633Z",
+              "evidence": {
+                "ok": false,
+                "path": "/Streaming/Channels/101",
+                "message": "RTSP sin conexión: [WinError 1225] El equipo remoto rechazó la conexión de red",
+                "error_code": "unreachable",
+                "latency_ms": 2159.0
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "rtsp",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16013.250599993626,
+              "checked_at": "2026-09-17T02:26:21.774308Z",
+              "evidence": {
+                "ok": false,
+                "path": "/Streaming/Channels/101",
+                "message": "RTSP timeout en 190.15.193.250:554",
+                "error_code": "unreachable",
+                "latency_ms": 16013.3
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "rtsp",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 2081.6297000019404,
+              "checked_at": "2026-09-25T19:48:56.565400Z",
+              "evidence": {
+                "ok": false,
+                "path": "/Streaming/Channels/101",
+                "message": "RTSP sin conexión: [Errno 10061] Connect call failed ('127.0.0.1', 554)",
+                "error_code": "unreachable",
+                "latency_ms": 2081.6
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "rtsp",
+              "level": "unverified",
+              "source": null,
+              "latency_ms": null,
+              "checked_at": null,
+              "evidence": null
+            }
+          ]
+        },
+        {
+          "code": "media.snapshot",
+          "group": "Video",
+          "label": "Snapshot",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 167.6281999971252,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 167.6
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "media",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 8074.26329998998,
+              "checked_at": "2026-10-01T12:20:36.923119Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/Streaming/channels/101/picture",
+                "error_code": "unreachable",
+                "latency_ms": 8074.3
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "media",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 8046.908100004657,
+              "checked_at": "2026-10-01T12:20:36.919228Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/Streaming/channels/101/picture",
+                "error_code": "unreachable",
+                "latency_ms": 8046.9
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "media",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 31.115599995246157,
+              "checked_at": "2026-10-01T13:50:29.475096Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 31.1
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 21.6084999992745,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 21.6
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 60.64100000367034,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 60.6
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 22.430199998780154,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 22.4
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16044.297900050879,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/Streaming/channels/101/picture",
+                "error_code": "unreachable",
+                "latency_ms": 16044.3
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 2149.7089000040432,
+              "checked_at": "2026-10-01T12:20:36.917920Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 2149.7
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 2134.7339999920223,
+              "checked_at": "2026-10-01T12:20:37.213598Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 2134.7
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "analytics.rules",
+          "group": "Analítica",
+          "label": "Reglas de analítica",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "marcas": [
+                  "isSupportSmart",
+                  "SmartCap"
+                ],
+                "encontrada": true
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "analytics",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "marcas": [
+                  "isSupportSmart",
+                  "SmartCap"
+                ],
+                "encontrada": true
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "analytics",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "marcas": [
+                  "isSupportSmart",
+                  "SmartCap"
+                ],
+                "encontrada": true
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "analytics",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T12:23:34.480640Z",
+              "evidence": {
+                "nota": "La cámara no lo declara; hay que probarlo",
+                "marcas": [
+                  "isSupportSmart",
+                  "SmartCap"
+                ],
+                "encontrada": false
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": null,
+              "latency_ms": null,
+              "checked_at": null,
+              "evidence": null
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "marcas": [
+                  "isSupportSmart",
+                  "SmartCap"
+                ],
+                "encontrada": true
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "marcas": [
+                  "isSupportSmart",
+                  "SmartCap"
+                ],
+                "encontrada": true
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": null,
+              "latency_ms": null,
+              "checked_at": null,
+              "evidence": null
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "marcas": [
+                  "isSupportSmart",
+                  "SmartCap"
+                ],
+                "encontrada": true
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": null,
+              "latency_ms": null,
+              "checked_at": null,
+              "evidence": null
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "system.status",
+          "group": "Sistema",
+          "label": "Estado y salud",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 265.0107000081334,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 265.0
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "device",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 142.0267999637872,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 142.0
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "device",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 200.60059998650104,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 200.6
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "device",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 14.796000003116205,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 14.8
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 18.96889999625273,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 19.0
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 19.738800008781254,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 19.7
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 64.14210000366438,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 64.1
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16035.010099993087,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/System/status",
+                "error_code": "unreachable",
+                "latency_ms": 16035.0
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 67.43759999517351,
+              "checked_at": "2026-09-29T15:18:48.207451Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 67.4
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 15.088199987076223,
+              "checked_at": "2026-09-27T13:48:24.965152Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 15.1
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "system.time",
+          "group": "Sistema",
+          "label": "Hora del dispositivo",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 149.23649998672772,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 149.2
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 49.54110000107903,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 49.5
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 54.89480000687763,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 54.9
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 17.899699974805117,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 17.9
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 52.28609999176115,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 52.3
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 22.397900000214577,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 22.4
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 129.0173000015784,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 129.0
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 132.929300001706,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 132.9
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 124.3557999987388,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 124.4
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 49.04460000398103,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 49.0
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16034.139499999583,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/System/time",
+                "error_code": "unreachable",
+                "latency_ms": 16034.1
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 56.436499988194555,
+              "checked_at": "2026-09-29T15:18:48.207451Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 56.4
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 41.08799999812618,
+              "checked_at": "2026-09-27T13:48:24.965152Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 41.1
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "system.reboot",
+          "group": "Sistema",
+          "label": "Reinicio",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "device",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "device",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "nota": null,
+                "servicio": "device",
+                "servicios": [
+                  "http://www.onvif.org/ver10/device/wsdl",
+                  "http://www.onvif.org/ver10/media/wsdl",
+                  "http://www.onvif.org/ver10/events/wsdl",
+                  "http://www.onvif.org/ver20/ptz/wsdl",
+                  "http://www.onvif.org/ver20/imaging/wsdl",
+                  "http://www.onvif.org/ver10/deviceIO/wsdl",
+                  "http://www.onvif.org/ver20/analytics/wsdl",
+                  "http://www.onvif.org/ver10/recording/wsdl",
+                  "http://www.onvif.org/ver10/search/wsdl",
+                  "http://www.onvif.org/ver10/replay/wsdl",
+                  "http://www.onvif.org/ver20/media/wsdl"
+                ]
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "unverified",
+              "source": "declared",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "motivo": "No se prueba automáticamente: interrumpe el servicio"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "video.osd",
+          "group": "Imagen",
+          "label": "Texto sobre la imagen (OSD)",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 75.30170000973158,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 75.3
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 128.40659999346826,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 128.4
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 28.597399999853224,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 28.6
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 75.53370000096038,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 75.5
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 33.765099942684174,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 33.8
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 118.05400002049282,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 118.1
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 32.16139999858569,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 32.2
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 18.532199988840148,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": false,
+                "message": "GET /ISAPI/System/Video/inputs/channels/1/overlays → HTTP 403 notSupport",
+                "error_code": "not_supported",
+                "latency_ms": 18.5
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 18.586999998660758,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 18.6
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 143.35660000506323,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 143.4
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16017.577799968421,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/System/Video/inputs/channels/1/overlays",
+                "error_code": "unreachable",
+                "latency_ms": 16017.6
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 46.755800023674965,
+              "checked_at": "2026-09-29T15:18:48.207451Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 46.8
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 18.14540001214482,
+              "checked_at": "2026-09-27T13:48:24.965152Z",
+              "evidence": {
+                "ok": false,
+                "message": "GET /ISAPI/System/Video/inputs/channels/1/overlays → HTTP 403 notSupport",
+                "error_code": "not_supported",
+                "latency_ms": 18.1
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "video.image",
+          "group": "Imagen",
+          "label": "Ajustes de imagen",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 83.14650000829715,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 83.1
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 784.6632000000682,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 784.7
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 28.72980001848191,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 28.7
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 112.97420004848391,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 113.0
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 29.80100002605468,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 29.8
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 139.85189999220893,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 139.9
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 115.95669999951497,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 116.0
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 16.80649998888839,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": false,
+                "message": "GET /ISAPI/Image/channels/1/color → HTTP 403 notSupport",
+                "error_code": "not_supported",
+                "latency_ms": 16.8
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 105.18079999019392,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 105.2
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 141.29089999187272,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 141.3
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 16010.1532000117,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "Timeout en GET /ISAPI/Image/channels/1/color",
+                "error_code": "unreachable",
+                "latency_ms": 16010.2
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 28.58470001956448,
+              "checked_at": "2026-09-29T15:18:48.207451Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 28.6
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 15.885400003753603,
+              "checked_at": "2026-09-27T13:48:24.965152Z",
+              "evidence": {
+                "ok": false,
+                "message": "GET /ISAPI/Image/channels/1/color → HTTP 403 notSupport",
+                "error_code": "not_supported",
+                "latency_ms": 15.9
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        },
+        {
+          "code": "events.motion",
+          "group": "Eventos",
+          "label": "Detección de movimiento",
+          "protocols": [
+            "isapi",
+            "onvif"
+          ],
+          "cells": [
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "isapi",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 145.70529999036808,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": false,
+                "message": "GET /ISAPI/System/Video/inputs/channels/1/motionDetection → HTTP 403 notSupport",
+                "error_code": "not_supported",
+                "latency_ms": 145.7
+              }
+            },
+            {
+              "camera_id": "a62002ae-c822-4fcb-b328-2b41f9cc798b",
+              "protocol": "onvif",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 477.88270001183264,
+              "checked_at": "2026-10-01T12:21:17.439492Z",
+              "evidence": {
+                "ok": false,
+                "message": "La cámara no publica eventos de movimiento por ONVIF",
+                "error_code": "not_supported",
+                "latency_ms": 477.9
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 29.853300016839057,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 29.9
+              }
+            },
+            {
+              "camera_id": "6c2cf435-3927-41ba-8d05-2904224da5b0",
+              "protocol": "onvif",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 44.355500023812056,
+              "checked_at": "2026-09-29T16:10:39.756743Z",
+              "evidence": {
+                "ok": false,
+                "message": "La cámara no publica eventos de movimiento por ONVIF",
+                "error_code": "not_supported",
+                "latency_ms": 44.4
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 32.36830001696944,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 32.4
+              }
+            },
+            {
+              "camera_id": "aa5355e9-ca63-4547-86da-f30cd4eea6bb",
+              "protocol": "onvif",
+              "level": "unsupported",
+              "source": "verified",
+              "latency_ms": 34.10930000245571,
+              "checked_at": "2026-09-29T16:10:42.668200Z",
+              "evidence": {
+                "ok": false,
+                "message": "La cámara no publica eventos de movimiento por ONVIF",
+                "error_code": "not_supported",
+                "latency_ms": 34.1
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 31.510300002992153,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 31.5
+              }
+            },
+            {
+              "camera_id": "555b9541-9e8e-421f-9d10-13079444e257",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:06.575531Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de W"
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 15.598600002704188,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 15.6
+              }
+            },
+            {
+              "camera_id": "0aefa3b5-bebb-470b-a60c-18e181a8fc5a",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:36.725413Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 40.43199999432545,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 40.4
+              }
+            },
+            {
+              "camera_id": "b0bb304f-a6e5-4ef3-b5e2-393b0b7da5be",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:27.191533Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 39.131500001531094,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 39.1
+              }
+            },
+            {
+              "camera_id": "2ed54ee8-fd1a-49ec-8e53-898accfdd184",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-10-01T13:50:15.119092Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [El equipo remoto rechazó la conexión de red]"
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "isapi",
+              "level": "error",
+              "source": "verified",
+              "latency_ms": 12858.196699991822,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "ok": false,
+                "message": "No se pudo conectar: All connection attempts failed",
+                "error_code": "unreachable",
+                "latency_ms": 12858.2
+              }
+            },
+            {
+              "camera_id": "ea5368f3-4cdc-4ac9-89a9-cebc163423ad",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-29T16:10:46.958341Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:80 ssl:default [Connect call failed ('190.15.193.250', 80)]"
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 34.00699998019263,
+              "checked_at": "2026-09-29T15:18:48.207451Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 34.0
+              }
+            },
+            {
+              "camera_id": "e76917e2-9362-4dc9-ba84-3df2d71564f2",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:46:24.123770Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:80 ssl:default [Connect call failed ('127.0.0.1', 80)]"
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "isapi",
+              "level": "supported",
+              "source": "verified",
+              "latency_ms": 19.664699997520074,
+              "checked_at": "2026-09-27T13:48:24.965152Z",
+              "evidence": {
+                "ok": true,
+                "message": null,
+                "error_code": null,
+                "latency_ms": 19.7
+              }
+            },
+            {
+              "camera_id": "df3d648a-1147-44a8-920d-8309ffb62720",
+              "protocol": "onvif",
+              "level": "unverified",
+              "source": "verified",
+              "latency_ms": null,
+              "checked_at": "2026-09-25T21:36:24.216038Z",
+              "evidence": {
+                "error": "unreachable",
+                "message": "ONVIF sin conexión: Cannot connect to host 127.0.0.1:9 ssl:default [Connect call failed ('127.0.0.1', 9)]"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "test": "validación eventos limit=-1",
+    "status": 422,
+    "ms": 16,
+    "result": {
+      "detail": [
+        {
+          "type": "greater_than_equal",
+          "loc": [
+            "query",
+            "limit"
+          ],
+          "msg": "Input should be greater than or equal to 1",
+          "input": "-1",
+          "ctx": {
+            "ge": 1
+          }
+        }
+      ]
+    }
+  },
+  {
+    "test": "validación eventos limit=501",
+    "status": 422,
+    "ms": 16,
+    "result": {
+      "detail": [
+        {
+          "type": "less_than_equal",
+          "loc": [
+            "query",
+            "limit"
+          ],
+          "msg": "Input should be less than or equal to 500",
+          "input": "501",
+          "ctx": {
+            "le": 500
+          }
+        }
+      ]
+    }
+  },
+  {
+    "test": "validación eventos since=invalida",
+    "status": 422,
+    "ms": 15,
+    "result": {
+      "detail": [
+        {
+          "type": "datetime_from_date_parsing",
+          "loc": [
+            "query",
+            "since"
+          ],
+          "msg": "Input should be a valid datetime or date, input is too short",
+          "input": "invalida",
+          "ctx": {
+            "error": "input is too short"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "test": "cámara inexistente",
+    "status": 404,
+    "ms": 30,
+    "result": {
+      "error_code": "camera_not_found",
+      "message": "Cámara inexistente"
+    }
+  }
+]

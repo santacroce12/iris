@@ -1,0 +1,622 @@
+{
+  "operaciones_camara_real": [
+    {
+      "id": "302e6ccc-17ad-4b5c-86f9-4617cc9865dc",
+      "capability_code": "events.motion",
+      "protocol": "isapi",
+      "operation": "leer motion por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 10.722499995608814,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:52:59.345226Z"
+    },
+    {
+      "id": "fc4ff08a-6e39-47ce-8b00-e25d3f3a1a0d",
+      "capability_code": "video.image",
+      "protocol": "isapi",
+      "operation": "leer image por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 12.724199987133034,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:52:59.345226Z"
+    },
+    {
+      "id": "194f782f-4a85-498c-9be0-4f5c19e25a16",
+      "capability_code": "video.osd",
+      "protocol": "isapi",
+      "operation": "leer osd por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 13.444299998809583,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:52:59.345226Z"
+    },
+    {
+      "id": "ad724041-9d13-4046-8ddb-08d29e616005",
+      "capability_code": "system.time",
+      "protocol": "isapi",
+      "operation": "leer time por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 20.338700007414445,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:52:59.345226Z"
+    },
+    {
+      "id": "6e7d7928-80a6-4eec-8e75-46238074155c",
+      "capability_code": "system.status",
+      "protocol": "isapi",
+      "operation": "leer status por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 25.25080001214519,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:52:59.345226Z"
+    },
+    {
+      "id": "4a7a494d-4662-45d9-8e24-ea5600999e1f",
+      "capability_code": "media.live",
+      "protocol": "rtsp",
+      "operation": "MediaMTX publish /Streaming/Channels/101",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 99.75540000596084,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T13:50:43.436638Z"
+    },
+    {
+      "id": "50c07516-619d-4fd7-a340-1e745da56004",
+      "capability_code": "media.snapshot",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels/101/picture",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 31.115599995246157,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:29.475096Z"
+    },
+    {
+      "id": "b42eab69-5591-4f4f-b018-b90c436526dd",
+      "capability_code": "device.info",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/deviceInfo",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 29.463099999702536,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "2bf14ab1-e875-4eb8-b1a5-93cb2a89c857",
+      "capability_code": "media.profiles",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 19.75049999600742,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "fd1e3a5f-4544-4b84-9a79-0e89f9b3bb46",
+      "capability_code": "events.motion",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/Video/inputs/channels/_/motionDetection",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 31.510300002992153,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "df68ba52-b3d9-4998-9b67-4453a998fb6d",
+      "capability_code": "video.image",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Image/channels/_/color",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 115.95669999951497,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "dd852026-a651-4d9f-b2f6-3f2945f7e239",
+      "capability_code": "video.osd",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/Video/inputs/channels/_/overlays",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 32.16139999858569,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "38c126de-5a88-4005-bbda-c566b7e9ade1",
+      "capability_code": "system.time",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/time",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 129.0173000015784,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "34a38001-e85c-4e9f-8309-baa27d14e08a",
+      "capability_code": "system.status",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/status",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 14.796000003116205,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "76bc3c15-1c5d-4769-96a1-bad9e6bdde02",
+      "capability_code": "media.snapshot",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels/101/picture",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 16.625799995381385,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:06.575531Z"
+    },
+    {
+      "id": "765ea876-6a9a-4d82-a60f-2bbf4f2b666b",
+      "capability_code": "system.status",
+      "protocol": "isapi",
+      "operation": "leer status por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 17.07200000237208,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:05.900413Z"
+    },
+    {
+      "id": "8dcbff56-f0ce-4219-9a62-c345cab27810",
+      "capability_code": "events.motion",
+      "protocol": "isapi",
+      "operation": "leer motion por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 13.935000009951182,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:05.900413Z"
+    },
+    {
+      "id": "45ae3797-5146-44d3-a73c-6693c2b6a2c5",
+      "capability_code": "video.image",
+      "protocol": "isapi",
+      "operation": "leer image por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 16.671899997163564,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:05.900413Z"
+    },
+    {
+      "id": "fc91baea-939d-40a0-acc7-68e581a78a4f",
+      "capability_code": "video.osd",
+      "protocol": "isapi",
+      "operation": "leer osd por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 111.12129999673925,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:05.900413Z"
+    },
+    {
+      "id": "f4d29aef-6e47-4dfd-9fdc-bf76de3f892e",
+      "capability_code": "system.time",
+      "protocol": "isapi",
+      "operation": "leer time por isapi",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 13.652100009494461,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:05.900413Z"
+    },
+    {
+      "id": "2d9772a9-fea3-4901-b252-7a5551b51645",
+      "capability_code": "media.snapshot",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels/101/picture",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 125.12529999366961,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:05.493952Z"
+    },
+    {
+      "id": "b5fe5ddc-44b0-451f-84a5-4bf2f68ad536",
+      "capability_code": "media.profiles",
+      "protocol": "onvif",
+      "operation": "GetProfiles",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 12.581999995745718,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows]"
+      },
+      "created_at": "2026-10-01T13:50:05.257809Z"
+    },
+    {
+      "id": "93606805-4d79-40a7-ac05-51fd4d0f6182",
+      "capability_code": "media.profiles",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 37.587700004223734,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:50:05.257809Z"
+    },
+    {
+      "id": "30a0f3a5-cd69-4a21-ab38-896824f3a08d",
+      "capability_code": "media.live",
+      "protocol": "rtsp",
+      "operation": "DESCRIBE /Streaming/Channels/101",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 10.171500005526468,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "RTSP sin conexión: [WinError 1231] No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows"
+      },
+      "created_at": "2026-10-01T13:49:59.887533Z"
+    },
+    {
+      "id": "00a66b42-1c6a-4fce-9af9-6f1a728734f3",
+      "capability_code": "device.info",
+      "protocol": "onvif",
+      "operation": "GetDeviceInformation",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 4958.17129999341,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "ONVIF sin conexión: Cannot connect to host 190.15.193.250:18080 ssl:default [No es posible el acceso a la ubicación de red. Para obtener información para solucionar problemas de red, vea la Ayuda de Windows]"
+      },
+      "created_at": "2026-10-01T13:49:59.887533Z"
+    },
+    {
+      "id": "113e1b2a-7e01-4a32-9ae2-bfe0c8bedeea",
+      "capability_code": "device.info",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/deviceInfo",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 51.49209999945015,
+      "error_code": "unreachable",
+      "detail": {
+        "message": "No se pudo conectar: All connection attempts failed"
+      },
+      "created_at": "2026-10-01T13:49:59.887533Z"
+    },
+    {
+      "id": "afc737f2-8dc7-4054-b14f-5ab246cd4a8d",
+      "capability_code": "media.snapshot",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels/101/picture",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 1349.1902999958256,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "4ab98157-7c9a-41f2-b210-47c394a2448d",
+      "capability_code": "events.motion",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/Video/inputs/channels/_/motionDetection",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 279.2788999940967,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "73e4645b-6cf0-4cf4-84be-9e5f7722ab25",
+      "capability_code": "video.image",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Image/channels/_/color",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 73.87169999128673,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "24a395fa-907e-4252-b5eb-bf0e6968e5cc",
+      "capability_code": "video.osd",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/Video/inputs/channels/_/overlays",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 237.31989999942016,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "1e1b7a8e-ac00-4466-9efa-13208b89500c",
+      "capability_code": "system.time",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/time",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 322.01760000316426,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "9353d746-7e79-44a8-a6cf-4408d557ad53",
+      "capability_code": "system.status",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/status",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 436.1849999986589,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "937e7fbf-66b1-44a9-b954-b97cd3030fa5",
+      "capability_code": "device.info",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/deviceInfo",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 135.76309999916703,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "08b0712f-23e8-4ddc-8f6f-e5e8c3070da3",
+      "capability_code": "media.profiles",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 221.9123000104446,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:34.480640Z"
+    },
+    {
+      "id": "0b7102f0-5660-43b6-9744-7a29d241e5ec",
+      "capability_code": "events.motion",
+      "protocol": "isapi",
+      "operation": "leer motion por isapi",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 64.55249999999069,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:32.103946Z"
+    },
+    {
+      "id": "483ce2f0-266e-431e-b290-a7c0e3ffd210",
+      "capability_code": "video.image",
+      "protocol": "isapi",
+      "operation": "leer image por isapi",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 168.8455000112299,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:32.103946Z"
+    },
+    {
+      "id": "8377d401-f4a0-407b-97b8-066481ca052c",
+      "capability_code": "video.osd",
+      "protocol": "isapi",
+      "operation": "leer osd por isapi",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 164.50280000572093,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:32.103946Z"
+    },
+    {
+      "id": "d5954dec-55fc-4b30-963d-cdc71c420d98",
+      "capability_code": "system.time",
+      "protocol": "isapi",
+      "operation": "leer time por isapi",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 143.60779999697115,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:32.103946Z"
+    },
+    {
+      "id": "4846fd41-3ae0-4d40-8eff-14cbc38beb37",
+      "capability_code": "system.status",
+      "protocol": "isapi",
+      "operation": "leer status por isapi",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 442.6300000050105,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:32.103946Z"
+    },
+    {
+      "id": "bc371e89-75e0-4ceb-af72-daf01e540d2e",
+      "capability_code": "media.snapshot",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels/101/picture",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 1428.2727999961935,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:30.578841Z"
+    },
+    {
+      "id": "d311eb51-0825-4bb3-8230-9728e61e38b0",
+      "capability_code": "media.profiles",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/Streaming/channels",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 584.9848000070779,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:29.340031Z"
+    },
+    {
+      "id": "4f52d2dd-f5b4-4c26-af8b-b64c7392a71b",
+      "capability_code": "media.profiles",
+      "protocol": "onvif",
+      "operation": "GetProfiles",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 563.7414999946486,
+      "error_code": "auth_failed",
+      "detail": {
+        "message": "ONVIF: The action requested requires authorization and the sender is not authorized"
+      },
+      "created_at": "2026-10-01T12:23:29.340031Z"
+    },
+    {
+      "id": "98bcdf1b-9956-4aab-a829-fe4f111929c6",
+      "capability_code": "device.info",
+      "protocol": "isapi",
+      "operation": "GET /ISAPI/System/deviceInfo",
+      "http_status": null,
+      "success": true,
+      "latency_ms": 740.3973000036785,
+      "error_code": null,
+      "detail": {},
+      "created_at": "2026-10-01T12:23:28.420216Z"
+    },
+    {
+      "id": "3b55ca79-6fc0-43ef-a25e-b8db713f667c",
+      "capability_code": "device.info",
+      "protocol": "onvif",
+      "operation": "GetDeviceInformation",
+      "http_status": null,
+      "success": false,
+      "latency_ms": 541.3017999962904,
+      "error_code": "auth_failed",
+      "detail": {
+        "message": "ONVIF: The action requested requires authorization and the sender is not authorized"
+      },
+      "created_at": "2026-10-01T12:23:28.420216Z"
+    },
+    {
+      "id": "6fd23f3a-9f8f-40c0-9a2c-8ab2388195a4",
+      "capability_code": "media.live",
+      "protocol": "rtsp",
+      "operation": "DESCRIBE /Streaming/Channels/101",
+      "http_status": 401,
+      "success": false,
+      "latency_ms": 349.255399996764,
+      "error_code": "auth_failed",
+      "detail": {
+        "message": "RTSP rechazó las credenciales"
+      },
+      "created_at": "2026-10-01T12:23:28.420216Z"
+    }
+  ],
+  "identidad_camara_real": {
+    "vendor": "Hikvision",
+    "model": "iDS-TCR204-E",
+    "firmware": "V5.3.3 260602",
+    "http_port": 18080,
+    "onvif_port": 18080,
+    "rtsp_port": 554,
+    "status": "offline"
+  },
+  "api_mediamtx_sin_auth": {
+    "status": 200,
+    "credenciales_rtsp_en_respuesta": true,
+    "cors": "*"
+  },
+  "grabacion_antes_de_vivo": true,
+  "grabacion_despues_de_vivo": false,
+  "40_lecturas_concurrentes": {
+    "200": 40
+  },
+  "health": {
+    "status": "ok"
+  }
+}
