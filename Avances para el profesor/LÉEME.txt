@@ -1,0 +1,60 @@
+IRIS — Plataforma unificada de cámaras IP
+Avances de tesis · Luca Santacroce · 15 de octubre de 2026
+
+Esta carpeta es un avance parcial para mostrar el estado del trabajo. No es el
+documento final de la tesis.
+
+
+QUÉ MANDAR
+──────────
+Con enviar el archivo "Informe de avance.html" alcanza: tiene el texto y todas
+las capturas adentro, en un solo archivo. Se abre con cualquier navegador
+(doble clic) y no necesita internet ni ningún programa extra.
+
+Si el profesor prefiere un PDF: abrir ese archivo en el navegador, hacer
+Ctrl+P y elegir "Guardar como PDF". Está preparado para que salga bien
+paginado.
+
+
+CONTENIDO
+─────────
+Informe de avance.html
+    El informe. Cuatro o cinco páginas: qué funciona hoy, el hallazgo
+    principal, la evidencia de las mediciones y qué falta.
+
+Videos    Grabaciones de pantalla de la aplicación andando contra la cámara real.
+
+      Iris - demostracion de funcionamiento   ← empezar por éste (2 min 30)
+          Video en vivo por WebRTC, alta de una cámara con prueba real por
+          las tres APIs, y la edición de una plaza de estacionamiento:
+          se arrastra un punto, se guarda, y la cámara acepta el cambio.
+
+      2 - La matriz de compatibilidad
+      3 - ISAPI contra ONVIF
+
+    Los carteles que aparecen abajo en los videos son una ayuda agregada
+    para la grabación, no son parte de la aplicación.
+
+Capturas\
+    Las mismas seis capturas, sueltas, por si se quieren ver en grande o
+    reutilizar en otro documento.
+
+      1 - Listado de cámaras
+      2 - Matriz de compatibilidad
+      3 - Funciones ISAPI vs ONVIF   ← la comparación central del trabajo
+      4 - Plazas de parking dibujables
+      5 - Video en vivo
+      6 - Eventos agrupados
+
+Matriz de compatibilidad.csv
+    La matriz completa en planilla (se abre con Excel): cada función contra
+    cada protocolo, para cada cámara, indicando si el soporte está declarado
+    por el fabricante o verificado con una llamada real.
+
+
+UNA ACLARACIÓN SOBRE LAS CAPTURAS
+─────────────────────────────────
+En el listado y en la matriz aparecen cámaras en rojo o sin imagen. No son
+fallas de la plataforma: esas cámaras están en otra red y no eran alcanzables
+en el momento exacto de la captura. Las que se ven funcionando están contra
+hardware real, no simulado.
