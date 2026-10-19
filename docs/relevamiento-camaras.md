@@ -9,9 +9,13 @@ Las respuestas crudas quedaron como fixtures en `backend/tests/fixtures/hikvisio
 | Modelo | IP | Firmware | Rol para la tesis |
 |---|---|---|---|
 | **DS-2DF8A836IX-AEL** (PTZ Speed Dome 8MP, Ultra) | 192.168.239.189 | V5.6.0 | **Caso fuerte de reglas dibujables** |
-| **iDS-2CD7146G2-IZS** (DeepinView) | 192.168.239.101 | V5.9.24 | **Caso de plataforma abierta (AIOP)** |
-| iDS-2CD7A46G0/P-IZHSY (DeepinView) | — (validada antes por VPN) | V5.8.61 | Parking / ANPR, según manual |
-| DS-2CD1023G2-I (Value) | — | V5.8.4 | Caso "sin analítica" para contraste |
+| **iDS-2CD7146G2-IZS** (DeepinView) | **192.168.239.174** (antes .101) | V5.9.24 | **Caso de plataforma abierta (AIOP)** |
+| iDS-2CD7A46G0/P-IZHSY (DeepinView) | **192.168.1.11** (otra red) | V5.8.61 | Parking: 14 plazas reales configuradas |
+| **DS-2CD1023G2-I** (Value) | **192.168.1.64** | V5.8.4 | **Caso "sin analítica" para contraste** |
+
+Las IPs de esta tabla se verificaron por última vez el **9/10/2026**. El domo cambió de `.101` a
+`.174` tras un reinicio: si alguna no responde, lo primero es volver a buscarla con SADP, no dar
+por hecho que la cámara está caída.
 
 En la LAN hay ~30 equipos más con puerto 80 o 554 abiertos que no son ISAPI, y uno en
 192.168.239.151 que responde ISAPI pero con otras credenciales.

@@ -21,7 +21,7 @@ disimularlo.
 | 4 | [Estado del arte](04-estado-del-arte.md) | 🟡 Borrador completo | — |
 | 5 | [Metodología](05-metodologia.md) | 🟡 Borrador completo | — |
 | 6 | [Arquitectura e implementación](06-arquitectura-implementacion.md) | 🟡 Borrador completo | — |
-| 7 | [Resultados](07-resultados.md) | 🟠 Parcial: falta la Scati (§7.8) | Acceso a la Scati |
+| 7 | [Resultados](07-resultados.md) | 🟠 Parcial: falta **otra marca** (§7.8) | Acceso a una cámara que no sea Hikvision |
 | 8 | [Conclusiones](08-conclusiones.md) | 🟡 Borrador completo (29/09) | — |
 | 9 | [Bibliografía](09-bibliografia.md) | 🟡 Borrador, crece con las citas que se agreguen | — |
 
@@ -30,8 +30,19 @@ evidencia actual, con huecos marcados. 🔴 = todavía no se puede escribir en s
 
 ## Cómo se completa lo que falta
 
-Al 29/09/2026, lo único que le falta al capítulo 7 es la **Sesión 0 (Scati)** de
-`../HOJA-DE-RUTA.md` — dar de alta esa cámara y llenar §7.8. Todo lo demás que dependía de
+Al 9/10/2026 lo que le falta al capítulo 7 es **una cámara que no sea Hikvision** (§7.8).
+
+Ojo con no confundir dos cosas que antes iban juntas en la Scati:
+
+- **El caso "sin analítica"** ya está cubierto: el 9/10 se dio de alta una **DS-2CD1023G2-I**
+  (Value, `192.168.1.64`), que no tiene analítica de ningún tipo — `VCAResource` da
+  `403 notSupport`, `SmartCap` declara todo en `false` salvo ROI, y `triggersCap` solo trae
+  movimiento y sabotaje. Es el cuarto escenario de cámara y el contraste de gama que pedía el
+  anteproyecto.
+- **El caso "otra marca" sigue abierto**, y es el más importante de los dos: ONVIF está
+  verificado únicamente contra Hikvision. El argumento del capítulo 8 es "estándar contra
+  propietario", y el valor del estándar es funcionar entre fabricantes distintos — que es
+  justo lo que todavía no se probó. Sirve la Scati o cualquier otra marca. Todo lo demás que dependía de
 hardware ya cerró: ONVIF verificado en las dos Hikvision (§7.4), la corrida real de experimentos en
 las dos (§7.5 y §7.5.1), y la analítica del domo documentada como resultado negativo con un hallazgo
 adicional relevante — que la misma cámara empezó a responder también a la analítica clásica

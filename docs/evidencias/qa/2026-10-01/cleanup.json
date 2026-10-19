@@ -1,0 +1,38 @@
+[
+  {
+    "test": "eliminar cámara QA",
+    "status": 204,
+    "ms": 424,
+    "result": {
+      "bytes": 0,
+      "mime": "application/json"
+    }
+  },
+  {
+    "test": "eliminar cámara QA",
+    "status": 204,
+    "ms": 422,
+    "result": {
+      "bytes": 0,
+      "mime": "application/json"
+    }
+  },
+  {
+    "test": "eliminar cámara QA",
+    "status": 204,
+    "ms": 370,
+    "result": {
+      "bytes": 0,
+      "mime": "application/json"
+    }
+  },
+  {
+    "test": "eliminar cámara QA",
+    "status": 204,
+    "ms": 372,
+    "result": {
+      "bytes": 0,
+      "mime": "application/json"
+    }
+  }
+]

@@ -42,11 +42,17 @@ def _bool(valor: str | None) -> bool | None:
 
 
 def _replace(raw: str, tag: str, value: str) -> str:
-    """Cambia un campo sin tocar el resto del documento que devolvió la cámara."""
+    """Cambia un campo sin tocar el resto del documento que devolvió la cámara.
+
+    El valor se escapa, porque lo escribe el usuario: un `&` sin escapar arma un documento
+    mal formado. Y el reemplazo va por función, no por cadena, para que una `` dentro del
+    texto no se lea como referencia a un grupo.
+    """
     patron = re.compile(rf"<{tag}>[^<]*</{tag}>")
     if not patron.search(raw):
         raise NotSupported(f"La cámara no expone el campo {tag}")
-    return patron.sub(f"<{tag}>{value}</{tag}>", raw, count=1)
+    escapado = xml.escapar(value)
+    return patron.sub(lambda _: f"<{tag}>{escapado}</{tag}>", raw, count=1)
 
 
 # --- estado --------------------------------------------------------------------------------

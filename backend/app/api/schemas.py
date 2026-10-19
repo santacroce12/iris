@@ -1,23 +1,38 @@
 import uuid
 from datetime import datetime
-from typing import Any
+from typing import Annotated, Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from app.domain.enums import CameraStatus, NetworkMode, StreamType
 from app.domain.rules import Rule, RuleKindInfo, RuleSet, RuleUpdate
 
 
+def _texto(maximo: int) -> object:
+    """Texto obligatorio, recortado antes de medirlo.
+
+    `strip_whitespace` va primero: sin eso, un nombre de solo espacios pasa el largo mínimo
+    y queda guardado en blanco.
+    """
+    return Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=maximo)]
+
+
+Nombre = _texto(120)
+Host = _texto(255)
+Usuario = _texto(120)
+Coordenada = Annotated[float, Field(ge=0.0, le=1.0)]
+
+
 class CameraBase(BaseModel):
-    name: str = Field(min_length=1, max_length=120)
-    host: str = Field(min_length=1, max_length=255)
+    name: Nombre
+    host: Host
     http_port: int = Field(80, ge=1, le=65535)
     use_https: bool = False
     verify_tls: bool = False
     rtsp_port: int = Field(554, ge=1, le=65535)
     onvif_port: int = Field(80, ge=1, le=65535)
     channel: int = Field(1, ge=1)
-    username: str = Field(min_length=1, max_length=120)
+    username: Usuario
     onvif_username: str | None = None
     network_mode: NetworkMode = NetworkMode.LAN
 
@@ -28,15 +43,17 @@ class CameraCreate(CameraBase):
 
 
 class CameraUpdate(BaseModel):
-    name: str | None = None
-    host: str | None = None
+    name: Nombre | None = None
+    host: Host | None = None
     http_port: int | None = Field(None, ge=1, le=65535)
     use_https: bool | None = None
     verify_tls: bool | None = None
     rtsp_port: int | None = Field(None, ge=1, le=65535)
     onvif_port: int | None = Field(None, ge=1, le=65535)
     channel: int | None = Field(None, ge=1)
-    username: str | None = None
+    username: Usuario | None = None
+    # Sin largo mínimo a propósito: la interfaz manda la contraseña vacía para decir
+    # "dejala como está" (ver test_update_rename_keeps_credentials_and_status).
     password: str | None = None
     onvif_username: str | None = None
     onvif_password: str | None = None
@@ -236,7 +253,9 @@ class RuleSetOut(BaseModel):
 class RulePatch(BaseModel):
     """Solo se escribe lo que viene; el resto de la regla queda como está en la cámara."""
 
-    points: list[tuple[float, float]] | None = None
+    # Normalizadas 0..1: una coordenada fuera de rango es un error del cliente, no algo
+    # que haya que recortar en silencio.
+    points: list[tuple[Coordenada, Coordenada]] | None = None
     enabled: bool | None = None
     sensitivity: int | None = Field(default=None, ge=1, le=100)
     direction: str | None = None

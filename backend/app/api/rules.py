@@ -1,14 +1,14 @@
 import uuid
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.schemas import ConfigBackupOut, RuleOut, RulePatch, RuleSetOut
 from app.core.db import get_session
 from app.db.models import Camera, ConfigBackup
-from app.domain.rules import RuleKind
+from app.domain.rules import RuleKind, validar_puntos
 from app.services import cameras as camera_service
 from app.services import rules as service
 
@@ -34,6 +34,13 @@ async def read_rules(camera: CameraDep, session: Session) -> RuleSetOut:
 async def update_rule(
     camera: CameraDep, kind: RuleKind, external_id: str, payload: RulePatch, session: Session
 ) -> RuleOut:
+    # La cantidad de puntos depende del tipo, que viene en la ruta y no en el cuerpo: por eso
+    # no lo puede validar el esquema solo. Se revisa antes de tocar la cámara.
+    if payload.points is not None:
+        try:
+            validar_puntos(kind, payload.points)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
     regla = await service.update_rule(session, camera, kind, external_id, payload.a_update())
     await session.commit()
     return RuleOut.desde(regla)

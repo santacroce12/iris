@@ -1,7 +1,7 @@
 import uuid
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends, Response, status
+from fastapi import APIRouter, Depends, Query, Response, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -209,11 +209,15 @@ async def get_capabilities(camera: CameraDep, session: Session):
 
 
 @router.get("/{camera_id}/operations", response_model=list[OperationLogOut])
-async def get_operations(camera: CameraDep, session: Session, limit: int = 100):
+async def get_operations(
+    camera: CameraDep,
+    session: Session,
+    limit: Annotated[int, Query(ge=1, le=500)] = 100,
+):
     result = await session.scalars(
         select(OperationLog)
         .where(OperationLog.camera_id == camera.id)
         .order_by(OperationLog.created_at.desc())
-        .limit(min(limit, 500))
+        .limit(limit)
     )
     return list(result)

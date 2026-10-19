@@ -1,4 +1,4 @@
-# Vigía — Plataforma unificada de cámaras IP
+# Iris — Plataforma unificada de cámaras IP
 
 Tesis de Luca Santacroce: *Diseño e implementación de una plataforma unificada para el acceso a
 funciones avanzadas en cámaras IP multimarca*.

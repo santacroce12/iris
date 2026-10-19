@@ -8,6 +8,7 @@ import uuid
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Query
+from pydantic import AfterValidator
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.schemas import (
@@ -42,7 +43,20 @@ async def _camera(camera_id: uuid.UUID, session: Session) -> Camera:
 
 
 CameraDep = Annotated[Camera, Depends(_camera)]
-ProtocolQuery = Annotated[Protocol, Query(description="isapi u onvif")]
+
+
+def _sin_rtsp(protocolo: Protocol) -> Protocol:
+    """RTSP solo transporta video: no lee ni escribe configuración.
+
+    Sin este filtro, `?protocol=rtsp` caía en la rama ONVIF y la cámara terminaba contestando
+    por un protocolo que el pedido no nombró.
+    """
+    if protocolo is Protocol.RTSP:
+        raise ValueError("RTSP no configura la cámara: usar isapi u onvif")
+    return protocolo
+
+
+ProtocolQuery = Annotated[Protocol, AfterValidator(_sin_rtsp), Query(description="isapi u onvif")]
 
 
 @router.post("/{camera_id}/capabilities/detect", status_code=202)

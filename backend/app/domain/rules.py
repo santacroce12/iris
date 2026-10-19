@@ -36,6 +36,24 @@ POLYGON_KINDS = {
 Point = tuple[float, float]
 
 
+def validar_puntos(kind: RuleKind, puntos: list[Point]) -> None:
+    """Rechaza una geometría imposible antes de que llegue a la cámara.
+
+    Una línea son exactamente dos puntos y un polígono al menos tres. Mandarle otra cosa a la
+    cámara es pedirle que rechace la escritura —o peor, que la acepte a medias—, así que se
+    corta acá.
+    """
+    if kind in POLYGON_KINDS:
+        if len(puntos) < 3:
+            raise ValueError(
+                f"{kind.value}: un polígono necesita 3 puntos o más, llegaron {len(puntos)}"
+            )
+    elif len(puntos) != 2:
+        raise ValueError(
+            f"{kind.value}: una línea son exactamente 2 puntos, llegaron {len(puntos)}"
+        )
+
+
 @dataclass
 class Rule:
     kind: RuleKind

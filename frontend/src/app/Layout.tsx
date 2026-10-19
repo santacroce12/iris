@@ -1,6 +1,7 @@
-import { Activity, Cctv, Grid3x3, ScanEye } from 'lucide-react'
+import { Activity, Cctv, Grid3x3 } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router'
 
+import { Logo } from '@/components/Logo'
 import { cn } from '@/components/ui'
 import { EventStreamProvider } from '@/features/events/EventStream'
 import { LiveToasts } from '@/features/events/LiveToasts'
@@ -17,11 +18,9 @@ export function Layout() {
     <div className="flex h-full flex-col md:flex-row">
       <aside className="flex shrink-0 items-center gap-1 border-b border-line bg-surface/60 px-3 py-2 md:w-60 md:flex-col md:items-stretch md:border-r md:border-b-0 md:px-4 md:py-6">
         <div className="mr-3 flex items-center gap-2.5 md:mr-0 md:mb-8 md:px-2">
-          <div className="grid size-8 place-items-center rounded-lg bg-accent/15 text-accent ring-1 ring-accent/30">
-            <ScanEye className="size-4.5" />
-          </div>
+          <Logo className="size-8 shrink-0" />
           <div className="leading-tight">
-            <p className="font-semibold tracking-tight">Vigía</p>
+            <p className="font-semibold tracking-tight">Iris</p>
             <p className="hidden text-[11px] text-muted md:block">ISAPI · ONVIF · RTSP</p>
           </div>
         </div>

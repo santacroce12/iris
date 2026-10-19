@@ -5,6 +5,7 @@ Se ignoran los namespaces porque varían entre firmwares (isapi.org, hikvision, 
 
 from typing import Any
 from xml.etree.ElementTree import Element
+from xml.sax import saxutils
 
 from defusedxml import ElementTree
 
@@ -71,3 +72,13 @@ def to_dict(node: Element) -> Any:
         else:
             result[key] = value
     return result
+
+
+def escapar(valor: str) -> str:
+    """Deja un texto listo para meter como contenido de una etiqueta.
+
+    Hace falta porque los campos los escribe el usuario: un nombre de cámara con `&` —
+    "Entrada & Patio"— arma un documento que la cámara rechaza, y uno con `<` podría
+    inyectar etiquetas en el XML que se le manda.
+    """
+    return saxutils.escape(valor)
